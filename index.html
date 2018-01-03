@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Kyle Worcester-Moore</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <style>
+        body {
+                    display: flex;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #94b6d6;
+                    text-decoration: inherit;
+                    text-transform: inherit;
+                    letter-spacing: 0.04em;
+                    font-weight: 400;
+                    font-size: 0.875rem;
+                    font-family: Roboto, 'Helvetica Neue', sans-serif;
+                    line-height: 1.25rem;
+                    -moz-osx-font-smoothing: grayscale;
+                    -webkit-font-smoothing: antialiased;
+                }
+
+                a:visited {
+                    color: #2196f3;
+                }
+
+                a {
+                    color: #2196f3;
+                    text-decoration: none;
+                }
+
+                header {
+                    position: fixed;
+                    padding: 16px 20px;
+                    width: 100%;
+                    height: 50px;
+                    box-sizing: border-box;
+                    z-index: 5;
+                    background: linear-gradient(-20deg, #94b6d6 35%, #3cb0e5, #94b6d6 65%);
+                    background-color: #94b6d6;
+                }
+
+                .background {
+                    position: fixed;
+                    display: flex;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    z-index: -1;
+                    flex-direction: column-reverse;
+                }
+
+                .gradient {
+                    position: relative;
+                    margin-bottom: -15vw;
+                    width: 100%;
+                    height: 15vw;
+                    z-index: 2;
+                    background: linear-gradient(#94b6d6, transparent);
+                }
+
+                .gradient-fixed {
+                    position: fixed;
+                    top: 50px;
+                    width: 100%;
+                    height: 15vw;
+                    z-index: 2;
+                    background: linear-gradient(#94b6d6, transparent);
+                }
+
+                .shadow {
+                    position: fixed;
+                    margin: auto;
+                    top: 35px;
+                    left: 13px;
+                    right: 13px;
+                    max-width: 972px;
+                    height: 15px;
+                    z-index: 4;
+                    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+                }
+
+                .main-container {
+                    margin: 50px auto 0 auto;
+                    width: 100vw;
+                    max-width: 990px;
+                    height: 100%;
+                    box-sizing: border-box;
+                    flex: 1 auto;
+                }
+
+                .main-container-margin {
+                    margin: 0 16px;
+                    padding: 12px;
+                    background: rgba(255, 255, 255, 0.85);
+                }
+
+                .clearfix::after {
+                    display: table;
+                    clear: both;
+                    content: '';
+                }
+
+                .card {
+                    position: relative;
+                    margin-bottom: 20px;
+                    padding: 24px 16px;
+                    border: 1px solid #2196f3;
+                    border-radius: 8px;
+                    background: #ffffff;
+                    color: rgba(0, 0, 0, 0.87);
+                }
+
+                .card-head {
+                    overflow: hidden;
+                }
+
+                .card-head .logo-container {
+                    margin-right: 16px;
+                    width: 130px;
+                    height: 130px;
+                    float: left;
+                    border-radius: 30px;
+                    background: url(/icon-bg.png);
+                    background-size: cover;
+                }
+
+                .logo-container img {
+                    margin: 50%;
+                    padding-bottom: 4px;
+                    width: 120px;
+                    transform: translate(-50%, -50%);
+                }
+
+                .card-head h2 {
+                    margin-top: 0;
+                }
+
+                .slide-deck {
+                    margin: 0 20px;
+                }
+
+                .slide-image {
+                    display: inline-block;
+                    margin: 10px 20px 0 20px;
+                    height: 300px;
+                    overflow: hidden;
+                    outline: none;
+                    border-radius: 2px;
+                    background: teal;
+                    transition: transform 200ms ease;
+                }
+
+                .slide-image img {
+                    height: 100%;
+                }
+
+                @media (min-width: 840px) {
+
+                    .slide-deck {
+                        margin: -5px 20px -40px 20px;
+                    }
+                    .slide-image {
+                        margin: 67px 50px 100px 50px;
+                    }
+                    .slick-center {
+                        -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
+                                box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
+                        color: rgba(0, 0, 0, 0.87);
+                    }
+                    .slick-center:not(.no-zoom) {
+                        transform: scale(1.35);
+                    }
+                }
+
+                .slick-prev {
+                    left: -32px;
+                    background: url(left_arrow.svg);
+                }
+
+                .slick-next {
+                    right: -32px;
+                    background: url(right_arrow.svg);
+                }
+
+                .slick-prev,
+                .slick-next {
+                    position: absolute;
+                    display: block;
+                    padding: 0;
+                    top: 50%;
+                    width: 20px;
+                    height: 20px;
+                    outline: none;
+                    border: none;
+                    background-size: contain;
+                    color: transparent;
+                    font-size: 0;
+                    line-height: 0;
+                    cursor: pointer;
+                    -webkit-transform: translate(0, -50%);
+                        -ms-transform: translate(0, -50%);
+                            transform: translate(0, -50%);
+                }
+
+                .other-box {
+                    position: relative;
+                    display: inline-block;
+                    margin: 12px;
+                    width: 260px;
+                    height: 260px;
+                    overflow: hidden;
+                }
+
+                .other-box img {
+                    height: 100%;
+                }
+
+                .other-box .caption {
+                    position: absolute;
+                    padding: 6px;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.6);
+                    color: white;
+                }
+    </style>
+</head>
+
+<body>
+    <div class="shadow"></div>
+    <header>
+        <h3 style="margin: 0">Kyle Worcester-Moore:
+            <span style="font-weight: 400">Portfolio</span>
+        </h3>
+        <span style="position: absolute;right:  0;top: 0;height: 50px;">
+            <a href="https://studyhubdev.blogspot.com/">
+                <img src="blogger.svg" style="padding: 12px 8px 12px 16px;opacity: 0.9;height: 27px;">
+            </a>
+            <a href="https://github.com/KW-M">
+                <img src="github-circle.svg" style="padding: 12px 16px 12px 8px;opacity: 0.9;height: 27px">
+            </a>
+        </span>
+    </header>
+    <div class="background">
+        <img src="/big-sur.jpg" alt="Big Sur Coast" style="width:100%">
+        <div class="gradient"></div>
+        <div class="gradient-fixed"></div>
+    </div>
+
+    <div class="main-container">
+        <div class="main-container-margin">
+            <h3 style="margin: 16px;">Projects</h3>
+            <div class="card">
+                <div class="card-head clearfix">
+                    <div class="logo-container">
+                        <img src="http://studyhub.york.org/images/logo.png" alt="Icon">
+                    </div>
+                    <h2>StudyHub</h2>
+                    <p>A web platform I designed and built for York School which allows students to share, organize, and access
+                        educational study resources school-wide. It's used by over 80% of York students and faculty to share
+                        and learn. It's built on AngularJS and uses the Google Drive API as a database. StudyHub has evolved
+                        continuously through many prototypes where I switched to new server stacks, made the web app fully
+                        responsive, mobile-ready and offline capable, and then completely rebuilt Studyhub after I asked
+                        Google employees to review the security of my website. It took me nearly two years to complete, and
+                        I'm now working on updating it to use more modern and reliable databases and frameworks. You can
+                        learn more about StudyHub's development on my
+                        <a href="https://studyhubdev.blogspot.com/">dev blog</a> and check out the live version at
+                        <a href="http://studyhub.york.org">studyhub.york.org</a> (if you would like a temporary login, <a href="mailto:worcester-moorek2018@york.org">email me</a>).
+                    </p>
+                </div>
+                <div class="slide-deck">
+                    <div class="slide-image">
+                        <img src="StudyHub/1.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="StudyHub/2.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="StudyHub/3.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="StudyHub/4.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="StudyHub/5.png">
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head clearfix">
+                    <div class="logo-container">
+                        <img src="SSROV-logo.png" alt="Icon" style="padding-bottom: 0px;width: 122px;">
+                    </div>
+                    <h2>Visualization of Mock Seafloor Mapping Data</h2>
+                    <p>
+                        I built this activity for the
+                        <a href="http://www.ssrovcamp.org/">Seafloor Science and ROV Summer Camp</a> that I work at over the summer. It's designed to teach kids
+                        how seafloor maps are made in the open ocean. It's a two-part project, the first being a robot fitted
+                        with a laser rangefinder, that "scans" a clay terrain model by driving on a glass sheet above the
+                        model and measuring distances. In the second part, camp participants paste the data they've collected
+                        into my website to see the model became a virtual seafloor map. This activity mimics how autonomous
+                        underwater vehicles and side-scanning boats create seafloor maps using sonar. It's built on WebGL
+                        using THREE.js and uses a custom GPU shader to render the depth-mapped color codes. You can play
+                        with it at
+                        <a href="http://kw-m.github.io/ssrov-heightmapper/">kw-m.github.io/ssrov-heightmapper</a> and look at the
+                        <a href="https://github.com/KW-M/ssrov-heightmapper">source code</a> on my Github.
+                    </p>
+                </div>
+                <div class="slide-deck">
+                    <div class="slide-image" style="width: 480px; pointer-events: none">
+                        <iframe width="480" height="300" src="https://www.youtube.com/embed/F9qmWU6Tb9M?autoplay=1&amp;controls=0&amp;loop=1&amp;modestbranding=1&amp;playlist=F9qmWU6Tb9M&amp;rel=0"
+                            frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <div class="slide-image">
+                        <img src="HeightMapper/1.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="HeightMapper/2.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="HeightMapper/3.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="HeightMapper/4.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="HeightMapper/5.gif">
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head clearfix">
+                    <div class="logo-container">
+                        <img src="cardboard-logo.png" alt="Icon" style="padding-bottom: 0px;width: 122px;">
+                    </div>
+                    <h2>Mobile VR Games with Google Cardboard</h2>
+                    <p>I started this project to try and create a real VR mobile game using the Unity game engine and the Google
+                        Cardboard SDK. I was inspired by games like Ball Resurrection to do an aerial ball platformer game,
+                        but in VR. Instead of regular level design, I thought it would be cool if the game procedurally generated
+                        each level, so I made a C# script to generate levels in-game. In my first prototypes, I modeled a
+                        stone pathway that would crumble and fall into the sea behind the player; however, the physics behind
+                        the crumbling pathway proved too costly for a mobile CPU, so I switched to a simpler pathway design.
+                        I finally showcased my work at York's art fair, where people could try out my game and a watch a
+                        360 video a friend made in VR.
+                    </p>
+                </div>
+                <div class="slide-deck">
+                    <div class="slide-image" style="width: 532px;">
+                        <iframe width="532" height="300" src="https://www.youtube.com/embed/DSRizxxjQW0?autoplay=1&amp;controls=0&amp;loop=1&amp;modestbranding=1&amp;playlist=DSRizxxjQW0&amp;rel=0"
+                            frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <div class="slide-image" style="width: 532px;">
+                        <iframe width="532" height="300" src="https://www.youtube.com/embed/DCzHMl4KGDg?autoplay=1&amp;controls=0&amp;loop=1&amp;modestbranding=1&amp;playlist=DCzHMl4KGDg&amp;rel=0"
+                            frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <div class="slide-image">
+                        <img src="Cardboard/1.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="Cardboard/2.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="Cardboard/3.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="Cardboard/4.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="Cardboard/5.png">
+                    </div>
+                    <div class="slide-image">
+                        <img src="Cardboard/6.png">
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head clearfix">
+                    <h2>Other Projects</h2>
+                </div>
+                <div class="other-box">
+                    <img src="StudyHub/4.png">
+                    <div class="caption">StudyHub 2</div>
+                </div>
+                <div class="other-box">
+                    <img src="StudyHub/4.png">
+                    <div class="caption">Science Fair: Magnetisim - 1st place in catagory</div>
+                </div>
+                <div class="other-box">
+                    <img src="StudyHub/4.png">
+                    <div class="caption">Science Fair: Materials Science - 1st place in catagory</div>
+                </div>
+                <div class="other-box">
+                    <img src="StudyHub/4.png">
+                    <div class="caption">StudyHub 2</div>
+                </div>
+            </div>
+        </div>
+        <p style="margin:0 4px 4px 4px;font-size: 14px;">
+            <span>Kyle Worcester-Moore</span>
+            <span style="float:right">Website design and images by me. Uses
+                <a href="http://kenwheeler.github.io/slick/" target="_blank" onclick="credits()">slick.js</a>
+            </span>
+        </p>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script>
+        $('.slide-deck')
+            .slick({
+                dots: false,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                centerMode: true,
+                variableWidth: true,
+                centerPadding: '60px',
+            });
+    </script>
+</body>
+
+</html>
