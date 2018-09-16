@@ -157,6 +157,7 @@
             border-radius: 2px;
             background: teal;
             transition: transform 200ms ease;
+
         }
 
         .slide-image img {
@@ -180,7 +181,20 @@
                 transform: scale(1.35);
             }
         }
-
+        @media (max-width: 630px) {
+            .slide-deck {
+                margin-left:-16px;
+                margin-right: -16px;
+            }
+            .slide-image{
+                height: calc(100vw / 2);
+                width: auto !important;
+            }
+            .slide-image iframe {
+                height: 100%;
+                width: 100%;
+            }
+        }
         .slick-prev {
             left: -32px;
             background: url(left_arrow.svg);
@@ -271,13 +285,20 @@
                         <img src="./StudyHub-logo.png" alt="Icon">
                     </div>
                     <h2>StudyHub</h2>
-                    <p>A web platform I designed and built for York School which allows students to share, organize, and access
-                        educational study resources school-wide. It's used by over 80% of York students and faculty to share
-                        and learn. It's built on AngularJS and uses the Google Drive API as a database. StudyHub has evolved
-                        continuously through many prototypes where I switched to new server stacks, made the web app fully
-                        responsive, mobile-ready and offline capable, and then completely rebuilt Studyhub after I asked
-                        Google employees to review the security of my website. It took me nearly two years to complete, and
-                        I'm now working on updating it to use more modern and reliable databases and frameworks. You can
+                    <p>A web platform I designed and built for York School which allows students to share, organize,
+                        and access
+                        educational study resources school-wide. It's used by over 80% of York students and faculty to
+                        share
+                        and learn. It's built on AngularJS and uses the Google Drive API as a database. StudyHub has
+                        evolved
+                        continuously through many prototypes where I switched to new server stacks, made the web app
+                        fully
+                        responsive, mobile-ready and offline capable, and then completely rebuilt Studyhub after I
+                        asked
+                        Google employees to review the security of my website. It took me nearly two years to complete,
+                        and
+                        I'm now working on updating it to use more modern and reliable databases and frameworks. You
+                        can
                         learn more about StudyHub's development on my
                         <a href="https://studyhubdev.blogspot.com/">dev blog</a> and check out the live version at
                         <a href="http://studyhub.york.org">studyhub.york.org</a> (if you would like a temporary login,
@@ -310,15 +331,23 @@
                     <h2>Visualization of Mock Seafloor Mapping Data</h2>
                     <p>
                         I built this activity for the
-                        <a href="http://www.ssrovcamp.org/">Seafloor Science and ROV Summer Camp</a> that I work at over the summer. It's designed to teach kids
-                        how seafloor maps are made in the open ocean. It's a two-part project, the first being a robot fitted
-                        with a laser rangefinder, that "scans" a clay terrain model by driving on a glass sheet above the
-                        model and measuring distances. In the second part, camp participants paste the data they've collected
-                        into my website to see the model became a virtual seafloor map. This activity mimics how autonomous
-                        underwater vehicles and side-scanning boats create seafloor maps using sonar. It's built on WebGL
-                        using THREE.js and uses a custom GPU shader to render the depth-mapped color codes. You can play
+                        <a href="http://www.ssrovcamp.org/">Seafloor Science and ROV Summer Camp</a> that I work at
+                        over the summer. It's designed to teach kids
+                        how seafloor maps are made in the open ocean. It's a two-part project, the first being a robot
+                        fitted
+                        with a laser rangefinder, that "scans" a clay terrain model by driving on a glass sheet above
+                        the
+                        model and measuring distances. In the second part, camp participants paste the data they've
+                        collected
+                        into my website to see the model became a virtual seafloor map. This activity mimics how
+                        autonomous
+                        underwater vehicles and side-scanning boats create seafloor maps using sonar. It's built on
+                        WebGL
+                        using THREE.js and uses a custom GPU shader to render the depth-mapped color codes. You can
+                        play
                         with it at
-                        <a href="http://kw-m.github.io/ssrov-heightmapper/">kw-m.github.io/ssrov-heightmapper</a> and look at the
+                        <a href="http://kw-m.github.io/ssrov-heightmapper/">kw-m.github.io/ssrov-heightmapper</a> and
+                        look at the
                         <a href="https://github.com/KW-M/ssrov-heightmapper">source code</a> on my Github.
                     </p>
                 </div>
@@ -350,15 +379,23 @@
                         <img src="./cardboard-logo.png" alt="Icon" style="padding-bottom: 0px;width: 122px;">
                     </div>
                     <h2>Mobile VR Games with Google Cardboard</h2>
-                    <p>I started this project to try and create a real VR mobile game using the Unity game engine and the Google
-                        Cardboard SDK. I was inspired by games like Ball Resurrection to do an aerial ball platformer game
-                        but in VR. Instead of regular level design, I thought it would be cool if the game procedurally generated
-                        each level, so I made a C# script to generate levels in-game. In my first prototypes, I modeled a
-                        stone pathway that would crumble and fall into the sea behind the player; however, the physics behind
-                        the crumbling pathway proved too costly for a mobile CPU, so I switched to a simpler pathway design.
-                        I finally showcased my work at York's art fair, where people could try out my game and a watch a
-                        360 video a friend made in VR. If you have an Android device, you can play <a href="./apps/Kyle_Worcester-Moore VR Game V1.apk">Prototype 1</a> and <a href="./apps/Kyle_Worcester-Moore VR Game V2.apk">Prototype
-                        2</a>, by installing the app's APK or application package.
+                    <p>I started this project to try and create a real VR mobile game using the Unity game engine and
+                        the Google
+                        Cardboard SDK. I was inspired by games like Ball Resurrection to do an aerial ball platformer
+                        game
+                        but in VR. Instead of regular level design, I thought it would be cool if the game procedurally
+                        generated
+                        each level, so I made a C# script to generate levels in-game. In my first prototypes, I modeled
+                        a
+                        stone pathway that would crumble and fall into the sea behind the player; however, the physics
+                        behind
+                        the crumbling pathway proved too costly for a mobile CPU, so I switched to a simpler pathway
+                        design.
+                        I finally showcased my work at York's art fair, where people could try out my game and a watch
+                        a
+                        360 video a friend made in VR. If you have an Android device, you can play <a href="./apps/Kyle_Worcester-Moore VR Game V1.apk">Prototype
+                            1</a> and <a href="./apps/Kyle_Worcester-Moore VR Game V2.apk">Prototype
+                            2</a>, by installing the app's APK or application package.
                     </p>
                 </div>
                 <div class="slide-deck">
@@ -413,7 +450,7 @@
             </div> -->
             <p style="margin:0 4px 4px 4px;font-size: 14px;">
                 <span>Kyle Worcester-Moore</span>
-                <span style="float:right">Website design and images by me. Uses
+                <span style="float:right">Website design and images done by me. Uses
                     <a href="http://kenwheeler.github.io/slick/" target="_blank" onclick="credits()">slick.js</a>
                 </span>
             </p>
