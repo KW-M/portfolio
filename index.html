@@ -100,7 +100,7 @@
                 ABOUT ME
             </button>
         </div>
-        <button class="menu-fab " id="Fab_Center" onclick="pageDown()">
+        <button class="menu-fab " id="Fab_Center" onclick="pageDown(true)">
             <img src="./UI-Elements/down_arrow.svg" />
         </button>
         <div class="main-container-margin" id="Projects">
@@ -387,11 +387,11 @@
             behavior: 'smooth'
         })
     }
-    function pageDown() {
+    function pageDown(overide) {
         if (aboutScreenOpen) {
             toggleAboutScreen()
             return
-        } else if (!fabMouseOver) {
+        } else if (!fabMouseOver && !overide) {
             return;
         }
         currSectionIndex++;
