@@ -61,7 +61,9 @@ header.full-expansion {
     right: 0;
     max-width: 1058px;
     height: 0;
+    z-index: 40;
     z-index: 10;
+    box-shadow: none;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 500ms top;
 }
 
@@ -81,10 +83,6 @@ header.full-expansion {
     cursor: pointer;
     transform: translateY(-50%);
     transition: 400ms cubic-bezier(0.075, 0.82, 0.165, 1) height;
-}
-
-.menu-fab img {
-    pointer-events: none;
 }
 
 #Fab_Center {
@@ -119,17 +117,20 @@ header.full-expansion {
     cursor: pointer;
 }
 
-.top-bar:hover header:not(.full-expansion) {
+.top-bar:hover header:not(.full-expansion),
+.top-bar.open-header header:not(.full-expansion) {
     height: 100px;
     transition-delay: 0ms;
 }
 
-.top-bar:hover .shadow {
+.top-bar:hover .shadow,
+.top-bar.open-header .shadow {
     top: 85px;
     transition-delay: 0ms;
 }
 
-.top-bar:hover #Menu_Fab_Container {
+.top-bar:hover #Menu_Fab_Container,
+.top-bar.open-header #Menu_Fab_Container {
     top: 100px;
     transition-delay: 0ms;
 }
@@ -137,12 +138,6 @@ header.full-expansion {
 #Header.full-expansion+#Menu_Fab_Container {
     top: 50px;
     transition-delay: 0ms;
-}
-
-/* #Menu_Fab_Container:not(.close-button-mode):hover .menu-fab img,*/
-
-#Menu_Fab_Container.close-button-mode .menu-fab img {
-    pointer-events: all;
 }
 
 #Menu_Fab_Container:not(.close-button-mode):hover .menu-fab {
@@ -155,14 +150,16 @@ header.full-expansion {
     transition-delay: 0ms;
 }
 
-.nav-link {
+a.nav-link {
     padding: 12px 6px;
+    color: black;
     font-weight: 400;
     font-size: 15px;
     cursor: pointer;
 }
 
 .nav-link.nav-active {
+    color: black;
     font-weight: bold;
     font-size: 16px;
 }
@@ -234,7 +231,6 @@ header.full-expansion {
     height: 36px;
     box-sizing: border-box;
     overflow: hidden;
-    outline: none;
     border: 2px solid #12558b;
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.2);
@@ -494,6 +490,12 @@ header.full-expansion {
     color: white;
 } */
 
-.slick-credit {
+footer {
+    margin: 0 4px 4px 4px;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer .slick-credit {
     float: right;
 }

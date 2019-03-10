@@ -17,15 +17,14 @@
             <img src="./OregonBlur.jpg" alt="Oregon Coast (Photograph © Kyle Worcester-Moore)"
                 class="background-image header-background" onclick="if (aboutScreenOpen) toggleAboutScreen()">
             <h3 style="margin: 16 20 16 0;z-index: 8;">
-                <span style="">Kyle Worcester-Moore</span>
-                <span class="portfolio-text">| Portfolio</span>
+                Kyle Worcester-Moore <span class="portfolio-text">| Portfolio</span>
             </h3>
-            <div>
-                <span onclick="toggleAboutScreen();" id="Nav_About" class="nav-link nav-active">About</span>
-                <span onclick="setSection('StudyHub')" id="Nav_Projects" class="nav-link">Projects</span>
-                <span onclick="setSection('Teams')" id="Nav_Connect" class="nav-link">Teams</span>
-            </div>
-            <div class="icon-links">
+            <nav>
+                <a onclick="toggleAboutScreen();" id="Nav_About" href="#about" class="nav-link nav-active">About</a>
+                <a onclick="setSection('StudyHub')" id="Nav_Projects" href="#projects" class="nav-link">Projects</a>
+                <a onclick="setSection('Teams')" id="Nav_Teams" href="#teams" class="nav-link">Teams</a>
+            </nav>
+            <nav class="icon-links">
                 <div>
                     <a href="https://github.com/KW-M">
                         <img src="./UI-Elements/github-circle.svg"
@@ -45,9 +44,9 @@
                             style="padding: 10px 8px 12px 8px;opacity: 0.9;height: 27px;">
                     </a>
                 </div>
-            </div>
+            </nav>
             <div class="about-container">
-                <div class="card" style="background-color: #ffffffd2;border: none;text-align: left;margin: 0 16px">
+                <section class="card" style="background-color: #ffffffd2;border: none;text-align: left;margin: 0 16px">
                     <div style="width:100%;height:130px;">
                         <img src="./Profile-Picture.png"
                             style="width:130px;height:130px;position:absolute;top:20px;left: calc(50% - 65px);border-radius: 200px">
@@ -58,11 +57,15 @@
                     </div>
                     <p>Hi, I'm Kyle. I'm passionate about using technology to make the world a better place.
                         Currently, I'm studying Computer Science & Computer Game Design at The University of
-                        California, Santa Cruz. I'm always exited to learn new things. Whether it's exploring remote
+                        California, Santa Cruz. I'm always exited to learn new things. Whether it's exploring
+                        remote
                         locations or learning
-                        about the latest technologies, It's always rewarding when I can apply what I've discovered
-                        to real-world projects that make a difference in people's lives. When I'm not investigating
-                        learning or doing side projects, I like to get out and appreciate our planet through hiking,
+                        about the latest technologies, It's always rewarding when I can apply what I've
+                        discovered
+                        to real-world projects that make a difference in people's lives. When I'm not
+                        investigating
+                        learning or doing side projects, I like to get out and appreciate our planet through
+                        hiking,
                         traveling and photography. If you're interested in what I've been up to,
                         checkout the rest of my <a onclick="setSection('StudyHub')">portfolio</a> or download my
                         <a href="https://drive.google.com/file/d/1DYjsgek4NIJk0IT4OKZSCmM-jrepd4OP/view">resume</a>.
@@ -70,10 +73,10 @@
                         </br>
                         Want to get in contact? <a href="mailto:25kylworc@gmail.com">Email Me</a>!
                     </p>
-                </div>
+                </section>
             </div>
         </header>
-        <div id="Menu_Fab_Container" style="box-shadow: none;z-index: 40;">
+        <div id="Menu_Fab_Container">
             <button class="menu-fab" id="Upper_Fab">
                 <img src="./UI-Elements/up_arrow.svg" class="up-arrow" onclick="pageUp()" />
                 <img src="./UI-Elements/down_arrow.svg" class="down-arrow" onclick="pageDown()" />
@@ -98,7 +101,7 @@
         </button>
         <div class="main-container-margin" id="Projects">
             <h3 style="margin: 16px;">Projects</h3>
-            <div class="card" id="StudyHub">
+            <section class="card" id="StudyHub">
                 <div class="card-head clearfix">
                     <div class="logo-container">
                         <img src="./Logos/StudyHub-logo.png" alt="Icon">
@@ -142,8 +145,8 @@
                         <img src="./StudyHub/5.png">
                     </div>
                 </div>
-            </div>
-            <div class="card" id="SSROV">
+            </section>
+            <section class="card" id="SSROV">
                 <div class="card-head clearfix">
                     <div class="logo-container">
                         <img src="./Logos/SSROV-logo.png" alt="Icon" style="padding-bottom: 0px;width: 122px;">
@@ -195,8 +198,8 @@
                         <img src="./HeightMapper/5.gif">
                     </div>
                 </div>
-            </div>
-            <div class="card" id="Cardboard">
+            </section>
+            <section class="card" id="Cardboard">
                 <div class="card-head clearfix">
                     <div class="logo-container">
                         <img src="./Logos/cardboard-logo.png" alt="Icon" style="padding-bottom: 0px;width: 122px;">
@@ -255,9 +258,9 @@
                         <img src="./Cardboard/6.png">
                     </div>
                 </div>
-            </div>
-            <h3 style="margin: 16px;" id="Teams">Teams I'm a Part of</h3>
-            <div>
+            </section>
+            <section>
+                <h3 style="margin: 16px;" id="Teams">Teams I'm a Part of</h3>
                 <div class="team-card">
                     <img src="https://slugbotics.com/res/images/logo_yellow.png"
                         style="background: #0e0e0e; padding: 6px; width:52px; height:52px;">
@@ -272,7 +275,7 @@
                     <p style="margin:0">The student-lead game design and production club at UCSC. This year I'm a
                         programmer on the Occultus Occularus videogame team.</p>
                 </div>
-            </div>
+            </section>
             <!-- <div class="other-box">
                     <img src="./StudyHub/4.png">
                     <div class="caption">Science Fair: Magnetisim - 1st place in catagory</div>
@@ -285,11 +288,11 @@
                     <img src="./StudyHub/4.png">
                     <div class="caption">StudyHub 2</div>
                 </div> -->
-            <p style="margin:0 4px 4px 4px;font-size: 14px;text-align: center">
+            <footer>
                 <span>Made by <span style="font-weight:bold">Kyle Worcester-Moore</span></span>
                 <span class="slick-credit">Uses <a href="http://kenwheeler.github.io/slick/" target="_blank"
                         onclick="credits()">slick.js</a></span>
-            </p>
+            </footer>
         </div>
     </div>
 </body>
@@ -310,14 +313,16 @@
 
     var backgroundImg = new Image(10, 20);
     backgroundImg.addEventListener("load", function () {
-        console.log("here");
         document.getElementById("Background_Image").src = "./Oregon.jpg";
     });
     backgroundImg.src = './Oregon.jpg';
 
+    var fabMouseOver = false;
+    var fabTransitionDone = false;
     var aboutScreenOpen = false
     var currSectionIndex = 0;
     var onCorrectSection = false;
+
     var sectionArray = [
         'About',
         'StudyHub',
@@ -335,15 +340,17 @@
         console.dir(document.getElementById("About").clientHeight);
     }
 
-    var throttling = false;
+    var throttleInterval = null;
+    var lastTime = new Date().getTime();
     window.onscroll = function () {
-        // if (throttling == false) {
-        //     checkScroll();
-        //     throttling = setTimeout(function () {
-        checkScroll();
-        //     throttling = false;
-        // }, 100)
-        // }
+        if (throttleInterval == null) throttleInterval = setInterval(() => {
+            if ((new Date().getTime() - lastTime) > 250) {
+                clearInterval(throttleInterval);
+                throttleInterval = null;
+            }
+            checkScroll()
+        }, 200);
+        lastTime = new Date().getTime();
     }
 
     function setSection(sectionId) {
@@ -356,7 +363,24 @@
             checkScroll();
         }
     }
+    document.getElementById("Header").addEventListener("focusin", (event) => {
+        var headerElm = document.getElementById("Header")
+        headerElm.scroll(0, 0);
+        $(headerElm.parentElement).addClass('open-header');
+    });
+    document.getElementById("Header").addEventListener("focusout", (event) => {
+        var headerElm = document.getElementById("Header")
+        headerElm.scroll(0, 0);
+        $(headerElm.parentElement).removeClass('open-header');
+    });
+    document.getElementById("Upper_Fab").addEventListener("mouseenter", (event) => {
+        setTimeout(() => { fabMouseOver = true }, 10)
+    });
+    document.getElementById("Upper_Fab").addEventListener("mouseleave", (event) => {
+        fabMouseOver = false
+    });
     function pageUp() {
+        if (!fabMouseOver) return
         currSectionIndex--
         if (currSectionIndex < 0) {
             toggleAboutScreen()
@@ -375,6 +399,8 @@
         if (aboutScreenOpen) {
             toggleAboutScreen()
             return
+        } else if (!fabMouseOver) {
+            return;
         }
         currSectionIndex++;
         if (currSectionIndex > sectionArray.length - 1) currSectionIndex = 0;
@@ -405,14 +431,13 @@
             $("#Menu_Fab_Container").removeClass("close-button-mode")
             setActiveNavLink()
             document.body.style.overflow = "auto";
-            $(".about-container").animate({
-                opacity: 0,
-                display: "none"
-            }, { duration: 100, queue: false }, "swing");
+            setTimeout(function () {
+                $(".about-container").css({ display: "none" })
+            }, 100)
         }
     }
 
-    fabTransitionDone = false;
+
     function checkScroll() {
         if (sectionArray[currSectionIndex] && document.getElementById(sectionArray[currSectionIndex]).offsetTop > window.scrollY + (window.screen.height / 2)) {
             onCorrectSection = false;
@@ -425,7 +450,6 @@
             if (!onCorrectSection) setActiveNavLink();
             onCorrectSection = true;
         }
-        console.log(window.scrollY - introTextHeight)
         if (!fabTransitionDone && (window.scrollY - introTextHeight) > 38) transitionMenuButton()
     }
 
@@ -435,30 +459,23 @@
         });
         if (currSectionIndex == 0) {
             $('#Nav_About').addClass("nav-active")
+            window.location.hash = '#about';
         } else if (currSectionIndex == 4) {
-            $('#Nav_Connect').addClass("nav-active")
+            $('#Nav_Teams').addClass("nav-active")
+            window.location.hash = '#teams';
         } else {
             $('#Nav_Projects').addClass("nav-active")
+            window.location.hash = '#projects';
         }
     }
 
     function transitionMenuButton() {
         fabTransitionDone = true;
-        // var left = (window.screen.width / 2) - document.getElementById('Menu_Fab_Container').offsetLeft - 28;
-        // var top = document.getElementById('Fab_Center').getBoundingClientRect().y;
-        //        $('#Upper_Fab').css({ display: 'block', left: left + 'px', top: top + 'px' })
         $('#Upper_Fab').css({ display: 'block', opacity: 0 })
         $('#Fab_Center').remove();
         $('#Upper_Fab').animate({
             opacity: 1
         }, { duration: 200, queue: false }, "swing");
-        // $('#Upper_Fab').animate({
-        //     top: 0
-        // }, { duration: 70, queue: false }, "swing");
-        // $('#Upper_Fab').animate({
-        //     left: 0,
-        // }, { duration: 400, queue: false }, "swing");
-
     }
 </script>
 
