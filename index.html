@@ -5,281 +5,101 @@
     <meta charset="utf-8">
     <title>Kyle Worcester-Moore</title>
 
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link rel="stylesheet" type="text/css" href="./slick/slick.css" />
-    <style>
-        body {
-            display: flex;
-            margin: 0;
-            padding: 0;
-            background-color: #94b6d6;
-            text-decoration: inherit;
-            text-transform: inherit;
-            letter-spacing: 0.04em;
-            font-weight: 400;
-            font-size: 0.875rem;
-            font-family: Roboto, 'Helvetica Neue', sans-serif;
-            line-height: 1.25rem;
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a:visited {
-            color: #2196f3;
-        }
-
-        a {
-            color: #2196f3;
-            text-decoration: none;
-        }
-
-        header {
-            position: fixed;
-            padding: 16px 20px;
-            width: 100%;
-            height: 50px;
-            box-sizing: border-box;
-            z-index: 5;
-            background: linear-gradient(-20deg, #94b6d6 35%, #3cb0e5, #94b6d6 65%);
-            background-color: #94b6d6;
-        }
-
-        .background {
-            position: fixed;
-            display: flex;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            z-index: -1;
-            flex-direction: column-reverse;
-        }
-
-        .gradient {
-            position: relative;
-            margin-bottom: -15vw;
-            width: 100%;
-            height: 15vw;
-            z-index: 2;
-            background: linear-gradient(#94b6d6, transparent);
-        }
-
-        .gradient-fixed {
-            position: fixed;
-            top: 50px;
-            width: 100%;
-            height: 15vw;
-            z-index: 2;
-            background: linear-gradient(#94b6d6, transparent);
-        }
-
-        .shadow {
-            position: fixed;
-            margin: auto;
-            top: 35px;
-            left: 13px;
-            right: 13px;
-            max-width: 972px;
-            height: 15px;
-            z-index: 4;
-            box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
-        }
-
-        .main-container {
-            margin: 50px auto 0 auto;
-            width: 100vw;
-            max-width: 990px;
-            height: 100%;
-            box-sizing: border-box;
-            flex: 1 auto;
-        }
-
-        .main-container-margin {
-            margin: 0 16px;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.85);
-        }
-
-        .clearfix::after {
-            display: table;
-            clear: both;
-            content: '';
-        }
-
-        .card {
-            position: relative;
-            margin-bottom: 20px;
-            padding: 24px 16px;
-            border: 1px solid #2196f3;
-            border-radius: 8px;
-            background: #ffffff;
-            color: rgba(0, 0, 0, 0.87);
-        }
-
-        .card-head {
-            overflow: hidden;
-        }
-
-        .card-head .logo-container {
-            margin-right: 16px;
-            width: 130px;
-            height: 130px;
-            float: left;
-            border-radius: 30px;
-            background: url(Logos/icon-bg.png);
-            background-size: cover;
-        }
-
-        .logo-container img {
-            margin: 50%;
-            padding-bottom: 4px;
-            width: 120px;
-            transform: translate(-50%, -50%);
-        }
-
-        .card-head h2 {
-            margin-top: 0;
-        }
-
-        .slide-deck {
-            cursor: ew-resize;
-            margin: 0 20px;
-        }
-
-        .slide-image {
-            display: inline-block;
-            margin: 10px 20px 0 20px;
-            height: 300px;
-            overflow: hidden;
-            outline: none;
-            border-radius: 2px;
-            background: teal;
-            transition: transform 200ms ease;
-
-        }
-
-        .slide-image img {
-            height: 100%;
-        }
-
-        @media (min-width: 840px) {
-
-            .slide-deck {
-                margin: -5px 20px -40px 20px;
-            }
-            .slide-image {
-                margin: 67px 50px 100px 50px;
-            }
-            .slick-center {
-                -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
-                box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
-                color: rgba(0, 0, 0, 0.87);
-            }
-            .slick-center:not(.no-zoom) {
-                transform: scale(1.35);
-            }
-        }
-        @media (max-width: 630px) {
-            .slide-deck {
-                margin-left:-16px;
-                margin-right: -16px;
-            }
-            .slide-image{
-                height: calc(100vw / 2);
-                width: auto !important;
-            }
-            .slide-image iframe {
-                height: 100%;
-                width: 100%;
-            }
-        }
-        .slick-prev {
-            left: -32px;
-            background: url(left_arrow.svg);
-            background-position-x: left;
-        }
-
-        .slick-next {
-            right: -32px;
-            background: url(right_arrow.svg);
-            background-position-x: right;
-        }
-
-        .slick-prev,
-        .slick-next {
-            position: absolute;
-            display: block;
-            padding: 175px 56px;
-            z-index: 1;
-            top: 50%;
-            width: 20px;
-            height: 20px;
-            outline: none;
-            border: none;
-            background-repeat: no-repeat;
-            background-size: 30px;
-            background-position-y: center;
-            color: transparent;
-            font-size: 0;
-            line-height: 0;
-            cursor: pointer;
-            -webkit-transform: translate(0, -50%);
-            -ms-transform: translate(0, -50%);
-            transform: translate(0, -50%);
-        }
-
-        .other-box {
-            position: relative;
-            display: inline-block;
-            margin: 12px;
-            width: 260px;
-            height: 260px;
-            overflow: hidden;
-        }
-
-        .other-box img {
-            height: 100%;
-        }
-
-        .other-box .caption {
-            position: absolute;
-            padding: 6px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./main.css" />
 </head>
 
 <body>
-    <div class="shadow"></div>
-    <header>
-        <h3 style="margin: 0">Kyle Worcester-Moore:
-            <span style="font-weight: 400">Portfolio</span>
-        </h3>
-        <span style="position: absolute;right:  0;top: 0;height: 50px;">
-            <a href="https://studyhubdev.blogspot.com/">
-                <img src="./UI-Elements/blogger.svg" style="padding: 12px 8px 12px 16px;opacity: 0.9;height: 27px;">
-            </a>
-            <a href="https://github.com/KW-M">
-                <img src="./UI-Elements/github-circle.svg" style="padding: 12px 16px 12px 8px;opacity: 0.9;height: 27px">
-            </a>
-        </span>
-    </header>
-    <div class="background">
-        <img src="./big-sur.jpg" alt="Big Sur Coast" style="width:100%">
-        <div class="gradient"></div>
-        <div class="gradient-fixed"></div>
+    <div class="top-bar">
+        <header id="Header">
+            <img src="./OregonBlur.jpg" alt="Oregon Coast (Photograph © Kyle Worcester-Moore)"
+                class="background-image header-background" onclick="if (aboutScreenOpen) toggleAboutScreen()">
+            <h3 style="margin: 16 20 16 0;z-index: 8;">
+                <span style="">Kyle Worcester-Moore</span>
+                <span class="portfolio-text">| Portfolio</span>
+            </h3>
+            <div>
+                <span onclick="toggleAboutScreen();" id="Nav_About" class="nav-link nav-active">About</span>
+                <span onclick="setSection('StudyHub')" id="Nav_Projects" class="nav-link">Projects</span>
+                <span onclick="setSection('Teams')" id="Nav_Connect" class="nav-link">Teams</span>
+            </div>
+            <div class="icon-links">
+                <div>
+                    <a href="https://github.com/KW-M">
+                        <img src="./UI-Elements/github-circle.svg"
+                            style="padding: 12px 8px 12px 16px;opacity: 0.9;height: 27px">
+                    </a>
+                    <a href="https://www.linkedin.com/in/kyle-worcester-moore/">
+                        <img src="./UI-Elements/linkedin.svg"
+                            style="padding: 10px 8px 12px 8px;opacity: 0.9;height: 27px;">
+                    </a>
+                </div>
+                <div style="margin-top: -10px;">
+                    <a href="https://drive.google.com/file/d/1DYjsgek4NIJk0IT4OKZSCmM-jrepd4OP/view"><img
+                            src="./UI-Elements/resume.svg"
+                            style="padding: 12px 8px 12px 16px;opacity: 0.9;height: 27px;"></a>
+                    <a href="https://studyhubdev.blogspot.com/">
+                        <img src="./UI-Elements/blogger.svg"
+                            style="padding: 10px 8px 12px 8px;opacity: 0.9;height: 27px;">
+                    </a>
+                </div>
+            </div>
+            <div class="main-container"
+                style="max-width: 700px; padding-top: 50px; margin-top: 30px; overflow: auto; height: calc(100% - 100px);">
+                <div class="card" style="background-color: #ffffffd2;border: none;text-align: left;margin: 0 16px">
+                    <div style="width:100%;height:130px;">
+                        <img src="./Profile-Picture.png"
+                            style="width:130px;height:130px;position:absolute;top:20px;left: calc(50% - 65px);border-radius: 200px">
+                        <h2 style="margin:0;position:absolute;top:80px;left: calc(25% - 4rem);">About
+                        </h2>
+                        <h2 style="margin:0;position:absolute;top:80px;right: calc(25% - 2.5rem);">Me
+                        </h2>
+                    </div>
+                    <p>Hi, I'm Kyle. I'm passionate about using technology to make the world a better place.
+                        Currently, I'm studying Computer Science & Computer Game Design at The University of
+                        California, Santa Cruz. I'm always exited to learn new things. Whether it's exploring remote
+                        locations or learning
+                        about the latest technologies, It's always rewarding when I can apply what I've discovered
+                        to real-world projects that make a difference in people's lives. When I'm not investigating
+                        learning or doing side projects, I like to get out and appreciate our planet through hiking,
+                        traveling and photography. If you're interested in what I've been up to,
+                        checkout the rest of my <a onclick="setSection('StudyHub')">portfolio</a> or download my
+                        <a href="https://drive.google.com/file/d/1DYjsgek4NIJk0IT4OKZSCmM-jrepd4OP/view">resume</a>.
+                        </br>
+                        </br>
+                        Want to get in contact? <a href="mailto:25kylworc@gmail.com">Email Me</a>!
+                    </p>
+                </div>
+            </div>
+        </header>
+        <div id="Menu_Fab_Container" style="box-shadow: none;z-index: 40;">
+            <button class="menu-fab" id="Upper_Fab">
+                <img src="./UI-Elements/up_arrow.svg" class="up-arrow" onclick="pageUp()" />
+                <img src="./UI-Elements/down_arrow.svg" class="down-arrow" onclick="pageDown()" />
+            </button>
+        </div>
+        <div class="shadow"></div>
     </div>
-
+    <div class="background">
+        <img src="./OregonBlur.jpg" id="Background_Image" alt="Oregon Coast (Photograph © Kyle Worcester-Moore)"
+            class="background-image">
+    </div>
     <div class="main-container">
-        <div class="main-container-margin">
+        <div class="intro-text" id="About">
+            <h1>Kyle Worcester-Moore</h1>
+            <h4>Developer Explorer Designer</h4>
+            <button onclick="toggleAboutScreen();" class="intro-about-button">
+                ABOUT ME
+            </button>
+        </div>
+        <button class="menu-fab " id="Fab_Center" onclick="pageDown()">
+            <img src="./UI-Elements/down_arrow.svg" />
+        </button>
+        <div class="main-container-margin" id="Projects">
             <h3 style="margin: 16px;">Projects</h3>
-            <div class="card">
+            <div class="card" id="StudyHub">
                 <div class="card-head clearfix">
                     <div class="logo-container">
                         <img src="./Logos/StudyHub-logo.png" alt="Icon">
@@ -303,7 +123,7 @@
                         You can learn more about StudyHub's development on my
                         <a href="https://studyhubdev.blogspot.com/">dev blog</a> and check out the live version at
                         <a href="http://studyhub.york.org">studyhub.york.org</a> (if you would like a temporary login,
-                        <a href="mailto:worcester-moorek2018@york.org">email me</a>).
+                        <a href="mailto:25kylworc@gmail.com">email me</a>).
                     </p>
                 </div>
                 <div class="slide-deck">
@@ -324,7 +144,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" id="SSROV">
                 <div class="card-head clearfix">
                     <div class="logo-container">
                         <img src="./Logos/SSROV-logo.png" alt="Icon" style="padding-bottom: 0px;width: 122px;">
@@ -354,8 +174,11 @@
                 </div>
                 <div class="slide-deck">
                     <div class="slide-image" style="width: 480px;">
-                        <iframe width="480" height="300" src="https://www.youtube.com/embed/F9qmWU6Tb9M?autoplay=1&amp;controls=0&amp;loop=1&amp;modestbranding=1&amp;playlist=F9qmWU6Tb9M&amp;rel=0"
-                            frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                        <iframe width="480" height="300"
+                            src="https://www.youtube-nocookie.com/embed/GHRZtQv6uFw?modestbranding=1&amp;showinfo=0&amp;rel=0&amp;theme=light&amp;loop=1"
+                            frameborder="0" gesture="media"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     </div>
                     <div class="slide-image">
                         <img src="./HeightMapper/1.png">
@@ -374,7 +197,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" id="Cardboard">
                 <div class="card-head clearfix">
                     <div class="logo-container">
                         <img src="./Logos/cardboard-logo.png" alt="Icon" style="padding-bottom: 0px;width: 122px;">
@@ -394,18 +217,25 @@
                         design.
                         I finally showcased my work at York's art fair, where people could try out my game and a watch
                         a
-                        360 video a friend made in VR. If you have an Android device, you can play <a href="./apps/Kyle_Worcester-Moore VR Game V2.apk">Prototype
+                        360 video a friend made in VR. If you have an Android device, you can play <a
+                            href="./apps/Kyle_Worcester-Moore VR Game V2.apk">Prototype
                             2</a>, by installing the app's APK or application package.
                     </p>
                 </div>
                 <div class="slide-deck">
                     <div class="slide-image" style="width: 532px;">
-                        <iframe width="532" height="300" src="https://www.youtube.com/embed/DSRizxxjQW0?autoplay=1&amp;controls=0&amp;loop=1&amp;modestbranding=1&amp;playlist=DSRizxxjQW0&amp;rel=0"
-                            frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                        <iframe width="532" height="300"
+                            src="https://www.youtube-nocookie.com/embed/6t5UGdEt4Io?modestbranding=1&amp;showinfo=0&amp;rel=0&amp;theme=light&amp;loop=1"
+                            frameborder="0" gesture="media"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     </div>
                     <div class="slide-image" style="width: 532px;">
-                        <iframe width="532" height="300" src="https://www.youtube.com/embed/DCzHMl4KGDg?autoplay=1&amp;controls=0&amp;loop=1&amp;modestbranding=1&amp;playlist=DCzHMl4KGDg&amp;rel=0"
-                            frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                        <iframe width="532" height="300"
+                            src="https://www.youtube-nocookie.com/embed/2LBSuYbajzY?modestbranding=1&amp;showinfo=0&amp;rel=0&amp;theme=light&amp;loop=1"
+                            frameborder="0" gesture="media"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     </div>
                     <div class="slide-image">
                         <img src="./Cardboard/1.png">
@@ -427,15 +257,24 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-head clearfix">
-                    <h2>Other Projects</h2>
+            <h3 style="margin: 16px;" id="Teams">Teams I'm a Part of</h3>
+            <div>
+                <div class="team-card">
+                    <img src="https://slugbotics.com/res/images/logo_yellow.png"
+                        style="background: #0e0e0e; padding: 6px; width:52px; height:52px;">
+                    <h4 style="margin:0"><a href="http://slugbotics.com">Slugbotics</a></h4>
+                    <p style="margin:0">UCSC's underwater robotics team. We're building an explorer class ROV for the
+                        MATE international competion. I specifically work on the Mechanical Design and Programming
+                        sub-teams.</p>
                 </div>
-                <div class="other-box">
-                    <img src="./StudyHub/4.png">
-                    <div class="caption">StudyHub 2</div>
+                <div class="team-card" style="margin-right: 0">
+                    <img src="https://cdn.discordapp.com/icons/299292000467943426/826dcb00cc1a201cd82d271f11a8fc8b.png">
+                    <h4 style="margin:0"><a href="http://gdacollab.com/site/about.php">GDA</a></h4>
+                    <p style="margin:0">The student-lead game design and production club at UCSC. This year I'm a
+                        programmer on the Occultus Occularus videogame team.</p>
                 </div>
-                <div class="other-box">
+            </div>
+            <!-- <div class="other-box">
                     <img src="./StudyHub/4.png">
                     <div class="caption">Science Fair: Magnetisim - 1st place in catagory</div>
                 </div>
@@ -446,31 +285,174 @@
                 <div class="other-box">
                     <img src="./StudyHub/4.png">
                     <div class="caption">StudyHub 2</div>
-                </div>
-            </div> -->
-            <p style="margin:0 4px 4px 4px;font-size: 14px;">
-                <span>Kyle Worcester-Moore</span>
-                <span style="float:right">Website design and images done by me. Uses
-                    <a href="http://kenwheeler.github.io/slick/" target="_blank" onclick="credits()">slick.js</a>
-                </span>
+                </div> -->
+            <p style="margin:0 4px 4px 4px;font-size: 14px;text-align: center">
+                <span>Made by <span style="font-weight:bold">Kyle Worcester-Moore</span></span>
+                <span class="slick-credit">Uses <a href="http://kenwheeler.github.io/slick/" target="_blank"
+                        onclick="credits()">slick.js</a></span>
             </p>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script type="text/javascript" src="slick/slick.min.js"></script>
-    <script>
-        $('.slide-deck')
-            .slick({
-                dots: false,
-                infinite: true,
-                speed: 300,
-                slidesToShow: 1,
-                centerMode: true,
-                variableWidth: true,
-                centerPadding: '60px',
-            });
-    </script>
 </body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
+<script>
+    $('.slide-deck')
+        .slick({
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            centerMode: true,
+            variableWidth: true,
+            centerPadding: '60px',
+        });
+
+    var backgroundImg = new Image(10, 20);
+    backgroundImg.addEventListener("load", function () {
+        console.log("here");
+        document.getElementById("Background_Image").src = "./Oregon.jpg";
+    });
+    backgroundImg.src = './Oregon.jpg';
+
+    var aboutScreenOpen = false
+    var currSectionIndex = 0;
+    var onCorrectSection = false;
+    var sectionArray = [
+        'About',
+        'StudyHub',
+        'SSROV',
+        'Cardboard',
+        'Teams'
+    ]
+
+    var introTextHeight = 500;
+    window.onload = () => {
+        while (!onCorrectSection) {
+            checkScroll();
+        }
+        introTextHeight = document.getElementById("About").clientHeight;
+        console.dir(document.getElementById("About").clientHeight);
+    }
+
+    var throttling = false;
+    window.onscroll = function () {
+        // if (throttling == false) {
+        //     checkScroll();
+        //     throttling = setTimeout(function () {
+        checkScroll();
+        //     throttling = false;
+        // }, 100)
+        // }
+    }
+
+    function setSection(sectionId) {
+        if (aboutScreenOpen) toggleAboutScreen()
+        window.scrollTo({
+            top: document.getElementById(sectionId).offsetTop - 95,
+            behavior: 'smooth'
+        })
+        while (!onCorrectSection) {
+            checkScroll();
+        }
+    }
+    function pageUp() {
+        currSectionIndex--
+        if (currSectionIndex < 0) {
+            toggleAboutScreen()
+            currSectionIndex = 0;
+            return
+        } else if (aboutScreenOpen) {
+            toggleAboutScreen()
+            return
+        }
+        window.scrollTo({
+            top: document.getElementById(sectionArray[currSectionIndex]).offsetTop - 95,
+            behavior: 'smooth'
+        })
+    }
+    function pageDown() {
+        if (aboutScreenOpen) {
+            toggleAboutScreen()
+            return
+        }
+        currSectionIndex++;
+        if (currSectionIndex > sectionArray.length - 1) currSectionIndex = 0;
+        window.scrollTo({
+            top: document.getElementById(sectionArray[currSectionIndex]).offsetTop - 95,
+            behavior: 'smooth'
+        })
+    }
+
+    function toggleAboutScreen() {
+        if (!fabTransitionDone) transitionMenuButton()
+        if (!aboutScreenOpen) {
+            aboutScreenOpen = true
+            $("#Header").addClass("full-expansion")
+            $("#Menu_Fab_Container").addClass("close-button-mode")
+            var temp = currSectionIndex
+            currSectionIndex = 0;
+            setActiveNavLink()
+            currSectionIndex = temp;
+            document.body.style.overflow = "hidden";
+        } else {
+            aboutScreenOpen = false;
+            $("#Header").removeClass("full-expansion")
+            $("#Menu_Fab_Container").removeClass("close-button-mode")
+            setActiveNavLink()
+            document.body.style.overflow = "auto";
+        }
+    }
+
+    fabTransitionDone = false;
+    function checkScroll() {
+        if (sectionArray[currSectionIndex] && document.getElementById(sectionArray[currSectionIndex]).offsetTop > window.scrollY + (window.screen.height / 2)) {
+            onCorrectSection = false;
+            currSectionIndex--;
+        } else if (sectionArray[currSectionIndex + 1] && document.getElementById(sectionArray[currSectionIndex + 1]).offsetTop - (window.screen.height / 2) < window.scrollY) {
+            onCorrectSection = false;
+            currSectionIndex++;
+
+        } else {
+            if (!onCorrectSection) setActiveNavLink();
+            onCorrectSection = true;
+        }
+        console.log(window.scrollY - introTextHeight)
+        if (!fabTransitionDone && (window.scrollY - introTextHeight) > 38) transitionMenuButton()
+    }
+
+    function setActiveNavLink() {
+        $.each($('.nav-link'), function () {
+            $(this).removeClass("nav-active")
+        });
+        if (currSectionIndex == 0) {
+            $('#Nav_About').addClass("nav-active")
+        } else if (currSectionIndex == 4) {
+            $('#Nav_Connect').addClass("nav-active")
+        } else {
+            $('#Nav_Projects').addClass("nav-active")
+        }
+    }
+
+    function transitionMenuButton() {
+        fabTransitionDone = true;
+        // var left = (window.screen.width / 2) - document.getElementById('Menu_Fab_Container').offsetLeft - 28;
+        // var top = document.getElementById('Fab_Center').getBoundingClientRect().y;
+        //        $('#Upper_Fab').css({ display: 'block', left: left + 'px', top: top + 'px' })
+        $('#Upper_Fab').css({ display: 'block', opacity: 0 })
+        $('#Fab_Center').remove();
+        $('#Upper_Fab').animate({
+            opacity: 1
+        }, { duration: 200, queue: false }, "swing");
+        // $('#Upper_Fab').animate({
+        //     top: 0
+        // }, { duration: 70, queue: false }, "swing");
+        // $('#Upper_Fab').animate({
+        //     left: 0,
+        // }, { duration: 400, queue: false }, "swing");
+
+    }
+</script>
 
 </html>
