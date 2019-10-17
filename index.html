@@ -279,6 +279,11 @@
                     <p style="margin:0">The student-lead game design and production club at UCSC. This year I'm a
                         programmer on the Occultus Occularus videogame team.</p>
                 </div>
+                <div class="team-card" style="margin-left:auto; margin-right: auto; ">
+                    <img src="http://scee.ucsc.edu/images/clubLogo.png">
+                    <h4 style="margin:0"><a href="http://scee.ucsc.edu/">SCEE</a></h4>
+                    <p style="margin:0">The new entrepenurship club at UCSC. I've been working with the tech team on upgrading the SCEE website.</p>
+                </div>
             </section>
             <footer>
                 <span>Made by <span style="font-weight:bold">Kyle Worcester-Moore</span></span>
@@ -361,6 +366,7 @@
         $(headerElm.parentElement).addClass('open-header');
     });
     document.getElementById("Header").addEventListener("focusout", (event) => {
+        event.type
         var headerElm = document.getElementById("Header")
         headerElm.scroll(0, 0);
         $(headerElm.parentElement).removeClass('open-header');
@@ -463,11 +469,11 @@
 
     function transitionMenuButton() {
         fabTransitionDone = true;
-        $('#Upper_Fab').css({ display: 'block', opacity: 0 })
+        // $('#Upper_Fab').css({ display: 'block', opacity: 0 })
         $('#Fab_Center').remove();
-        $('#Upper_Fab').animate({
-            opacity: 1
-        }, { duration: 200, queue: false }, "swing");
+        // $('#Upper_Fab').animate({
+        //     opacity: 1
+        // }, { duration: 200, queue: false }, "swing");
     }
 </script>
 
