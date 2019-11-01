@@ -1,5 +1,6 @@
-(function highlight() {
+
   console.log("working")
+alert("woirking")
   var wikiContentTextElement = document.getElementById("mw-content-text");
   window.wordIndex = 0;
 
@@ -29,4 +30,4 @@
     }
     node.parentElement.replaceChild(spanNode, node);
   }
-})();
+
