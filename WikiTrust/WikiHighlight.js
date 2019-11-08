@@ -79,20 +79,6 @@ function shouldAddChildren(el) {
   return el.tagName && REPLACE_WORDS_IN[el.tagName.toLowerCase()];
 }
 
-function textNodesUnder(node) {
-  var all = [];
-  if (!shouldAddChildren(node)) return all;
-  for (node = node.firstChild; node; node = node.nextSibling) {
-    if (node.nodeType == 3) {
-      all.push(node);
-    } else {
-      all = all.concat(textNodesUnder(node));
-    }
-  }
-  return all;
-};
-
-
 function addWords(el) {
   var textEls = [];
 
