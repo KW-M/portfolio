@@ -19,11 +19,13 @@ var wikiContentTextElement = document.getElementById("mw-content-text");
 var domNodes = [];
 // dictionary of html element types to split into words and include in the word list (1)
 var REPLACE_WORDS_IN = {
-  a: 1, b: 1, big: 1, body: 1, cite: 1, code: 1, dd: 1,
-  dt: 1, em: 1, font: 1, h1: 1, h2: 1, h3: 1, h4: 1, h5: 1, h6: 1,
-  i: 1, label: 1, legend: 1, li: 1, p: 1, pre: 1, small: 1,
-  span: 1, strong: 1, sub: 1, sup: 1, td: 1, th: 1, tt: 1, div: 1, li: 1, caption: 1
+  p:1
 };
+
+//  a: 1, b: 1, big: 1, body: 1, cite: 1, code: 1, dd: 1,
+//  dt: 1, em: 1, font: 1, h1: 1, h2: 1, h3: 1, h4: 1, h5: 1, h6: 1,
+//  i: 1, label: 1, legend: 1, li: 1, p: 1, pre: 1, small: 1,
+//  span: 1, strong: 1, sub: 1, sup: 1, td: 1, th: 1, tt: 1, div: 1, li: 1, caption: 1
 
 // Array of element class names to ignore for extracting & spliting words
 var EXCLUDE_ELEMENT_CLASSES = ["toc", "infobox", "thumb", "mw-editsection", "navbox", "metadata", "tmbox", "sistersitebox", "portal"]// "reference" "sistersitebox" "navbox"
