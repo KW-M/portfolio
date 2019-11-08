@@ -19,7 +19,7 @@ var wikiContentTextElement = document.getElementById("mw-content-text");
 var domNodes = [];
 // dictionary of html element types to split into words and include in the word list (1)
 var REPLACE_WORDS_IN = {
-  p:1
+  p:1,a:1
 };
 
 //  a: 1, b: 1, big: 1, body: 1, cite: 1, code: 1, dd: 1,
