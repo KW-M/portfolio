@@ -28,7 +28,7 @@ var REPLACE_WORDS_IN = {
 //  span: 1, strong: 1, sub: 1, sup: 1, td: 1, th: 1, tt: 1, div: 1, li: 1, caption: 1
 
 // Array of element class names to ignore for extracting & spliting words
-var EXCLUDE_ELEMENT_CLASSES = ["toc", "infobox", "thumb", "mw-editsection", "navbox", "metadata", "tmbox", "sistersitebox", "portal"]// "reference" "sistersitebox" "navbox"
+var EXCLUDE_ELEMENT_CLASSES = ["reference","wikitable","toc", "infobox", "thumb", "mw-editsection", "navbox", "metadata", "tmbox", "sistersitebox", "portal"]// "reference" "sistersitebox" "navbox"
 
 function checkForExcludedClass(element) {
   function hasClass(className) {
