@@ -144,7 +144,7 @@ function addWords(el) {
 
 function applyWordTrust() {
   domNodes.forEach(function (node, index) {
-    wordScore = 0//1// - (Math.max(Math.sin(index / 80) + 1 - Math.random() / 0.6, 0)) // Fake word score formula to mimic actual algorithim
+    wordScore = 1 - (Math.max(Math.sin(index / 80) + 1 - Math.random() / 0.6, 0)) // Fake word score formula to mimic actual algorithim
     node.setAttribute("data-trust-score", wordScore) // Adds a custom html attribute (convention is they start with "data") on the word element node with the wordScore value
   })
 }
