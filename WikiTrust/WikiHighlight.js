@@ -185,7 +185,7 @@ function cleanupWikiTrust() {
   // Remove the changes WikiTrust makes - This still doesn't undo making all the words seperate span elements, which could be a problem.
   hideTrust()
   removeFrameMessageListener()
-  document.removeChild(document.getElementById("Wikitrust_UI"));
+  document.body.removeChild(document.getElementById("Wikitrust_UI"));
 }
 
 addWords(wikiContentTextElement)
