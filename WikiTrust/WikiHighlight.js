@@ -191,7 +191,7 @@ window.WikiTrustGlobalVars = {};
     document.body.removeChild(document.getElementById("Wikitrust_UI"));
   }
 
-  window.WikiTrustGlobalVars["cleanupWikiTrust"] = cleanupWikiTrust()
+  window.WikiTrustGlobalVars["cleanupWikiTrust"] = cleanupWikiTrust
 
   addWords(wikiContentTextElement)
   applyWordTrust()
