@@ -190,6 +190,7 @@ window.WikiTrustGlobalVars = {};
     removeFrameMessageListener()
     uiFrame.remove();
     wikiTrustStyle.remove();
+    window.WikiTrustGlobalVars = undefined;
   }
 
   window.WikiTrustGlobalVars["cleanupWikiTrust"] = cleanupWikiTrust
