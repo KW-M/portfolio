@@ -16,19 +16,18 @@ document.body.appendChild(uiFrame)
 // Find the main wikipedia article content text element:
 var wikiContentTextElement = document.getElementById("mw-content-text");
 // Placeholder array for references to all word elements that will be created
-var domNodes = [];
-// dictionary of html element types to split into words and include in the word list (1)
+var wordDomNodes = [];
+
+// dictionary of html element types to split into words and include in the word list
 var REPLACE_WORDS_IN = {
-  p:1, a:1
+  p: 1, a: 1
+  //  b: 1, big: 1, body: 1, cite: 1, code: 1, dd: 1,
+  //  dt: 1, em: 1, font: 1, h1: 1, h2: 1, h3: 1, h4: 1, h5: 1, h6: 1,
+  //  i: 1, label: 1, legend: 1, li: 1, pre: 1, small: 1,
+  //  span: 1, strong: 1, sub: 1, sup: 1, td: 1, th: 1, tt: 1, div: 1, li: 1, caption: 1
 };
-
-//  a: 1, b: 1, big: 1, body: 1, cite: 1, code: 1, dd: 1,
-//  dt: 1, em: 1, font: 1, h1: 1, h2: 1, h3: 1, h4: 1, h5: 1, h6: 1,
-//  i: 1, label: 1, legend: 1, li: 1, p: 1, pre: 1, small: 1,
-//  span: 1, strong: 1, sub: 1, sup: 1, td: 1, th: 1, tt: 1, div: 1, li: 1, caption: 1
-
-// Array of element class names to ignore for extracting & spliting words
-var EXCLUDE_ELEMENT_CLASSES = ["reference","wikitable","toc", "infobox", "thumb", "mw-editsection", "navbox", "metadata", "tmbox", "sistersitebox", "portal"]// "reference" "sistersitebox" "navbox"
+// array of element class names to ignore for extracting & spliting words
+var EXCLUDE_ELEMENT_CLASSES = ["reference", "wikitable", "toc", "infobox", "thumb", "mw-editsection", "navbox", "metadata", "tmbox", "sistersitebox", "portal"]// "reference" "sistersitebox" "navbox"
 
 function checkForExcludedClass(element) {
   function hasClass(className) {
@@ -42,20 +41,19 @@ function checkForExcludedClass(element) {
   return false
 }
 
-
-var percentColors = [ // Define a gradient for the getColorForPercentage function (0 = least trustworthy color, 1 = most trustworthy color)
-  { pct: 0.0, color: { r: 0xfc, g: 0x4a, b: 0x1a } }, //#fc4a1a
-  { pct: 0.5, color: { r: 0xf7, g: 0xb7, b: 0x33 } }, //#f7b733
-  { pct: 1.0, color: { r: 0xff, g: 0xff, b: 0xff } }];
-
 var getColorForPercentage = function (pct, opacity) { // Source: https://stackoverflow.com/questions/7128675/from-green-to-red-color-depend-on-percentage
-  for (var i = 1; i < percentColors.length - 1; i++) {
-    if (pct < percentColors[i].pct) {
+  var percentColorsGradient = [ // Define a gradient (0 = least trustworthy color, 1 = most trustworthy color)
+    { pct: 0.0, color: { r: 0xfc, g: 0x4a, b: 0x1a } }, //#fc4a1a
+    { pct: 0.5, color: { r: 0xf7, g: 0xb7, b: 0x33 } }, //#f7b733
+    { pct: 1.0, color: { r: 0xff, g: 0xff, b: 0xff } }
+  ];
+  for (var i = 1; i < percentColorsGradient.length - 1; i++) {
+    if (pct < percentColorsGradient[i].pct) {
       break;
     }
   }
-  var lower = percentColors[i - 1];
-  var upper = percentColors[i];
+  var lower = percentColorsGradient[i - 1];
+  var upper = percentColorsGradient[i];
   var range = upper.pct - lower.pct;
   var rangePct = (pct - lower.pct) / range;
   var pctLower = 1 - rangePct;
@@ -69,9 +67,9 @@ var getColorForPercentage = function (pct, opacity) { // Source: https://stackov
   // or output as hex if preferred
 }
 
-function addDomNode(el) {
+function addWordDomNode(el) {
   if (el !== undefined && el !== null) {
-    domNodes.push(el)
+    wordDomNodes.push(el)
   }
 }
 
@@ -113,7 +111,7 @@ function addWords(el) {
         n = document.createElement('span');
         n.innerHTML = words[i];
         p.insertBefore(n, textEl);
-        addDomNode(n);
+        addWordDomNode(n);
       }
       if (i < ws.length && ws[i].length > 0) {
         n = document.createTextNode(ws[i]);
@@ -129,14 +127,14 @@ function addWords(el) {
 };
 
 function applyWordTrust() {
-  domNodes.forEach(function (node, index) {
+  wordDomNodes.forEach(function (node, index) {
     wordScore = 1 - (Math.max(Math.sin(index / 80) + 1 - Math.random() / 0.6, 0)) // Fake word score formula to mimic actual algorithim
     node.setAttribute("data-trust-score", wordScore) // Adds a custom html attribute (convention is they start with "data") on the word element node with the wordScore value
   })
 }
 
 function showTrust() {
-  domNodes.forEach(function (node, index) {
+  wordDomNodes.forEach(function (node, index) {
     var wordScore = node.getAttribute("data-trust-score")
     node.style.borderBottom = "2px solid " + getColorForPercentage(wordScore, 1);
     node.style.backgroundColor = getColorForPercentage(wordScore, 0.1);
@@ -147,19 +145,16 @@ function showTrust() {
 }
 
 function hideTrust() {
-  domNodes.forEach(function (node, index) {
-    node.style.borderBottom = "2px solid transparent";
+  wordDomNodes.forEach(function (node, index) {
+    node.style.borderBottom = "unset";
     node.style.backgroundColor = "unset"
   })
 }
 
-
-
-
-
+// When a message is recived from a frame, this function is called with the message string and origin (see listener registered below):
 function receiveUiFrameMessage(event) {
-  message = event.data;
   console.log("Got cross frame message: " + event.data + " from " + event.origin)
+  message = event.data;
   if (message === "show_trust") {
     showTrust()
   } else if (message === "hide_trust") {
@@ -167,18 +162,38 @@ function receiveUiFrameMessage(event) {
   }
 }
 
-if (window.addEventListener) {  // For standards-compliant web browsers
-  window.addEventListener("message", receiveUiFrameMessage, false);
-} else {
-  window.attachEvent("onmessage", receiveUiFrameMessage);
+function addFrameMessageListener() {
+  // Register a listener for messages from the iframe:
+  if (window.addEventListener) {
+    // For standards-compliant web browsers
+    window.addEventListener("message", receiveUiFrameMessage, false); // For all major browsers, except IE 8 and earlier
+  } else {
+    window.attachEvent("onmessage", receiveUiFrameMessage);  // For IE 8 and earlier versions
+  }
+}
+
+function removeFrameMessageListener() {
+  // Un-register the listener for messages from the iframe:
+  if (window.addEventListener) {
+    window.removeEventListener("message", receiveUiFrameMessage, false); // For all major browsers, except IE 8 and earlier
+  } else {
+    window.detachEvent("onmessage", receiveUiFrameMessage); // For IE 8 and earlier versions
+  }
+}
+
+function cleanupWikiTrust() {
+  // Remove the changes WikiTrust makes - This still doesn't undo making all the words seperate span elements, which could be a problem.
+  hideTrust()
+  removeFrameMessageListener()
+  document.removeChild(document.getElementById("Wikitrust_UI"));
 }
 
 addWords(wikiContentTextElement)
 applyWordTrust()
 showTrust()
+addFrameMessageListener()
 
 // sources:
 //http://kathack.com/js/kh.js
 //https://stackoverflow.com/questions/10730309/find-all-text-nodes-in-html-page
 //https://stackoverflow.com/questions/31275446/how-to-wrap-part-of-a-text-in-a-node-with-javascript
-
