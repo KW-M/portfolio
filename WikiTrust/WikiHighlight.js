@@ -1,26 +1,12 @@
 // Bookmarklet JS:
-// javascript:(function(){var%20script=document.createElement('script');script.src='https://kw-m.github.io/Portfolio-Website/WikiTrust/WikiHighlight.js';document.getElementsByTagName('head')[0].appendChild(script);})()
+// javascript:(function(){var%20script=document.createElement('script');script.src='https://kw-m.github.io/Portfolio-Website/WikiTrust/WikiHighlight.js';document.getElementsByTagName('head')[0].appendChild(script);script.remove()})()
 
-window.WikiTrustGlobalVars = {};
+if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wordDomNodes: [] };
 
-(function () {
-  // Inject a stylesheet into the current page:
-  var wikiTrustStyle = document.createElement("link")
-  wikiTrustStyle.rel = "stylesheet"
-  wikiTrustStyle.href = "https://kw-m.github.io/Portfolio-Website/WikiTrust/BookmarkletStyle.css"
-  document.getElementsByTagName('head')[0].appendChild(wikiTrustStyle)
+(function () { // Using an anonoumous function to avoid putting our variables in the wikipedia page's scope (so they dont interfere with Wikipedia's javascript).
 
-  // Inject an iframe element that can serve as a container for UI & Controls:
-  var uiFrame = document.createElement("iframe")
-  uiFrame.src = "https://kw-m.github.io/Portfolio-Website/WikiTrust/frame.html"
-  uiFrame.id = "Wikitrust_UI"
-  document.body.appendChild(uiFrame)
-
-  // Find the main wikipedia article content text element:
-  var wikiContentTextElement = document.getElementById("mw-content-text");
   // Placeholder array for references to all word elements that will be created
-  var wordDomNodes = [];
-
+  var wordDomNodes = window.WikiTrustGlobalVars["wordDomNodes"];
   // dictionary of html element types to split into words and include in the word list
   var REPLACE_WORDS_IN = {
     p: 1, a: 1
@@ -184,31 +170,56 @@ window.WikiTrustGlobalVars = {};
     }
   }
 
+  function injectStylesheet() {
+    // Inject a stylesheet into the current page:
+    var style = window.WikiTrustGlobalVars.styleElm = document.createElement("link");
+    style.rel = "stylesheet"
+    style.href = "https://kw-m.github.io/Portfolio-Website/WikiTrust/BookmarkletStyle.css"
+    document.getElementsByTagName('head')[0].appendChild(style)
+  }
+
+  function injectUiFrame() {
+    // Inject an iframe element that can serve as a container for UI & Controls:
+    var uiFrame = window.WikiTrustGlobalVars.uiFrame = document.createElement("iframe")
+    uiFrame.src = "https://kw-m.github.io/Portfolio-Website/WikiTrust/frame.html"
+    uiFrame.id = "Wikitrust_UI"
+    document.body.appendChild(uiFrame)
+  }
+
   function cleanupWikiTrust() {
     // Remove the changes WikiTrust makes - This still doesn't undo making all the words seperate span elements, which could be a problem.
     hideTrust()
     removeFrameMessageListener()
-    uiFrame.remove();
-    wikiTrustStyle.remove();
+    window.WikiTrustGlobalVars.uiFrame.remove();
+    window.WikiTrustGlobalVars.styleElm.remove();
     window.WikiTrustGlobalVars = undefined;
   }
-  
+
   window.WikiTrustGlobalVars["cleanupWikiTrust"] = cleanupWikiTrust;
 
-  addWords(wikiContentTextElement)
-  applyWordTrust()
-  showTrust()
-  addFrameMessageListener()
+  // Find the main wikipedia article content text element:
+  var wikiContentTextElement = document.getElementById("mw-content-text");
 
-  if (window.WikiTrustGlobalVars["highlightingDone"] === true) {
-    cleanupWikiTrust() // if this script has already been run on this page, and it's being loaded again, clean up / remove WikiTrust.
-  } else {
-    window.WikiTrustGlobalVars["highlightingDone"] = true; // Mark that the WikiTrust script has finished running.
+  if (window.WikiTrustGlobalVars["highlightingDone"] !== false) { // Keep going if the script is not in the middle of processing:
+    if (window.WikiTrustGlobalVars["highlightingDone"] !== true) { // Keep going if this script hasn't been run on the page yet (WikiTrustGlobalVars is undefined):
+
+      window.WikiTrustGlobalVars["highlightingDone"] = false; // Mark that the WikiTrust script has started running.
+      addWords(wikiContentTextElement)
+      applyWordTrust()
+      showTrust()
+      injectStylesheet()
+      injectUiFrame()
+      addFrameMessageListener()
+      window.WikiTrustGlobalVars["highlightingDone"] = true; // Mark that the WikiTrust script has finished running.
+
+    } else {
+      cleanupWikiTrust() // if this script has already been run on this page, and must be being loaded again, clean up / remove WikiTrust.
+    }
   }
-  
+
 })()
 
 // sources:
-//http://kathack.com/js/kh.js
-//https://stackoverflow.com/questions/10730309/find-all-text-nodes-in-html-page
-//https://stackoverflow.com/questions/31275446/how-to-wrap-part-of-a-text-in-a-node-with-javascript
+// http://kathack.com/js/kh.js
+// https://stackoverflow.com/questions/10730309/find-all-text-nodes-in-html-page
+// https://stackoverflow.com/questions/31275446/how-to-wrap-part-of-a-text-in-a-node-with-javascript
