@@ -188,7 +188,8 @@ window.WikiTrustGlobalVars = {};
     // Remove the changes WikiTrust makes - This still doesn't undo making all the words seperate span elements, which could be a problem.
     hideTrust()
     removeFrameMessageListener()
-    document.body.removeChild(document.getElementById("Wikitrust_UI"));
+    uiFrame.remove();
+    wikiTrustStyle.remove();
   }
 
   window.WikiTrustGlobalVars["cleanupWikiTrust"] = cleanupWikiTrust
