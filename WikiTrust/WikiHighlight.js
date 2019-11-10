@@ -192,14 +192,20 @@ window.WikiTrustGlobalVars = {};
     wikiTrustStyle.remove();
     window.WikiTrustGlobalVars = undefined;
   }
-
-  window.WikiTrustGlobalVars["cleanupWikiTrust"] = cleanupWikiTrust
+  
+  window.WikiTrustGlobalVars["cleanupWikiTrust"] = cleanupWikiTrust;
 
   addWords(wikiContentTextElement)
   applyWordTrust()
   showTrust()
   addFrameMessageListener()
 
+  if (window.WikiTrustGlobalVars["highlightingDone"] === true) {
+    cleanupWikiTrust() // if this script has already been run on this page, and it's being loaded again, clean up / remove WikiTrust.
+  } else {
+    window.WikiTrustGlobalVars["highlightingDone"] = true; // Mark that the WikiTrust script has finished running.
+  }
+  
 })()
 
 // sources:
