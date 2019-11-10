@@ -181,7 +181,7 @@ function removeFrameMessageListener() {
   }
 }
 
-function cleanupWikiTrust() {
+window.cleanupWikiTrust = function() {
   // Remove the changes WikiTrust makes - This still doesn't undo making all the words seperate span elements, which could be a problem.
   hideTrust()
   removeFrameMessageListener()
