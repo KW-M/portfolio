@@ -9,7 +9,7 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
   var wordDomNodes = window.WikiTrustGlobalVars["wordDomNodes"];
   // dictionary of html element types to split into words and include in the word list
   var REPLACE_WORDS_IN = {
-    p: 1, a: 1
+    p: 1, a: 1, span: 1
     //  b: 1, big: 1, body: 1, cite: 1, code: 1, dd: 1,
     //  dt: 1, em: 1, font: 1, h1: 1, h2: 1, h3: 1, h4: 1, h5: 1, h6: 1,
     //  i: 1, label: 1, legend: 1, li: 1, pre: 1, small: 1,
@@ -17,18 +17,6 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
   };
   // array of element class names to ignore for extracting & spliting words
   var EXCLUDE_ELEMENT_CLASSES = ["reference", "wikitable", "toc", "infobox", "thumb", "mw-editsection", "navbox", "metadata", "tmbox", "sistersitebox", "portal"]// "reference" "sistersitebox" "navbox"
-
-  function checkForExcludedClass(element) {
-    function hasClass(className) {
-      return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
-    }
-
-    for (let index = 0; index < EXCLUDE_ELEMENT_CLASSES.length; index++) {
-      const className = EXCLUDE_ELEMENT_CLASSES[index];
-      if (hasClass(className)) return true
-    }
-    return false
-  }
 
   var getColorForPercentage = function (pct, opacity) { // Source: https://stackoverflow.com/questions/7128675/from-green-to-red-color-depend-on-percentage
     var percentColorsGradient = [ // Define a gradient (0 = least trustworthy color, 1 = most trustworthy color)
@@ -62,40 +50,58 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
     }
   }
 
-  function shouldAddChildren(el) {
+  function checkElementTag(el) {
     return el.tagName && REPLACE_WORDS_IN[el.tagName.toLowerCase()];
+  }
+
+  function checkForExcludedClass(element) {
+    function hasClass(className) {
+      return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+    }
+
+    for (let index = 0; index < EXCLUDE_ELEMENT_CLASSES.length; index++) {
+      const className = EXCLUDE_ELEMENT_CLASSES[index];
+      if (hasClass(className)) return true
+    }
+    return false
   }
 
   function addWords(el) {
     var textEls = [];
 
-    function buildTextEls(el, shouldAdd) {
-      var i, len;
-      if (shouldAdd && el.nodeType === Node.TEXT_NODE &&
-        el.nodeValue.trim().length > 0) {
+    function buildTextEls(el) {
+      // if the current element is a text node with some non-whitespace size, add it to the textEls array:
+      if (el.nodeType === Node.TEXT_NODE && el.nodeValue.trim().length > 0) {
         textEls.push(el);
         return;
       }
-      excludedElementFound = checkForExcludedClass(el)
+      // check the current element to see if it doesn't pass the classes we exclude or the element tags we dont want:
+      var excludedElementFound = !checkElementTag(el) && checkForExcludedClass(el);
       if (!el.childNodes || excludedElementFound) {
         return;
       }
-      shouldAdd = shouldAddChildren(el);
-      for (i = 0, len = el.childNodes.length; i < len; i++) {
-        buildTextEls(el.childNodes[i], shouldAdd);
+      // run this function on all childNodes (recursion):
+      for (var i = 0, len = el.childNodes.length; i < len; i++) {
+        buildTextEls(el.childNodes[i]);
       }
     }
 
     function wordsToSpans(textEl) {
-      var p = textEl.parentNode,
-        words = textEl.nodeValue.split(/\s+/),
-        ws = textEl.nodeValue.split(/\S+/),
-        i, n, len = Math.max(words.length, ws.length);
+      var p = textEl.parentNode, // get a reference to the element containing the textEl text node.
+        words = textEl.nodeValue.split(/\s+/), // get an array of all the words seperated by whitespace.
+        ws = textEl.nodeValue.split(/\S+/), // get an array of all the whitespace seperated by words (note the capital S meaning "not whitespace")
+        len = Math.max(words.length, ws.length);
       /* preserve whitespace for pre tags. */
       if (ws.length > 0 && ws[0].length === 0) {
         ws.shift();
       }
-      for (i = 0; i < len; i++) {
+      /* check if this tag only contains a single word already, in which case there's no reason to make a new tag for the word. */
+      if (words.length === 0) {
+        addWordDomNode(p);
+        return;
+      }
+      /* for every word/whitespace add it either as a new span element (words) or a text node (whitespace) to the original containing element */
+      for (var i = 0; i < len; i++) {
         if (i < words.length && words[i].length > 0) {
           n = document.createElement('span');
           n.innerHTML = words[i];
@@ -110,9 +116,8 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
       p.removeChild(textEl);
     }
 
-    buildTextEls(el, shouldAddChildren(el));
-    textEls.map(wordsToSpans);
-
+    buildTextEls(el); // Fills the texEls array with all the text nodes on the page that fit the tag and class filters.
+    textEls.map(wordsToSpans); // For each textNode element in textEls run the wordsToSpans function on it.
   };
 
   function applyWordTrust() {
