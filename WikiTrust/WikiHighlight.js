@@ -75,7 +75,7 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
         textEls.push(el);
         return;
       }
-      // check the current element to see if it doesn't pass the classes we exclude or the element tags we dont want:
+      // check the current element to see if it doesn't pass the classes we exclude or the element tags we dont want, return to prevent further recustion/adding of children from happening:
       var excludedElementFound = !checkElementTag(el) && checkForExcludedClass(el);
       if (!el.childNodes || excludedElementFound) {
         return;
@@ -100,7 +100,7 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
         addWordDomNode(p);
         return;
       }
-      /* for every word/whitespace add it either as a new span element (words) or a text node (whitespace) to the original containing element */
+      /* for every word/whitespace add it either as a new span element (words) or a new text node (whitespace) to the original containing element in the order they appeared in the original text. */
       for (var i = 0; i < len; i++) {
         if (i < words.length && words[i].length > 0) {
           n = document.createElement('span');
@@ -113,16 +113,17 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
           p.insertBefore(n, textEl);
         }
       }
+      // remove the original text (since we've replaced it with the word spans & whitespace elements)
       p.removeChild(textEl);
     }
 
-    buildTextEls(el); // Fills the texEls array with all the text nodes on the page that fit the tag and class filters.
+    buildTextEls(el); // Fills the texEls array with all the text nodes on the page that have a parentNode that fits the element tag and class filters.
     textEls.map(wordsToSpans); // For each textNode element in textEls run the wordsToSpans function on it.
   };
 
   function applyWordTrust() {
     wordDomNodes.forEach(function (node, index) {
-      wordScore = 1 - (Math.max(Math.sin(index / 80) + 1 - Math.random() / 0.6, 0)) // Fake word score formula to mimic actual algorithim
+      wordScore = 1 - (Math.max(Math.sin(index / 80) + 1 - Math.random() / 0.6, 0)) // Fake word score formula to mimic actual algorithim (replace with 0 to hightlight everything in red)
       node.setAttribute("data-trust-score", wordScore) // Adds a custom html attribute (convention is they start with "data") on the word element node with the wordScore value
     })
   }
