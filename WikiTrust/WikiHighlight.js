@@ -5,10 +5,11 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
 
 (function () { // Using an anonoumous function to avoid putting our variables in the wikipedia page's scope (so they dont interfere with Wikipedia's javascript).
 
+  const SCORE_ATTRIBUTE_NAME = "data-trust-score";
   // Placeholder array for references to all word elements that will be created
   var wordDomNodes = window.WikiTrustGlobalVars["wordDomNodes"];
   // dictionary of html element types to split into words and include in the word list
-  var REPLACE_WORDS_IN = {
+  const REPLACE_WORDS_IN = {
     p: 1, a: 1, span: 1
     //  b: 1, big: 1, body: 1, cite: 1, code: 1, dd: 1,
     //  dt: 1, em: 1, font: 1, h1: 1, h2: 1, h3: 1, h4: 1, h5: 1, h6: 1,
@@ -16,7 +17,7 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
     //  span: 1, strong: 1, sub: 1, sup: 1, td: 1, th: 1, tt: 1, div: 1, li: 1, caption: 1
   };
   // array of element class names to ignore for extracting & spliting words
-  var EXCLUDE_ELEMENT_CLASSES = ["reference", "wikitable", "toc", "infobox", "thumb", "mw-editsection", "navbox", "metadata", "tmbox", "sistersitebox", "portal"]// "reference" "sistersitebox" "navbox"
+  const EXCLUDE_ELEMENT_CLASSES = ["reference", "wikitable", "toc", "infobox", "thumb", "mw-editsection", "navbox", "metadata", "tmbox", "sistersitebox", "portal"]// "reference" "sistersitebox" "navbox"
 
   var getColorForPercentage = function (pct, opacity) { // Source: https://stackoverflow.com/questions/7128675/from-green-to-red-color-depend-on-percentage
     var percentColorsGradient = [ // Define a gradient (0 = least trustworthy color, 1 = most trustworthy color)
@@ -95,8 +96,8 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
       if (ws.length > 0 && ws[0].length === 0) {
         ws.shift();
       }
-      /* check if this tag only contains a single word already, in which case there's no reason to make a new tag for the word. */
-      if (words.length === 0) {
+      /* check if this tag only contains a single word or has already been labeled with a score, in which case there's no reason to make a new tag for the word. */
+      if ((words.length === 1 && ws.length === 0) || p.getAttribute(SCORE_ATTRIBUTE_NAME) != null) {
         addWordDomNode(p);
         return;
       }
@@ -123,14 +124,14 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
 
   function applyWordTrust() {
     wordDomNodes.forEach(function (node, index) {
-      wordScore = 1 - (Math.max(Math.sin(index / 80) + 1 - Math.random() / 0.6, 0)) // Fake word score formula to mimic actual algorithim (replace with 0 to hightlight everything in red)
-      node.setAttribute("data-trust-score", wordScore) // Adds a custom html attribute (convention is they start with "data") on the word element node with the wordScore value
+      wordScore = 1 - (Math.min(Math.max(Math.sin(index / 80) + 1 - Math.random() / 0.6, 0), 1)) // Fake word score formula to mimic actual algorithim (replace with 0 to hightlight everything in red)
+      node.setAttribute(SCORE_ATTRIBUTE_NAME, wordScore) // Adds a custom html attribute (convention is they start with "data") on the word element node with the wordScore value
     })
   }
 
   function showTrust() {
     wordDomNodes.forEach(function (node, index) {
-      var wordScore = node.getAttribute("data-trust-score")
+      var wordScore = node.getAttribute(SCORE_ATTRIBUTE_NAME)
       node.style.borderBottom = "2px solid " + getColorForPercentage(wordScore, 1);
       node.style.backgroundColor = getColorForPercentage(wordScore, 0.1);
       // node.style.boxShadow = "0px 0px 10px " + getColorForPercentage(wordScore, 1) + ", inset 0px 0px 10px " + getColorForPercentage(wordScore, 1)
