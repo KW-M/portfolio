@@ -5,7 +5,6 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
 
 (function () { // Using an anonoumous function to avoid putting our variables in the wikipedia page's scope (so they dont interfere with Wikipedia's javascript).
 
-  const SCORE_ATTRIBUTE_NAME = "data-trust-score";
   // Placeholder array for references to all word elements that will be created
   var wordDomNodes = window.WikiTrustGlobalVars["wordDomNodes"];
   // dictionary of html element types to split into words and include in the word list
@@ -18,6 +17,9 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
   };
   // array of element class names to ignore for extracting & spliting words
   const EXCLUDE_ELEMENT_CLASSES = ["reference", "wikitable", "toc", "infobox", "thumb", "mw-editsection", "navbox", "metadata", "tmbox", "sistersitebox", "portal"]// "reference" "sistersitebox" "navbox"
+
+  const SCORE_ATTRIBUTE_NAME = "data-trust-score";
+  const WORD_INDEX_ATTRIBUTE_NAME = "data-word-index";
 
   var getColorForPercentage = function (pct, opacity) { // Source: https://stackoverflow.com/questions/7128675/from-green-to-red-color-depend-on-percentage
     var percentColorsGradient = [ // Define a gradient (0 = least trustworthy color, 1 = most trustworthy color)
@@ -45,10 +47,16 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
     // or output as hex if preferred
   }
 
+  var prevEl = null, wordIndex = 0;
   function addWordDomNode(el) {
-    if (el !== undefined && el !== null) {
-      wordDomNodes.push(el)
+    if (el !== undefined && el !== null && el.nodeType !== Node.TEXT_NODE) {
+      if (prevEl !== undefined && prevEl !== null && prevEl.nodeType !== Node.TEXT_NODE) {
+        console.log(el);
+      } else wordIndex++;
+      el.setAttribute(WORD_INDEX_ATTRIBUTE_NAME, wordIndex) // Adds a custom html attribute (convention is they start with "data") on the word/partial word element node with the word's index
+      wordDomNodes.push(el);
     }
+    prevEl = el;
   }
 
   function checkElementTag(el) {
@@ -59,7 +67,6 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
     function hasClass(className) {
       return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
     }
-
     for (let index = 0; index < EXCLUDE_ELEMENT_CLASSES.length; index++) {
       const className = EXCLUDE_ELEMENT_CLASSES[index];
       if (hasClass(className)) return true
@@ -76,7 +83,7 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
         textEls.push(el);
         return;
       }
-      // check the current element to see if it doesn't pass the classes we exclude or the element tags we dont want, return to prevent further recustion/adding of children from happening:
+      // check the current element to see if it doesn't pass the classe filters or the element tags we dont want, return to prevent further recustion/adding of children from happening:
       var excludedElementFound = !checkElementTag(el) && checkForExcludedClass(el);
       if (!el.childNodes || excludedElementFound) {
         return;
@@ -96,8 +103,8 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
       if (ws.length > 0 && ws[0].length === 0) {
         ws.shift();
       }
-      /* check if this tag only contains a single word or has already been labeled with a score, in which case there's no reason to make a new tag for the word. */
-      if ((words.length === 1 && ws.length === 0) || p.getAttribute(SCORE_ATTRIBUTE_NAME) != null) {
+      /* check if this tag has already been labeled with a score, in which case there's no reason to make a new tag for the word. */
+      if (p.getAttribute(SCORE_ATTRIBUTE_NAME) != null) {
         addWordDomNode(p);
         return;
       }
@@ -112,6 +119,7 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
         if (i < ws.length && ws[i].length > 0) {
           n = document.createTextNode(ws[i]);
           p.insertBefore(n, textEl);
+          addWordDomNode(n);
         }
       }
       // remove the original text (since we've replaced it with the word spans & whitespace elements)
@@ -123,11 +131,16 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
   };
 
   function applyWordTrust() {
-    wordDomNodes.forEach(function (node, index) {
-      wordScore = 1 - (Math.min(Math.max(Math.sin(index / 80) + 1 - Math.random() / 0.6, 0), 1)) // Fake word score formula to mimic actual algorithim (replace with 0 to hightlight everything in red)
-      node.setAttribute(SCORE_ATTRIBUTE_NAME, wordScore) // Adds a custom html attribute (convention is they start with "data") on the word element node with the wordScore value
-    })
-  }
+    var node, wordIndex, len = wordDomNodes.length;
+    for (var nodeIndex = 0; nodeIndex < len; nodeIndex++) {
+      node = wordDomNodes[nodeIndex];
+      wordIndex = node.getAttribute(WORD_INDEX_ATTRIBUTE_NAME)
+      if (wordIndex !== null) {
+        wordScore = 1 - (Math.min(Math.max(Math.sin(wordIndex / 80) + 1 - 0.5 / 0.6, 0), 1)) // Fake word score formula to mimic actual algorithim (replace with 0 to hightlight everything in red)
+        node.setAttribute(SCORE_ATTRIBUTE_NAME, wordScore) // Adds a custom html attribute (convention is they start with "data") on the word element node with the wordScore value
+      }
+    }
+  }//Math.random()
 
   function showTrust() {
     wordDomNodes.forEach(function (node, index) {
