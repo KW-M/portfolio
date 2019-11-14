@@ -9,11 +9,11 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
   var wordDomNodes = window.WikiTrustGlobalVars["wordDomNodes"];
   // dictionary of html element types to split into words and include in the word list
   const REPLACE_WORDS_IN = {
-    p: 1, a: 1, span: 1
-    //  b: 1, big: 1, body: 1, cite: 1, code: 1, dd: 1,
-    //  dt: 1, em: 1, font: 1, h1: 1, h2: 1, h3: 1, h4: 1, h5: 1, h6: 1,
-    //  i: 1, label: 1, legend: 1, li: 1, pre: 1, small: 1,
-    //  span: 1, strong: 1, sub: 1, sup: 1, td: 1, th: 1, tt: 1, div: 1, li: 1, caption: 1
+    p: 1, a: 1, span: 1,
+    b: 1, big: 1, cite: 1, code: 1, dd: 1,
+    dt: 1, em: 1, font: 1, h1: 1, h2: 1, h3: 1, h4: 1, h5: 1, h6: 1,
+    i: 1, label: 1, legend: 1, ul: 1, li: 1, pre: 1, small: 1,
+    span: 1, strong: 1, sub: 1, sup: 1, td: 1, th: 1, tt: 1, div: 1, li: 1, caption: 1
   };
   // array of element class names to ignore for extracting & spliting words
   const EXCLUDE_ELEMENT_CLASSES = ["reference", "wikitable", "toc", "infobox", "thumb", "mw-editsection", "navbox", "metadata", "tmbox", "sistersitebox", "portal"]// "reference" "sistersitebox" "navbox"
@@ -134,7 +134,7 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
     var node, wordIndex, len = wordDomNodes.length;
     for (var nodeIndex = 0; nodeIndex < len; nodeIndex++) {
       node = wordDomNodes[nodeIndex];
-      wordIndex = node.getAttribute(WORD_INDEX_ATTRIBUTE_NAME)
+      wordIndex = node.getAttribute(WORD_INDEX_ATTRIBUTE_NAME) // set when the elements are found
       if (wordIndex !== null) {
         wordScore = 1 - (Math.min(Math.max(Math.sin(wordIndex / 80) + 1 - 0.5 / 0.6, 0), 1)) // Fake word score formula to mimic actual algorithim (replace with 0 to hightlight everything in red)
         node.setAttribute(SCORE_ATTRIBUTE_NAME, wordScore) // Adds a custom html attribute (convention is they start with "data") on the word element node with the wordScore value
