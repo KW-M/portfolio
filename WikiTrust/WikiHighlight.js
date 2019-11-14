@@ -84,7 +84,7 @@ if (window.WikiTrustGlobalVars === undefined) window.WikiTrustGlobalVars = { wor
         return;
       }
       // check the current element to see if it doesn't pass the classe filters or the element tags we dont want, return to prevent further recustion/adding of children from happening:
-      var excludedElementFound = !checkElementTag(el) && checkForExcludedClass(el);
+      var excludedElementFound = !checkElementTag(el) || checkForExcludedClass(el);
       if (!el.childNodes || excludedElementFound) {
         return;
       }
