@@ -30,9 +30,9 @@ if (window.WikiTrustGlobalVars === undefined)
   const COMPLETION_STAGES = { just_loaded: 0, button_injected: 1, ui_injected: 2, api_sent: 3, api_recived: 4, page_processed: 5 }
   const ENVIRONMENTS = { bookmarklet: 0, firefox_extension: 1, chrome_extension: 2 }
 
-  if (typeof browser !== 'undefined') { // check if the firefox extension "browser" namespace is avalable
+  if (typeof browser !== 'undefined' && typeof browser.extension !== 'undefined') { // check if the firefox extension "browser" namespace is avalable
     var ENVIRONMENT = ENVIRONMENTS.firefox_extension
-  } else if (typeof chrome !== 'undefined') { // check if the chrome extension "chrome" namespace is avalable
+  } else if (typeof chrome !== 'undefined' && typeof chrome.extension !== 'undefined') { // check if the chrome extension "chrome" namespace is avalable
     var ENVIRONMENT = ENVIRONMENTS.chrome_extension
     var browser = chrome; // reference the chrome extension namespace as the variable "browser" for eaisier access when it is avalable.
   } else {
@@ -168,7 +168,6 @@ if (window.WikiTrustGlobalVars === undefined)
   function showTrust() {
     // Loops through the nodes in the wordDomNodes array and applies the trust style from the word's trust score (contained in the elements SCORE_ATTRIBUTE_NAME attribute value)
     window.WikiTrustGlobalVars.WTButton.innerText = "Hide WikiTrust"
-    console.log(window.WikiTrustGlobalVars.uiFrame)
     window.WikiTrustGlobalVars.uiFrame.style.display = "block";
     wordDomNodes.forEach(function (node) {
       var wordScore = node.getAttribute(SCORE_ATTRIBUTE_NAME)
@@ -184,7 +183,6 @@ if (window.WikiTrustGlobalVars === undefined)
 
   function hideTrust() {
     window.WikiTrustGlobalVars.WTButton.innerText = "Show WikiTrust"
-    console.log(window.WikiTrustGlobalVars.uiFrame)
     window.WikiTrustGlobalVars.uiFrame.style.display = "none";
     wordDomNodes.forEach(function (node) {
       node.style.borderBottom = "unset";
@@ -289,9 +287,10 @@ if (window.WikiTrustGlobalVars === undefined)
     completionStage = COMPLETION_STAGES.button_injected; // Mark that WikiTrust has injected the button.
     if (ENVIRONMENT === ENVIRONMENTS.bookmarklet) setupWikiTrust();
   } else {
-    cleanupWikiTrust() // if this script has already been run on this page, and must be being loaded again, clean up / remove WikiTrust.
+    if (window.WikiTrustGlobalVars.trustVisible === false) showTrust(); else hideTrust();
+    //cleanupWikiTrust() // if this script has already been run on this page, and must be being loaded again, clean up / remove WikiTrust.
   }
-
+  return "done"
 })()
 
 // sources:
