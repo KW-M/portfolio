@@ -13,6 +13,11 @@
     <link rel="icon" type="image/png" sizes="96x96" href="./Favicons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./Favicons/favicon-16x16.png">
     <meta name="theme-color" content="#ffffff">
+    <script>
+        function showimage(event) {
+            event.target.parentNode.style.opacity = "1"
+        }
+    </script>
 </head>
 
 <body>
@@ -20,14 +25,15 @@
         <header id="Header">
             <img src="./OregonBlur.jpg" alt="Oregon Coast (Photograph © Kyle Worcester-Moore)"
                 class="background-image header-background" onclick="if (aboutScreenOpen) toggleAboutScreen()">
-            <h3 style="margin: 16 20 16 0;z-index: 8;">
+            <h3 style="z-index: 8;">
                 Kyle Worcester-Moore <span class="portfolio-text">| Portfolio</span>
             </h3>
             <nav>
                 <a onclick="toggleAboutScreen();" id="Nav_About" href="#about" class="nav-link nav-active">About</a>
-                <a onclick="setSection('StudyHub')" id="Nav_Projects" href="#projects" class="nav-link">Projects</a>
+                <a onclick="setSection('Projects')" id="Nav_Projects" href="#projects" class="nav-link">Projects</a>
                 <a onclick="setSection('Teams')" id="Nav_Teams" href="#teams" class="nav-link">Teams</a>
             </nav>
+
             <nav class="icon-links">
                 <div>
                     <a href="https://github.com/KW-M">
@@ -43,16 +49,13 @@
                     <a href="https://drive.google.com/file/d/1DYjsgek4NIJk0IT4OKZSCmM-jrepd4OP/view"><img
                             src="./UI-Elements/resume.svg"
                             style="padding: 12px 8px 12px 16px;opacity: 0.9;height: 27px;"></a>
-                    <a href="https://studyhubdev.blogspot.com/">
-                        <img src="./UI-Elements/blogger.svg"
-                            style="padding: 10px 8px 12px 8px;opacity: 0.9;height: 27px;">
-                    </a>
+
                 </div>
             </nav>
             <div class="about-container">
                 <section class="card" style="background-color: #ffffffd2;border: none;text-align: left;margin: 0 16px">
                     <div style="width:100%;height:130px;">
-                        <img src="./Profile-Picture.png"
+                        <img src="./Profile-Picture.jpg"
                             style="width:130px;height:130px;position:absolute;top:20px;left: calc(50% - 65px);border-radius: 200px">
                         <h2 style="margin:0;position:absolute;top:80px;left: calc(25% - 4rem);">About
                         </h2>
@@ -60,7 +63,7 @@
                         </h2>
                     </div>
                     <p>Hi, I'm Kyle. I'm passionate about using technology to make the world a better place.
-                        Currently, I'm studying Computer Science & Computer Game Design at The University of
+                        Currently, I'm studying Computer Science - Game Design at The University of
                         California, Santa Cruz. I'm always exited to learn new things. Whether it's exploring
                         remote
                         locations or learning
@@ -75,17 +78,11 @@
                         <a href="https://drive.google.com/file/d/1DYjsgek4NIJk0IT4OKZSCmM-jrepd4OP/view">resume</a>.
                         </br>
                         </br>
-                        Want to get in contact? <a href="mailto:25kylworc@gmail.com">Email Me</a>!
+                        Want to get in contact? <a id="email_link">Email Me</a>!
                     </p>
                 </section>
             </div>
         </header>
-        <div id="Menu_Fab_Container">
-            <button class="menu-fab" id="Upper_Fab">
-                <img src="./UI-Elements/up_arrow.svg" class="up-arrow" onclick="pageUp()" />
-                <img src="./UI-Elements/down_arrow.svg" class="down-arrow" onclick="pageDown()" />
-            </button>
-        </div>
         <div class="shadow"></div>
     </div>
     <div class="background">
@@ -100,53 +97,157 @@
                 ABOUT ME
             </button>
         </div>
-        <button class="menu-fab " id="Fab_Center" onclick="pageDown(true)">
-            <img src="./UI-Elements/down_arrow.svg" />
+        <button class="menu-fab" id="Fab_Center" onclick="pageDown(true)" aria-describedby="Go to projects section">
+
         </button>
+        <img src="./UI-Elements/oragnic-button.svg" id="down_button_blob" aria-hidden="true" />
         <div class="main-container-margin" id="Projects">
+
             <h3 style="margin: 16px;">Projects</h3>
+            <section class="card" id="Geothermal">
+                <div class="card-head clearfix">
+                    <div class="logo-container" aria-hidden="true">
+                        <img src="./Logos/Geothermal-logo.png" alt="Icon">
+                    </div>
+                    <h2>Geothermal Design Challenge</h2>
+                    <p>
+
+                        <b>Goal</b> - For the 2020 US Department of Energy Geothermal Design Challenge, me and two other
+                        students
+                        wanted to tackle the lack of public awareness around geothermal energies' potential and the
+                        technologies that are making broad geothermal energy possible.
+                    </p>
+
+                    <p>
+                        <b>Process</b> - We decided to make an interactive infographic website from scratch. The whole
+                        process, from
+                        brainstorming to research to writing to art, design, & development took about two months. Doing
+                        the writing for the infographic was especially challenging because I was writing for a general
+                        audience so I needed to break down tricky topics into easily understood chunks. After writing
+                        and creating the artwork, we assembled the website in HTML & CSS. I used the Greensock
+                        animation library plus micromodal.js for it’s accessibility features and some custom interaction
+                        code to handle the rotating planet on all input types & responsive css & js to lay out all the
+                        elements on different form factors.
+                    </p>
+                    <p>
+                        <b>Result</b> - Our site got 2nd place in the challenge & we hope it is reaching a
+                        broader audience thanks to the @geothermalfact twitter bot that a teammate
+                        wrote which tweets geothermal fun facts and directs people to our site.
+                    </p>
+                    <p>
+                        Check out at the infographic at <a
+                            href="https://geothermal-future.web.app">geothermal-future.web.app</a>
+                        </br> — I hope you enjoy it and learn something too!
+                    </p>
+                </div>
+                <div class="slide-deck">
+                    <div class="slide-image">
+                        <img onload="showimage(event)" src="./Geothermal/4.png">
+                    </div>
+                    <div class="slide-image">
+                        <img onload="showimage(event)" src="./Geothermal/3.png">
+                    </div>
+                    <div class="slide-image">
+                        <img onload="showimage(event)" src="./Geothermal/1.png">
+                    </div>
+                    <div class="slide-image">
+                        <img onload="showimage(event)" src="./Geothermal/2.png">
+                    </div>
+                    <div class="slide-image">
+                        <img onload="showimage(event)" src="./Geothermal/5.png">
+                    </div>
+                </div>
+            </section>
+            <section class="card" id="Graphics">
+                <div class="card-head clearfix">
+                    <div class="logo-container" aria-hidden="true">
+                        <img src="./Logos/Graphics-logo.png" alt="Icon">
+                    </div>
+                    <h2>Web Graphics Experiments</h2>
+                    <p>
+                        <b>Goal</b> - For my final project of the computer graphics course at UCSC, I wanted to explore
+                        input methods & technologies beyond the polygonal raster graphics that power most real-time 3D
+                        rendering today. I decided to experiment with combining an efficient varient of ray tracing
+                        called ray marching combined with a gestural trackpad user interface.
+                    </p>
+                    <p>
+                        <b>Process</b> - My first experiment tested the how the gestural user interface feels with the
+                        raw polygonal WebGL graphics pipeline we had been developing thoughout the course. After testing
+                        the feel of the gestures, I dived into learning about ray marching. Ray marching is an ingenious
+                        shortcut for efficiently rendering smooth shapes without any triangles. It accomplishes this by
+                        representing scenes as a continuous mathematical distance function that can be computed at each
+                        point in space. Then a GPU shader iteratively fires rays for each pixel into the distance
+                        function. Because the distance function encapsulates all objects in the scene, each ray can hone
+                        in on the nearest surface in few steps, and real-time reflections and illumination can be done
+                        with little overhead.
+                    </p>
+                    <p>
+                        <b>Result</b> - As this was my first experience with ray marching and gesture interfaces on the
+                        web, it’s not as efficient or as intuitive as I would like, but I think the results are
+                        interesting and possibilities for ray marching are very real.
+                    </p>
+                    <p>
+                        <b>Play it: (Works best in Safari 12+ using a trackpad)</b></br>
+                        <a
+                            href="https://people.ucsc.edu/~kworcest/CS%20Programming%20Assignment%20Archive/CSE160/ASG4/driver.html">Raster
+                            Editor</a></br>
+                        <a
+                            href="https://people.ucsc.edu/~kworcest/CS%20Programming%20Assignment%20Archive/CSE160/Lab%205/">Ray-Marched
+                            Editor</a>
+                    </p>
+                </div>
+                <div class="slide-deck">
+                    <div class="slide-image">
+                        <img onload="showimage(event)" src="./GraphicsExperiments/1.png">
+                    </div>
+                    <div class="slide-image">
+                        <img onload="showimage(event)" src="./GraphicsExperiments/2.png">
+                    </div>
+                    <div class="slide-image">
+                        <img onload="showimage(event)" src="./GraphicsExperiments/3.png">
+                    </div>
+                    <div class="slide-image">
+                        <img onload="showimage(event)" src="./GraphicsExperiments/4.png">
+                    </div>
+                    <div class="slide-image">
+                        <img onload="showimage(event)" src="./GraphicsExperiments/5.png">
+                    </div>
+                </div>
+            </section>
             <section class="card" id="StudyHub">
                 <div class="card-head clearfix">
                     <div class="logo-container">
                         <img src="./Logos/StudyHub-logo.png" alt="Icon">
                     </div>
                     <h2>StudyHub 2</h2>
-                    <p>A web platform I designed and built for York School which allows students to share, organize,
-                        and access
-                        educational study resources school-wide. It's used by over 80% of York students and faculty to
-                        share
-                        and learn. Version 2 is built on Angular 6 and uses Firebase, Algolia Search, and Google Cloud
-                        Functions as a backend. StudyHub has
-                        evolved
-                        continuously through many prototypes where I switched to new server stacks, made the web app
-                        fully
-                        responsive, mobile-ready and offline capable, and then completely rebuilt Studyhub after I
-                        asked
-                        Google employees to review the security of my website. It took me nearly two years to complete
-                        the first version and I spend another six months totally reworking the codebase
-                        to be much faster and
-                        more feature-rich for version 2.
-                        You can learn more about StudyHub's development on my
-                        <a href="https://studyhubdev.blogspot.com/">dev blog</a> and check out the live version at
-                        <a href="http://studyhub.york.org">studyhub.york.org</a> (if you would like a temporary login,
-                        <a href="mailto:25kylworc@gmail.com">email me</a>).
+                    <p>A web platform I designed and built for York School which allows students to share, organize, and
+                        access educational study resources. It's used by over 80% of York students and faculty to share
+                        and learn. Version 2 is built on Angular and uses Firebase, Algolia Search, and Google Cloud
+                        Functions based on Node JS as a backend. StudyHub has evolved continuously through many
+                        prototypes where I switched to new server stacks, made the web app responsive, mobile-ready and
+                        offline capable, and then did a major overhall of Studyhub after I asked two kind Google
+                        employees to review the security of my website. It took me nearly two years to complete the
+                        first version and I spend another six months totally reworking the codebase to be much faster
+                        and more feature-rich for version 2. You can learn more about StudyHub's development on the
+                        <a href="https://studyhubdev.blogspot.com/">dev blog</a> and see the live site at
+                        <a href="http://studyhub.york.org">studyhub.york.org</a>
                     </p>
                 </div>
                 <div class="slide-deck">
                     <div class="slide-image">
-                        <img src="./StudyHub/1.png">
+                        <img onload="showimage(event)" src="./StudyHub/1.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./StudyHub/2.png">
+                        <img onload="showimage(event)" src="./StudyHub/2.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./StudyHub/3.png">
+                        <img onload="showimage(event)" src="./StudyHub/3.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./StudyHub/4.png">
+                        <img onload="showimage(event)" src="./StudyHub/4.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./StudyHub/5.png">
+                        <img onload="showimage(event)" src="./StudyHub/5.png">
                     </div>
                 </div>
             </section>
@@ -187,19 +288,19 @@
                             allowfullscreen></iframe>
                     </div>
                     <div class="slide-image">
-                        <img src="./HeightMapper/1.png">
+                        <img onload="showimage(event)" src="./HeightMapper/1.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./HeightMapper/2.png">
+                        <img onload="showimage(event)" src="./HeightMapper/2.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./HeightMapper/3.png">
+                        <img onload="showimage(event)" src="./HeightMapper/3.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./HeightMapper/4.png">
+                        <img onload="showimage(event)" src="./HeightMapper/4.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./HeightMapper/5.gif">
+                        <img onload="showimage(event)" src="./HeightMapper/5.gif">
                     </div>
                 </div>
             </section>
@@ -223,66 +324,70 @@
                         design.
                         I finally showcased my work at York's art fair, where people could try out my game and a watch
                         a
-                        360 video a friend made in VR. If you have an Android device, you can play <a
-                            href="./apps/Kyle_Worcester-Moore VR Game V2.apk">Prototype
-                            2</a>, by installing the app's APK or application package.
+                        360 video a friend made in VR.
                     </p>
                 </div>
                 <div class="slide-deck">
                     <div class="slide-image" style="width: 532px;">
-                        <iframe width="532" height="300"
+                        <iframe width="532" height="300" onload="showimage(event)"
                             src="https://www.youtube-nocookie.com/embed/6t5UGdEt4Io?modestbranding=1&amp;showinfo=0&amp;rel=0&amp;theme=light&amp;loop=1"
                             frameborder="0" gesture="media"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
                     <div class="slide-image" style="width: 532px;">
-                        <iframe width="532" height="300"
+                        <iframe width="532" height="300" onload="showimage(event)"
                             src="https://www.youtube-nocookie.com/embed/2LBSuYbajzY?modestbranding=1&amp;showinfo=0&amp;rel=0&amp;theme=light&amp;loop=1"
                             frameborder="0" gesture="media"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
                     <div class="slide-image">
-                        <img src="./Cardboard/1.png">
+                        <img onload="showimage(event)" src="./Cardboard/1.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./Cardboard/2.png">
+                        <img onload="showimage(event)" src="./Cardboard/2.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./Cardboard/3.png">
+                        <img onload="showimage(event)" src="./Cardboard/3.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./Cardboard/4.png">
+                        <img onload="showimage(event)" src="./Cardboard/4.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./Cardboard/5.png">
+                        <img onload="showimage(event)" src="./Cardboard/5.png">
                     </div>
                     <div class="slide-image">
-                        <img src="./Cardboard/6.png">
+                        <img onload="showimage(event)" src="./Cardboard/6.png">
                     </div>
                 </div>
             </section>
             <section>
                 <h3 style="margin: 16px;" id="Teams">Teams I'm a Part of</h3>
-                <div class="team-card">
-                    <img src="https://slugbotics.com/res/images/logo_yellow.png"
+                <!-- <div class="team-card">
+                    <img src="./Logos/slugbotics-logo.png"
                         style="background: #0e0e0e; padding: 6px; width:52px; height:52px;">
                     <h4 style="margin:0"><a href="http://slugbotics.com">Slugbotics</a></h4>
-                    <p style="margin:0">UCSC's underwater robotics team. We're building an explorer class ROV for the
-                        MATE international competion. I specifically work on the Mechanical Design and Programming
-                        sub-teams.</p>
+                    <p style="margin:0">UCSC's underwater robotics team. We're building an explorer ROV for the
+                        MATE international competion. I specifically work on the Mechanical Design team.</p>
                 </div>
                 <div class="team-card" style="margin-right: 0">
-                    <img src="https://cdn.discordapp.com/icons/299292000467943426/826dcb00cc1a201cd82d271f11a8fc8b.png">
+                    <img src="./Logos/GDA-logo.png">
                     <h4 style="margin:0"><a href="http://gdacollab.com/site/about.php">GDA</a></h4>
                     <p style="margin:0">The student-lead game design and production club at UCSC. This year I'm a
                         programmer on the Occultus Occularus videogame team.</p>
+                </div> -->
+                <div class="team-card">
+                    <img src="./Logos/Wikitrust-logo.png">
+                    <h4 style="margin:0"><a href="https://sites.google.com/view/wikitrust2">WikiTrust</a></h4>
+                    <p style="margin:0">Reserch Group focused on making tools that help lessen the risk of
+                        missinformation on wikipedia.</p>
                 </div>
                 <div class="team-card" style="margin-left:auto; margin-right: auto; ">
-                    <img src="http://scee.ucsc.edu/images/clubLogo.png">
+                    <img src="./Logos/scee-logo.png">
                     <h4 style="margin:0"><a href="http://scee.ucsc.edu/">SCEE</a></h4>
-                    <p style="margin:0">The new entrepenurship club at UCSC. I've been working with the tech team on upgrading the SCEE website.</p>
+                    <p style="margin:0">A new student entrepenurship club at UCSC. I'm the tech lead working on
+                        upgrading the SCEE website.</p>
                 </div>
             </section>
             <footer>
@@ -292,189 +397,12 @@
             </footer>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script src="main.js"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="slick/slick.min.js"></script>
-<script>
-    $('.slide-deck')
-        .slick({
-            dots: false,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 1,
-            centerMode: true,
-            variableWidth: true,
-            centerPadding: '60px',
-        });
-
-    var backgroundImg = new Image(10, 20);
-    backgroundImg.addEventListener("load", function () {
-        document.getElementById("Background_Image").src = "./Oregon.jpg";
-    });
-    backgroundImg.src = './Oregon.jpg';
-
-    var fabMouseOver = false;
-    var fabTransitionDone = false;
-    var aboutScreenOpen = false
-    var currSectionIndex = 0;
-    var onCorrectSection = false;
-
-    var sectionArray = [
-        'About',
-        'StudyHub',
-        'SSROV',
-        'Cardboard',
-        'Teams'
-    ]
-
-    var introTextHeight = 500;
-    window.onload = () => {
-        while (!onCorrectSection) {
-            checkScroll();
-        }
-        introTextHeight = document.getElementById("About").clientHeight;
-        console.dir(document.getElementById("About").clientHeight);
-    }
-
-    var throttleInterval = null;
-    var lastTime = new Date().getTime();
-    window.onscroll = function () {
-        if (throttleInterval == null) throttleInterval = setInterval(() => {
-            if ((new Date().getTime() - lastTime) > 250) {
-                clearInterval(throttleInterval);
-                throttleInterval = null;
-            }
-            checkScroll()
-        }, 200);
-        lastTime = new Date().getTime();
-    }
-
-    function setSection(sectionId) {
-        if (aboutScreenOpen) toggleAboutScreen()
-        window.scrollTo({
-            top: document.getElementById(sectionId).offsetTop - 95,
-            behavior: 'smooth'
-        })
-        while (!onCorrectSection) {
-            checkScroll();
-        }
-    }
-    document.getElementById("Header").addEventListener("focusin", (event) => {
-        var headerElm = document.getElementById("Header")
-        headerElm.scroll(0, 0);
-        $(headerElm.parentElement).addClass('open-header');
-    });
-    document.getElementById("Header").addEventListener("focusout", (event) => {
-        event.type
-        var headerElm = document.getElementById("Header")
-        headerElm.scroll(0, 0);
-        $(headerElm.parentElement).removeClass('open-header');
-    });
-    document.getElementById("Upper_Fab").addEventListener("mouseenter", (event) => {
-        setTimeout(() => { fabMouseOver = true }, 10)
-    });
-    document.getElementById("Upper_Fab").addEventListener("mouseleave", (event) => {
-        fabMouseOver = false
-    });
-    function pageUp() {
-        if (!fabMouseOver) return
-        currSectionIndex--
-        if (currSectionIndex < 0) {
-            toggleAboutScreen()
-            currSectionIndex = 0;
-            return
-        } else if (aboutScreenOpen) {
-            toggleAboutScreen()
-            return
-        }
-        window.scrollTo({
-            top: document.getElementById(sectionArray[currSectionIndex]).offsetTop - 95,
-            behavior: 'smooth'
-        })
-    }
-    function pageDown(overide) {
-        if (aboutScreenOpen) {
-            toggleAboutScreen()
-            return
-        } else if (!fabMouseOver && !overide) {
-            return;
-        }
-        currSectionIndex++;
-        if (currSectionIndex > sectionArray.length - 1) currSectionIndex = 0;
-        window.scrollTo({
-            top: document.getElementById(sectionArray[currSectionIndex]).offsetTop - 95,
-            behavior: 'smooth'
-        })
-    }
-
-    function toggleAboutScreen() {
-        if (!fabTransitionDone) transitionMenuButton()
-        if (!aboutScreenOpen) {
-            aboutScreenOpen = true
-            $("#Header").addClass("full-expansion")
-            $("#Menu_Fab_Container").addClass("close-button-mode")
-            $(".about-container").css({ display: "block", opacity: 0 })
-            $(".about-container").animate({
-                opacity: 1,
-            }, { duration: 200, queue: false }, "swing");
-            var temp = currSectionIndex
-            currSectionIndex = 0;
-            setActiveNavLink()
-            currSectionIndex = temp;
-            document.body.style.overflow = "hidden";
-        } else {
-            aboutScreenOpen = false;
-            $("#Header").removeClass("full-expansion")
-            $("#Menu_Fab_Container").removeClass("close-button-mode")
-            setActiveNavLink()
-            document.body.style.overflow = "auto";
-            setTimeout(function () {
-                $(".about-container").css({ display: "none" })
-            }, 100)
-        }
-    }
 
 
-    function checkScroll() {
-        if (sectionArray[currSectionIndex] && document.getElementById(sectionArray[currSectionIndex]).offsetTop > window.scrollY + (window.screen.height / 2)) {
-            onCorrectSection = false;
-            currSectionIndex--;
-        } else if (sectionArray[currSectionIndex + 1] && document.getElementById(sectionArray[currSectionIndex + 1]).offsetTop - (window.screen.height / 2) < window.scrollY) {
-            onCorrectSection = false;
-            currSectionIndex++;
-
-        } else {
-            if (!onCorrectSection) setActiveNavLink();
-            onCorrectSection = true;
-        }
-        if (!fabTransitionDone && (window.scrollY - introTextHeight) > 38) transitionMenuButton()
-    }
-
-    function setActiveNavLink() {
-        $.each($('.nav-link'), function () {
-            $(this).removeClass("nav-active")
-        });
-        if (currSectionIndex == 0) {
-            $('#Nav_About').addClass("nav-active")
-            window.location.hash = '#about';
-        } else if (currSectionIndex == 4) {
-            $('#Nav_Teams').addClass("nav-active")
-            window.location.hash = '#teams';
-        } else {
-            $('#Nav_Projects').addClass("nav-active")
-            window.location.hash = '#projects';
-        }
-    }
-
-    function transitionMenuButton() {
-        fabTransitionDone = true;
-        // $('#Upper_Fab').css({ display: 'block', opacity: 0 })
-        $('#Fab_Center').remove();
-        // $('#Upper_Fab').animate({
-        //     opacity: 1
-        // }, { duration: 200, queue: false }, "swing");
-    }
-</script>
 
 </html>

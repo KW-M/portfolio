@@ -1,2 +1,1 @@
-# Portfolio-Website
-My Github-Pages hosted website.
+The source code for my Github-Pages hosted portfolio.
