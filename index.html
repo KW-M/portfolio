@@ -9,10 +9,13 @@
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link rel="stylesheet" type="text/css" href="./slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="./main.css" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./Favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="./Favicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./Favicons/favicon-16x16.png">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#b58500">
     <script>
         function showimage(event) {
             event.target.parentNode.style.opacity = "1"
@@ -21,18 +24,22 @@
 </head>
 
 <body>
-    <div class="top-bar">
+    <div id="top_bar">
         <header id="Header">
             <img src="./OregonBlur.jpg" alt="Oregon Coast (Photograph © Kyle Worcester-Moore)"
                 class="background-image header-background" onclick="if (aboutScreenOpen) toggleAboutScreen()">
+            <div id="header_gradient" aria-hidden="true"></div>
             <h3 style="z-index: 8;">
                 Kyle Worcester-Moore <span class="portfolio-text">| Portfolio</span>
             </h3>
             <nav>
-                <a onclick="toggleAboutScreen();" id="Nav_About" href="#about" class="nav-link nav-active">About</a>
+                <a onclick="toggleAboutScreen();" onfocus="event.preventDefault()" id="Nav_About" href="#about"
+                    class="nav-link nav-active">About</a>
                 <a onclick="setSection('Projects')" id="Nav_Projects" href="#projects" class="nav-link">Projects</a>
                 <a onclick="setSection('Teams')" id="Nav_Teams" href="#teams" class="nav-link">Teams</a>
             </nav>
+
+
 
             <nav class="icon-links">
                 <div>
@@ -54,6 +61,8 @@
             </nav>
             <div class="about-container">
                 <section class="card" style="background-color: #ffffffd2;border: none;text-align: left;margin: 0 16px">
+                    <button class="modal-close" aria-label="Close About Me Dialog"
+                        onclick="toggleAboutScreen();"></button>
                     <div style="width:100%;height:130px;">
                         <img src="./Profile-Picture.jpg"
                             style="width:130px;height:130px;position:absolute;top:20px;left: calc(50% - 65px);border-radius: 200px">
@@ -397,8 +406,8 @@
             </footer>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="slick/slick.min.js"></script>
     <script src="main.js"></script>
 </body>

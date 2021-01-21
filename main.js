@@ -42,7 +42,7 @@ $('.slide-deck').slick({
 
 var throttleInterval = null;
 var lastTime = new Date().getTime();
-window.onscroll = function () {
+window.addEventListener("scroll", function () {
     if (throttleInterval == null) throttleInterval = setInterval(() => {
         if ((new Date().getTime() - lastTime) > 250) {
             clearInterval(throttleInterval);
@@ -51,7 +51,7 @@ window.onscroll = function () {
         checkScroll()
     }, 200);
     lastTime = new Date().getTime();
-}
+}, true);
 
 function setSection(sectionId) {
     if (aboutScreenOpen) toggleAboutScreen()
@@ -64,14 +64,6 @@ function setSection(sectionId) {
     }
 }
 var headerElm = document.getElementById("Header");
-headerElm.addEventListener("focusin", (event) => {
-    headerElm.scroll(0, 0);
-    $(headerElm.parentElement).addClass('open-header');
-});
-headerElm.addEventListener("focusout", (event) => {
-    headerElm.scroll(0, 0);
-    $(headerElm.parentElement).removeClass('open-header');
-});
 
 function pageUp() {
     currSectionIndex--
@@ -107,11 +99,7 @@ function toggleAboutScreen() {
     if (!aboutScreenOpen) {
         aboutScreenOpen = true
         $("#Header").addClass("full-expansion")
-        $("#Menu_Fab_Container").addClass("close-button-mode")
-        $(".about-container").css({ display: "block", opacity: 0 })
-        $(".about-container").animate({
-            opacity: 1,
-        }, { duration: 200, queue: false }, "swing");
+        $(".about-container").css({ visibility: 'visible' })
         var temp = currSectionIndex
         currSectionIndex = 0;
         setActiveNavLink()
@@ -123,7 +111,7 @@ function toggleAboutScreen() {
         setActiveNavLink()
         document.body.style.overflow = "auto";
         setTimeout(function () {
-            $(".about-container").css({ display: "none" })
+            $(".about-container").css({ visibility: 'hidden' })
         }, 100)
     }
 }
@@ -159,7 +147,15 @@ function setActiveNavLink() {
     }
 }
 
-
-
-
 document.getElementById("email_link").setAttribute("href", ["mailto:kworcest", "ucsc.edu"].join("@"))
+
+var topBarElem = document.getElementById("top_bar");
+console.log(topBarElem)
+topBarElem.addEventListener('focusin', (event) => {
+    topBarElem.className = 'expanded';
+    event.preventDefault();
+});
+
+topBarElem.addEventListener('focusout', (event) => {
+    topBarElem.className = '';
+});
