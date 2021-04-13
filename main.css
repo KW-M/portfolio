@@ -115,7 +115,7 @@ header.full-expansion {
   display: block;
 
   max-width: 90%;
-  height: 140px;
+  max-height: 140px;
   margin: auto;
 }
 
@@ -444,12 +444,25 @@ header #header_gradient {
     width: auto !important;
     margin: 0 0 12px 0 !important;
   }
+  select#project_pages_select{
+    font-size: 14px;
+    padding: 12px;
+  }
 }
 
 @media (max-width: 500px) {
   .portfolio-text {
     display: none;
   }
+  #Header{
+    text-align: left;
+    padding-left: 16px;
+  }
+  select#project_pages_select{
+    font-size: 12px;
+    padding: 6px;
+  }
+
 }
 
 @media (max-height: 540px) {

@@ -175,7 +175,7 @@ function getGithubPages() {
         }
         let selectElem = document.getElementById("project_pages_select");
         selectElem.addEventListener("change", (ev) => {
-            window.open(ev.target.value);
+            window.open(ev.target.value, "_self");
             ev.target.selectedIndex = 0;
         });//window.open('')
         // selectElem.innerHTML = "";
