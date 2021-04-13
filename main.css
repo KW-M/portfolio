@@ -80,44 +80,7 @@ header.full-expansion {
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
 }
 
-#Fab_Center {
-  position: relative;
-  z-index: 0;
-  left: 50%;
 
-  display: block;
-
-  width: 73px;
-  height: 73px;
-  margin: 0;
-
-  cursor: pointer;
-  transition: none;
-  transform: translate(-50%, 100%);
-  text-align: center;
-
-  border: none;
-  border-radius: 50px;
-  outline: none;
-  background-color: transparent;
-
-  appearance: none;
-}
-#Fab_Center:hover,
-#Fab_Center:focus {
-  border: 3px solid #2196f3;
-}
-#Fab_Center:active {
-  border: none;
-  background-color: #2195f325;
-}
-#down_button_blob {
-  display: block;
-
-  max-width: 90%;
-  max-height: 140px;
-  margin: auto;
-}
 
 .modal-close {
   position: absolute;
@@ -158,6 +121,46 @@ a.nav-link {
 
   font-size: 15px;
   font-weight: 400;
+}
+
+#Fab_Center {
+  position: relative;
+  z-index: 0;
+  left: 50%;
+
+  display: block;
+
+  width: 73px;
+  height: 73px;
+  margin: 0;
+
+  cursor: pointer;
+  transition: none;
+  transform: translate(-50%, 100%);
+  text-align: center;
+
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  background-color: transparent;
+
+  appearance: none;
+}
+#Fab_Center:hover,
+#Fab_Center:focus {
+  border: 3px solid #2196f3;
+}
+#Fab_Center:active {
+  border: none;
+  background-color: #2195f325;
+}
+
+#down_button_blob {
+  display: block;
+
+  max-width: 90%;
+  max-height: 140px;
+  margin: auto;
 }
 
 .nav-link.nav-active {
