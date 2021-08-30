@@ -80,6 +80,8 @@ header.full-expansion {
 }
 
 #organic_button {
+  position: relative;
+
   display: block;
 
   max-width: 90%;
@@ -300,7 +302,7 @@ header #header_gradient {
   z-index: 0;
 
   box-sizing: border-box;
-  width: 100vw;
+  width: 100%;
   max-width: 990px;
   height: 100%;
   margin: 0 auto;

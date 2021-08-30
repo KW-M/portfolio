@@ -123,7 +123,6 @@ function pageDown(overide) {
     if (aboutScreenOpen) {
         toggleAboutScreen()
     }
-    // if (currSectionIndex > sectionArray.length - 1) currSectionIndex = 0;
     window.scrollTo({
         top: 620,
         behavior: 'smooth'
