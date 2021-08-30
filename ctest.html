@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Kyle Worcester-Moore | Portfolio</title>
+</head>
+
+<body>
+
+    <!-- <ul class="my-slider" style="height: 500px;">
+       <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(139, 139, 30);">hi</li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(139, 139, 30);">no</li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(139, 139, 30);"><img
+                class="tns-lazy-img" onload="showimage(event)" width="500" data-src="./Geothermal/4.png" /></li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(139, 139, 30);"></li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(139, 139, 30);"></li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(30, 86, 139);"></li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(139, 139, 30);"></li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(30, 86, 139);"></li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(139, 139, 30);"></li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(139, 139, 30);"></li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(139, 139, 30);"></li>
+        <li style="border:1px solid black;width:200px;height: 50px;background-color: rgb(139, 139, 30);"></li> -->
+    <li style="border:1px solid black;background-color: rgb(139, 139, 30)">
+        <img class="tns-lazy-img" width="500" data-src="./Geothermal/1.png" style="height: 100%;" />
+    </li>
+    <li style="border:1px solid black;background-color: rgb(139, 139, 30)">
+        <img class="tns-lazy-img" data-src="./Geothermal/2.png" style="height: 100%;" />
+    </li>
+    <li style="border:1px solid black;background-color: rgb(139, 139, 30)">
+        <img class="tns-lazy-img" width="500" data-src="./Geothermal/4.png" style="height: 100%;" />
+    </li>
+    <li style="border:1px solid black;background-color: rgb(139, 139, 30)">
+        <img class="tns-lazy-img" data-src="./Geothermal/3.png" style="height: 100%;" />
+    </li>
+    </ul> -->
+
+    <div class="embla">
+        <div class="embla__container">
+            <div class="embla__slide">
+                <img class="tns-lazy-img" src="./Geothermal/4.png" style="height: 100%;" />
+            </div>
+            <div class="embla__slide">
+                <img class="tns-lazy-img" src="./Geothermal/2.png" style="height: 100%;" />
+            </div>
+            <div class="embla__slide">
+                <img class="tns-lazy-img" src="./Geothermal/3.png" style="height: 100%;" />
+            </div>
+            <div class="embla__slide">
+                <img class="tns-lazy-img" src="./Geothermal/1.png" style="height: 100%;" />
+            </div>
+            <div class="embla__slide">
+                <img class="tns-lazy-img" src="./Geothermal/5.png" style="height: 100%;" />
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .embla {
+            overflow: hidden;
+        }
+
+        .embla__container {
+            display: flex;
+
+            height: 400px;
+        }
+
+        .embla__slide {
+            position: relative;
+
+            flex: 0 1 100%;
+            /* margin-right: 120px; */
+
+            padding: 50px 60px;
+
+            transition: transform .5s ease;
+
+            border: 1px solid black;
+            background-color: rgb(139, 139, 30);
+        }
+
+        .embla__slide.active {
+            z-index: 10;
+
+            transform: scale(1.2);
+        }
+    </style>
+    <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
+    <script type="text/javascript">
+        const emblaCarouselOptions = { loop: true }
+        function addCarousel(emblaNode) {
+            const embla = EmblaCarousel(emblaNode, emblaCarouselOptions)
+            embla.on('select', (eventName) => {
+                embla.slideNodes()[embla.selectedScrollSnap()].classList.add('active')
+                embla.slideNodes()[embla.previousScrollSnap()].classList.remove('active')
+            })
+            const slideNodes = embla.slideNodes();
+            for (var i = 0; i < slideNodes.length; i++) {
+                const slideIndex = i
+                slideNodes[slideIndex].addEventListener("pointerdown", (e) => {
+                    if (slideIndex == embla.selectedScrollSnap()) return;
+                    const pointerPosX = e.clientX;
+                    const pointerPosY = e.clientY;
+                    slideNodes[slideIndex].addEventListener("pointerup", (e) => {
+                        if (Math.abs(e.clientX - pointerPosX) + Math.abs(e.clientY - pointerPosY) < 6) embla.scrollTo(slideIndex)
+                        slideNodes[slideIndex].removeEventListener("pointerup", this)
+                    })
+
+                }, false)
+            }
+        }
+    </script>
+    <script>
+        // var slider = tns({
+        //     container: '.my-slider',
+        //     items: 1,
+        //     slideBy: 1,
+        //     autoWidth: true,
+        //     center: true,
+        //     mouseDrag: true,
+        //     lazyload: true,
+        //     // preventScrollOnTouch: "auto",
+        //     // autoplay: true,
+        //     // autoplayHoverPause: true,
+        // });
+    </script>
+</body>
+
+
+
+</html>

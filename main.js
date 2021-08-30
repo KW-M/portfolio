@@ -1,12 +1,10 @@
-
-
-
-
+// load lowrez blur background first, then show hi-rez when loaded:
 var backgroundImg = new Image(10, 20);
 backgroundImg.addEventListener("load", function () {
     document.getElementById("Background_Image").src = "./Oregon.jpg";
 });
 backgroundImg.src = './Oregon.jpg';
+
 
 var aboutScreenOpen = false
 var currSectionIndex = 0;
@@ -30,15 +28,81 @@ window.onload = () => {
     introTextHeight = document.getElementById("About").clientHeight;
 }
 
-$('.slide-deck').slick({
-    dots: false,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
-    centerMode: true,
-    variableWidth: true,
-    centerPadding: '60px',
-});
+// $('.embla__container').slick({
+//     dots: false,
+//     infinite: true,
+//     speed: 300,
+//     slidesToShow: 1,
+//     centerMode: true,
+//     variableWidth: true,
+//     centerPadding: '60px',
+// });
+
+const emblaCarouselOptions = { loop: true }
+function addCarousel(emblaNode) {
+    const embla = EmblaCarousel(emblaNode, emblaCarouselOptions)
+    embla.on('select', (eventName) => {
+        embla.slideNodes()[embla.selectedScrollSnap()].classList.add('active')
+        embla.slideNodes()[embla.previousScrollSnap()].classList.remove('active')
+    })
+    console.log(embla)
+    const slideNodes = embla.slideNodes();
+    for (var i = 0; i < slideNodes.length; i++) {
+        const slideIndex = i
+        slideNodes[slideIndex].addEventListener("pointerdown", (e) => {
+            if (slideIndex == embla.selectedScrollSnap()) return;
+            const pointerPosX = e.clientX;
+            const pointerPosY = e.clientY;
+            slideNodes[slideIndex].addEventListener("pointerup", (e) => {
+                if (Math.abs(e.clientX - pointerPosX) + Math.abs(e.clientY - pointerPosY) < 6) embla.scrollTo(slideIndex)
+                slideNodes[slideIndex].removeEventListener("pointerup", this)
+            })
+
+        }, false)
+    }
+}
+
+for (deck of document.getElementsByClassName('embla__carousel')) {
+    addCarousel(deck)
+}
+
+
+var focusTrapEvent = function (e) {
+    let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+
+    if (!isTabPressed) {
+        return;
+    }
+
+    if (e.shiftKey) { // if shift key pressed for shift + tab combination
+        if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement.focus(); // add focus for the last focusable element
+            e.preventDefault();
+        }
+    } else { // if tab key is pressed
+        if (document.activeElement === lastFocusableElement) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+            firstFocusableElement.focus(); // add focus for the first focusable element
+            e.preventDefault();
+        }
+    }
+};
+function addModalFocusTrap(modal) {
+    // add all the elements inside modal which you want to make focusable
+    const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+    const focusableContent = modal.querySelectorAll(focusableElements);
+    const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+
+
+    document.addEventListener('keydown', focusTrapEvent);
+
+    firstFocusableElement.focus();
+}
+
+function removeModalFocusTrap() {
+    document.removeEventListener('keydown', focusTrapEvent);
+}
 
 var throttleInterval = null;
 var lastTime = new Date().getTime();
@@ -53,33 +117,8 @@ window.addEventListener("scroll", function () {
     lastTime = new Date().getTime();
 }, true);
 
-function setSection(sectionId) {
-    if (aboutScreenOpen) toggleAboutScreen()
-    window.scrollTo({
-        top: document.getElementById(sectionId).offsetTop - 95,
-        behavior: 'smooth'
-    })
-    while (!onCorrectSection) {
-        checkScroll();
-    }
-}
-var headerElm = document.getElementById("Header");
 
-function pageUp() {
-    currSectionIndex--
-    if (currSectionIndex < 0) {
-        toggleAboutScreen()
-        currSectionIndex = 0;
-        return
-    } else if (aboutScreenOpen) {
-        toggleAboutScreen()
-        return
-    }
-    window.scrollTo({
-        top: document.getElementById(sectionArray[currSectionIndex]).offsetTop - 95,
-        behavior: 'smooth'
-    })
-}
+var headerElm = document.getElementById("Header");
 function pageDown(overide) {
     if (aboutScreenOpen) {
         toggleAboutScreen()
@@ -96,28 +135,33 @@ function pageDown(overide) {
 }
 
 function toggleAboutScreen() {
+    let aboutContainer = document.getElementById("about-container")
     if (!aboutScreenOpen) {
         aboutScreenOpen = true
-        $("#Header").addClass("full-expansion")
-        $(".about-container").css({ visibility: 'visible' })
-        var temp = currSectionIndex
-        currSectionIndex = 0;
-        setActiveNavLink()
-        currSectionIndex = temp;
+        aboutContainer.style.visibility = 'visible';
+        document.getElementById("Header").classList.add("full-expansion")
+        document.getElementById("email_link").setAttribute("href", ["mailto:kworcest", "ucsc.edu"].join("@"))
         document.body.style.overflow = "hidden";
+        addModalFocusTrap()
     } else {
         aboutScreenOpen = false;
-        $("#Header").removeClass("full-expansion")
-        setActiveNavLink()
+        document.getElementById("Header").classList.remove("full-expansion")
         document.body.style.overflow = "auto";
         setTimeout(function () {
-            $(".about-container").css({ visibility: 'hidden' })
+            aboutContainer.style.visibility = 'hidden';
         }, 100)
     }
 }
 
-
+var iconLinksExpanded = true
 function checkScroll() {
+    if (iconLinksExpanded && window.scrollY > (window.screen.height / 2)) {
+        document.getElementById('icon_links').classList.remove('expanded')
+        iconLinksExpanded = false
+    } else if (!iconLinksExpanded && window.scrollY < (window.screen.height / 2)) {
+        document.getElementById('icon_links').classList.add('expanded')
+        iconLinksExpanded = true
+    }
     if (sectionArray[currSectionIndex] && document.getElementById(sectionArray[currSectionIndex]).offsetTop > window.scrollY + (window.screen.height / 2)) {
         onCorrectSection = false;
         currSectionIndex--;
@@ -126,39 +170,11 @@ function checkScroll() {
         currSectionIndex++;
 
     } else {
-        if (!onCorrectSection) setActiveNavLink();
         onCorrectSection = true;
     }
 }
 
-function setActiveNavLink() {
-    $.each($('.nav-link'), function () {
-        $(this).removeClass("nav-active")
-    });
-    if (currSectionIndex == 0) {
-        $('#Nav_About').addClass("nav-active")
-        window.location.hash = '#about';
-    } else if (currSectionIndex == 4) {
-        $('#Nav_Teams').addClass("nav-active")
-        window.location.hash = '#teams';
-    } else {
-        $('#Nav_Projects').addClass("nav-active")
-        window.location.hash = '#projects';
-    }
-}
 
-document.getElementById("email_link").setAttribute("href", ["mailto:kworcest", "ucsc.edu"].join("@"))
-
-var topBarElem = document.getElementById("top_bar");
-console.log(topBarElem)
-topBarElem.addEventListener('focusin', (event) => {
-    topBarElem.className = 'expanded';
-    event.preventDefault();
-});
-
-topBarElem.addEventListener('focusout', (event) => {
-    topBarElem.className = '';
-});
 
 function getGithubPages() {
     let projectLinks = { 'UC Santa Cruz | Class Projects': [{ 'link': 'https://people.ucsc.edu/~kworcest/CS%20Programming%20Assignment%20Archive/', 'name': 'UCSC Class Projects', 'archived': false }] }
