@@ -122,14 +122,10 @@ var headerElm = document.getElementById("Header");
 function pageDown(overide) {
     if (aboutScreenOpen) {
         toggleAboutScreen()
-        return
-    } else if (!overide) {
-        return;
     }
-    currSectionIndex++;
-    if (currSectionIndex > sectionArray.length - 1) currSectionIndex = 0;
+    // if (currSectionIndex > sectionArray.length - 1) currSectionIndex = 0;
     window.scrollTo({
-        top: document.getElementById(sectionArray[currSectionIndex]).offsetTop - 95,
+        top: 620,
         behavior: 'smooth'
     })
 }
