@@ -1,11 +1,3 @@
-// load lowrez blur background first, then show hi-rez when loaded:
-var backgroundImg = new Image(10, 20);
-backgroundImg.addEventListener("load", function () {
-    document.getElementById("Background_Image").src = "./Oregon.jpg";
-});
-backgroundImg.src = './Oregon.jpg';
-
-
 var aboutScreenOpen = false
 var currSectionIndex = 0;
 var onCorrectSection = false;
@@ -20,23 +12,49 @@ var sectionArray = [
     'Teams'
 ]
 
-var introTextHeight = 500;
-window.onload = () => {
-    while (!onCorrectSection) {
-        checkScroll();
-    }
-    introTextHeight = document.getElementById("About").clientHeight;
+function getGithubPages() {
+    let projectLinks = { 'UC Santa Cruz | Class Projects': [{ 'link': 'https://people.ucsc.edu/~kworcest/CS%20Programming%20Assignment%20Archive/', 'name': 'UCSC Class Projects', 'archived': false }] }
+    fetch('https://api.github.com/users/KW-M/repos?type=all&per_page=100').then(response => response.json()).then((repos) => {
+
+        for (let repo_indx = 0; repo_indx < repos.length; repo_indx++) {
+            const repo_obj = repos[repo_indx];
+            if (repo_obj.has_pages) {
+                let [user_name, repo_name] = repo_obj.full_name.split('/');
+                let linkList = projectLinks["Github | " + user_name] = projectLinks["Github | " + user_name] || []
+                linkList.push({ 'link': 'https://' + user_name + '.github.io/' + repo_name, 'name': repo_name, 'archived': repo_obj.archived });
+                //fetch(`https://api.github.com/repos/${repo_obj.full_name}/pages`).then(response => response.json()).then(json => ({ 'link': json.html_url, 'name': repo_obj.full_name, 'archived': repo_obj.archived })))
+            }
+        }
+        let selectElem = document.getElementById("project_pages_select");
+        selectElem.addEventListener("change", (ev) => {
+            window.open(ev.target.value, "_self");
+            ev.target.selectedIndex = 0;
+        });//window.open('')
+        // selectElem.innerHTML = "";
+        for (const label in projectLinks) {
+            if (Object.hasOwnProperty.call(projectLinks, label)) {
+                const linkList = projectLinks[label];
+                const optGroup = document.createElement('OPTGROUP');
+                optGroup.setAttribute("label", label)
+                for (let index = 0; index < linkList.length; index++) {
+                    const projectObj = linkList[index];
+                    const opt = document.createElement('OPTION')
+                    opt.text = projectObj.name;
+                    opt.value = projectObj.link;
+                    if (projectObj.archvied) opt.classList.add('faded_page');
+                    optGroup.appendChild(opt);
+                }
+                selectElem.appendChild(optGroup);
+            }
+        }
+
+
+        console.log(selectElem, projectLinks)
+    });
+
+    // fetch('https://api.github.com/users/KW-M/orgs').then(response => response.json()).then(console.log)
 }
 
-// $('.embla__container').slick({
-//     dots: false,
-//     infinite: true,
-//     speed: 300,
-//     slidesToShow: 1,
-//     centerMode: true,
-//     variableWidth: true,
-//     centerPadding: '60px',
-// });
 
 const emblaCarouselOptions = { loop: true }
 function addCarousel(emblaNode) {
@@ -86,6 +104,7 @@ var focusTrapEvent = function (e) {
         }
     }
 };
+
 function addModalFocusTrap(modal) {
     // add all the elements inside modal which you want to make focusable
     const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -103,19 +122,6 @@ function addModalFocusTrap(modal) {
 function removeModalFocusTrap() {
     document.removeEventListener('keydown', focusTrapEvent);
 }
-
-var throttleInterval = null;
-var lastTime = new Date().getTime();
-window.addEventListener("scroll", function () {
-    if (throttleInterval == null) throttleInterval = setInterval(() => {
-        if ((new Date().getTime() - lastTime) > 250) {
-            clearInterval(throttleInterval);
-            throttleInterval = null;
-        }
-        checkScroll()
-    }, 200);
-    lastTime = new Date().getTime();
-}, true);
 
 
 var headerElm = document.getElementById("Header");
@@ -149,7 +155,7 @@ function toggleAboutScreen() {
 }
 
 var iconLinksExpanded = true
-function checkScroll() {
+function scrollHandler() {
     if (iconLinksExpanded && window.scrollY > (window.screen.height / 2)) {
         document.getElementById('icon_links').classList.remove('expanded')
         iconLinksExpanded = false
@@ -171,46 +177,44 @@ function checkScroll() {
 
 
 
-function getGithubPages() {
-    let projectLinks = { 'UC Santa Cruz | Class Projects': [{ 'link': 'https://people.ucsc.edu/~kworcest/CS%20Programming%20Assignment%20Archive/', 'name': 'UCSC Class Projects', 'archived': false }] }
-    fetch('https://api.github.com/users/KW-M/repos?type=all&per_page=100').then(response => response.json()).then((repos) => {
-
-        for (let repo_indx = 0; repo_indx < repos.length; repo_indx++) {
-            const repo_obj = repos[repo_indx];
-            if (repo_obj.has_pages) {
-                let [user_name, repo_name] = repo_obj.full_name.split('/');
-                let linkList = projectLinks["Github | " + user_name] = projectLinks["Github | " + user_name] || []
-                linkList.push({ 'link': 'https://' + user_name + '.github.io/' + repo_name, 'name': repo_name, 'archived': repo_obj.archived });
-                //fetch(`https://api.github.com/repos/${repo_obj.full_name}/pages`).then(response => response.json()).then(json => ({ 'link': json.html_url, 'name': repo_obj.full_name, 'archived': repo_obj.archived })))
-            }
+// simple throttle function (runs at end)
+function throttle(callback, limit) {
+    var wait = false;                   // Initially, we're not waiting
+    return function () {               // We return a throttled function
+        if (wait == false) {           // If we're not waiting
+            wait = true;               // Prevent future invocations
+            setTimeout(function () {   // After a period of time
+                callback.call();       // Execute users function
+                wait = false;          // And allow future invocations
+            }, limit);
         }
-        let selectElem = document.getElementById("project_pages_select");
-        selectElem.addEventListener("change", (ev) => {
-            window.open(ev.target.value, "_self");
-            ev.target.selectedIndex = 0;
-        });//window.open('')
-        // selectElem.innerHTML = "";
-        for (const label in projectLinks) {
-            if (Object.hasOwnProperty.call(projectLinks, label)) {
-                const linkList = projectLinks[label];
-                const optGroup = document.createElement('OPTGROUP');
-                optGroup.setAttribute("label", label)
-                for (let index = 0; index < linkList.length; index++) {
-                    const projectObj = linkList[index];
-                    const opt = document.createElement('OPTION')
-                    opt.text = projectObj.name;
-                    opt.value = projectObj.link;
-                    if (projectObj.archvied) opt.classList.add('faded_page');
-                    optGroup.appendChild(opt);
-                }
-                selectElem.appendChild(optGroup);
-            }
-        }
-
-
-        console.log(selectElem, projectLinks)
-    });
-
-    // fetch('https://api.github.com/users/KW-M/orgs').then(response => response.json()).then(console.log)
+    }
 }
-getGithubPages();
+
+function loadHiRezBackground() {
+    // load lowrez blur background first, then show hi-rez when loaded:
+    var backgroundImg = new Image(10, 20);
+    backgroundImg.addEventListener("load", function () {
+        document.getElementById("Background_Image").src = "./Oregon.jpg";
+    });
+    backgroundImg.src = './Oregon.jpg';
+}
+
+var organicButtonElem, organicButtonBlurSizingElem;
+function resizeHandler(event) {
+    console.log(organicButtonElem)
+    organicButtonBlurSizingElem.style.width = organicButtonElem.getBoundingClientRect().width + 'px';
+}
+
+window.onload = () => {
+    organicButtonElem = document.getElementById("organic_button")
+    organicButtonBlurSizingElem = document.getElementById("organic_button_blur_sizing")
+    scrollHandler();
+    resizeHandler();
+    getGithubPages();
+    loadHiRezBackground();
+    window.addEventListener("scroll", throttle(scrollHandler, 200), false);
+    window.addEventListener("resize", throttle(resizeHandler, 200), false);
+    organicButtonBlurSizingElem.style.visibility = 'visible'
+}
+
