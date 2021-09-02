@@ -118,11 +118,14 @@ header.full-expansion {
   position: relative;
   bottom: 0;
 
+  overflow: hidden;
+
   height: 100%;
   margin: auto;
 
   background: white;
 
+  clip-path: url(#organic_button_path);
   -webkit-clip-path: url(#organic_button_path);
 }
 

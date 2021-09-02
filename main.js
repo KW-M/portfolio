@@ -207,7 +207,7 @@ function resizeHandler(event) {
 }
 
 window.onload = () => {
-    organicButtonElem = document.getElementById("organic_button")
+    organicButtonElem = document.getElementById("organic_button_click_target")
     organicButtonBlurSizingElem = document.getElementById("organic_button_blur_sizing")
     scrollHandler();
     resizeHandler();
