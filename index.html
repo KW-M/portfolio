@@ -39,8 +39,7 @@
 </head>
 
 <body>
-    <div id="top_bar">
-        <header id="Header">
+        <header id="Header" class="background">
             <img src="./OregonBlur.jpg" alt="Oregon Coast (Photograph © Kyle Worcester-Moore)"
                 class="background-image header-background" onclick="if (aboutScreenOpen) toggleAboutScreen()">
             <div id="about-container">
@@ -78,7 +77,6 @@
                 </section>
             </div>
         </header>
-    </div>
 
     <div class="background">
         <img src="./OregonBlur.jpg" id="Background_Image" alt="Oregon Coast (Photograph © Kyle Worcester-Moore)"
@@ -102,13 +100,16 @@
         <div class="intro-text" id="About">
             <div aria-hidden="true" class="logo-blur-background"></div>
             <div class="center">
-                <h4>Greetings fellow human!</h4>
-                <h1>I'm Kyle Worcester-Moore</h1>
-                <h4>I like to develop, explore, & design things.</h4>
+                <h3 style="margin-top: -5px;margin-bottom: 39px;">Greetings fellow human!</h3>
+                <h1>I am <br> Kyle Worcester-Moore</h1>
+                <h4 style="line-height: 1.5em;margin-bottom: 0px;">I like to code, explore, and <br> design things.</h4>
                 <button onclick="toggleAboutScreen();" class="intro-about-button">
                     MORE ABOUT ME
                 </button>
             </div>
+        </div>
+        <div class="floating-bubble">
+            <div aria-hidden="true" class="logo-blur-background"></div>
         </div>
         <div id="organic_button_container">
             <svg id="organic_button" viewBox="0 -2 173 48.9" fill-rule="evenodd" clip-rule="evenodd"
@@ -116,9 +117,9 @@
                 style="z-index: 1">
                 <defs>
                     <linearGradient gradientUnits="userSpaceOnUse" x1="0" y1="-1" x2="0" y2="47" id="gradient-1">
-                        <stop offset="0" style="stop-color: rgba(187, 218, 85, 1)" />
-                        <stop offset="0.4" style="stop-color: rgba(187, 218, 85, 1)" />
-                        <stop offset="1" style="stop-color: rgba(187, 218, 85, 0);" />
+                        <stop offset="0" style="stop-color: rgba(0, 180, 255, 1);" />
+                        <stop offset="0.4" style="stop-color: rgba(0, 180, 255, 1);" />
+                        <stop offset="1" style="stop-color: rgba(0, 180, 255, 0);" />
                     </linearGradient>
                     <clipPath id="organic_button_path" clipPathUnits="objectBoundingBox">
                         <path
