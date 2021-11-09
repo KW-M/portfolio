@@ -32,8 +32,9 @@ a {
 
 header {
   position: fixed;
-  z-index: 2;
+  z-index: 3!important;
 
+visibility: hidden;
   overflow: hidden;
 
   box-sizing: border-box;
@@ -48,6 +49,8 @@ header {
 }
 
 header.full-expansion {
+  visibility: visible;
+
   height: 100vh;
 }
 
@@ -77,6 +80,38 @@ header.full-expansion {
 }
 .modal-close:before {
   content: "\2715";
+}
+
+.floating-bubble {
+  position: absolute;
+  top: 260px;
+  left: 43%;
+
+  display: block;
+  overflow: hidden;
+
+  width: 130px;
+  height: 130px;
+  margin: 5vh 5vw;
+  padding: 0;
+
+  text-align: center;
+
+  border-radius: 10000px;
+  background-color: rgb(255, 255, 255);
+}
+
+.inner-bubble
+{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  width: 150px;
+  height: 150px;
+
+  border-radius: 10000px;
+  background: #3e58d1b0;
 }
 
 #organic_button, #organic_button_container {
@@ -216,23 +251,22 @@ opacity: 1;
 }
 
 .intro-text {
-    position: absolute;
-    right: 0;
+  position: absolute;
+  z-index: 1;
 
-    display: block;
-    overflow: hidden;
+  display: block;
+  overflow: hidden;
 
-    width: 504px;
-    height: 504px;
-    margin: 5vh 5vw;
-    margin-top: -140px;
-    padding: 0;
+  width: 420px;
+  height: 420px;
+  margin: 5vh 5vw;
+  margin-top: 18px;
+  padding: 0;
 
-    text-align: center;
+  text-align: center;
 
-    border-radius: 10000px;
-    background: white;
-    box-shadow: 0 0px 20px -5px rgb(0 0 0 / 48%);
+  border-radius: 10000px;
+  background: white;
 }
 
 .center {
@@ -267,27 +301,28 @@ opacity: 1;
   height: 36px;
   margin-top: 36px;
   margin-bottom: 16px;
-  padding: 0 8px;
+  padding: 8px 16px;
 
   cursor: pointer;
   vertical-align: middle;
   text-decoration: none;
   letter-spacing: 0.0892857143em;
 
-  color: #2196f3;
-  border-color: #2196f3;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 22px;
+  background-color: rgba(33, 155, 244, 0.75);
 
-  font-size: 16px;
   font-size: 0.875rem;
   font-weight: bold;
-  line-height: 2.25rem;
-  line-height: inherit;
+  line-height: 1em;
 
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   -webkit-appearance: none;
+}
+
+.intro-about-button:hover, .intro-about-button:focus, .intro-about-button:active {
+  background-color: rgba(33, 155, 244, 0.9);
 }
 
 #about-container {
@@ -428,6 +463,11 @@ left: 0;
   background-position: bottom;
   background-size: cover;
 }
+
+.logo-blur-background.in-focus {
+  background-image: url('./Oregon.jpg');
+}
+
  .logo-container .logo-blur-background {
   left: -129px;
 
