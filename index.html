@@ -39,44 +39,43 @@
 </head>
 
 <body>
-        <header id="Header" class="background">
-            <img src="./OregonBlur.jpg" alt="Oregon Coast (Photograph © Kyle Worcester-Moore)"
-                class="background-image header-background" onclick="if (aboutScreenOpen) toggleAboutScreen()">
-            <div id="about-container">
-                <section class="card" style="background-color: #ffffffd2;border: none;text-align: left;margin: 0 4px">
-                    <button class="modal-close" aria-label="Close About Me Dialog"
-                        onclick="toggleAboutScreen();"></button>
-                    <div style="width:100%; height: 162px;">
-                        <img src="./Profile-Picture.jpg"
-                            style="width:130px;height:130px;position:absolute;top:20px;left: calc(50% - 65px);border-radius: 200px">
-                        <h2 style="margin:0;position:absolute;top:80px;left: calc(25% - 4rem);">About
-                        </h2>
-                        <h2 style="margin:0;position:absolute;top:80px;right: calc(25% - 2.5rem);">Me
-                        </h2>
-                    </div>
-                    <p style="padding: 0 26px 26px 26px;font-size: 17px;">Hello. I'm Kyle. I'm passionate about using
-                        technology to make the
-                        world a better place.
-                        Currently, I'm studying Computer Science - Game Design, and sustainability at The University of
-                        California, Santa Cruz. I'm always exited to learn new things. Whether it's exploring
-                        remote
-                        locations or learning
-                        about the latest technologies, It's always rewarding when I can apply what I've
-                        discovered
-                        to real-world projects that make a difference in people's lives. When I'm not
-                        investigating a new topic or doing side projects, I like to get out and appreciate our planet
-                        through
-                        hiking,
-                        traveling and photography. If you're interested in what I've been up to,
-                        checkout the rest of my <a onclick="pageDown(true)" href="#">portfolio</a> or download my
-                        <a href="https://drive.google.com/file/d/1DYjsgek4NIJk0IT4OKZSCmM-jrepd4OP/view">resume</a>.
-                        </br>
-                        </br>
-                        Want to get in contact? <a id="email_link">Email Me</a>!
-                    </p>
+    <header id="Header" class="background">
+        <img src="./OregonBlur.jpg" alt="Oregon Coast (Photograph © Kyle Worcester-Moore)"
+            class="background-image header-background" onclick="if (aboutScreenOpen) toggleAboutScreen()">
+        <div id="about-container">
+            <section class="card" style="background-color: #ffffffd2;border: none;text-align: left;margin: 0 4px">
+                <button class="modal-close" aria-label="Close About Me Dialog" onclick="toggleAboutScreen();"></button>
+                <div style="width:100%; height: 162px;">
+                    <img src="./Profile-Picture.jpg"
+                        style="width:130px;height:130px;position:absolute;top:20px;left: calc(50% - 65px);border-radius: 200px">
+                    <h2 style="margin:0;position:absolute;top:80px;left: calc(25% - 4rem);">About
+                    </h2>
+                    <h2 style="margin:0;position:absolute;top:80px;right: calc(25% - 2.5rem);">Me
+                    </h2>
+                </div>
+                <p style="padding: 0 26px 26px 26px;font-size: 17px;">Hello. I'm Kyle. I'm passionate about using
+                    technology to make the
+                    world a better place.
+                    Currently, I'm studying Computer Science - Game Design, and sustainability at The University of
+                    California, Santa Cruz. I'm always exited to learn new things. Whether it's exploring
+                    remote
+                    locations or learning
+                    about the latest technologies, It's always rewarding when I can apply what I've
+                    discovered
+                    to real-world projects that make a difference in people's lives. When I'm not
+                    investigating a new topic or doing side projects, I like to get out and appreciate our planet
+                    through
+                    hiking,
+                    traveling and photography. If you're interested in what I've been up to,
+                    checkout the rest of my <a onclick="pageDown(true)" href="#">portfolio</a> or download my
+                    <a href="https://drive.google.com/file/d/1DYjsgek4NIJk0IT4OKZSCmM-jrepd4OP/view">resume</a>.
+                    </br>
+                    </br>
+                    Want to get in contact? <a id="email_link">Email Me</a>!
+                </p>
                 </section>
-            </div>
-        </header>
+                </div>
+                </header>
 
     <div class="background">
         <img src="./OregonBlur.jpg" id="Background_Image" alt="Oregon Coast (Photograph © Kyle Worcester-Moore)"
@@ -182,7 +181,7 @@
                 </div>
                 <div class="embla__carousel">
                     <div class="embla__container">
-                        <div class="embla__slide active">
+                        <div class="embla__slide">
                             <img onload="showimage(event)" src="./Geothermal/4.png">
                         </div>
                         <div class="embla__slide">
@@ -242,8 +241,8 @@
                 </div>
                 <div class="embla__carousel">
                     <div class="embla__container">
-                        <div class="embla__slide  active" style="width: 480px; height: 270px;">
-                            <video autoplay loop muted playsinline width="480" onplay="showimage(event)">
+                        <div class="embla__slide">
+                            <video style="width: 480px; height: 270px;" autoplay loop muted playsinline width="480" onplay="showimage(event)">
                                 <source src="./videos/SDF_Graphics_Demo/hevc.mp4"
                                     type="video/mp4; codecs=hevc,mp4a.40.2">
                                 <source src="./videos/SDF_Graphics_Demo/vp9.webm" type="video/webm codecs=vp9 opus">
@@ -354,7 +353,7 @@
                 </div>
                 <div class="embla__carousel">
                     <div class="embla__container">
-                        <div class="embla__slide active">
+                        <div class="embla__slide">
                             <img onload="showimage(event)" src="./StudyHub/1.png">
                         </div>
                         <div class="embla__slide">
@@ -403,8 +402,9 @@
                 </div>
                 <div class="embla__carousel">
                     <div class="embla__container">
-                        <div class="embla__slide  active" style="width: 480px;">
-                            <video autoplay loop muted playsinline width="480" height="300" onplay="showimage(event)">
+                        <div class="embla__slide">
+                            <video autoplay loop muted playsinline style="width: 480px;height: 300px;" width="480" height="300"
+                                onplay="showimage(event)">
                                 <source src="./videos/Depth Mapping Demo - SSROV Camp/hevc.mp4"
                                     type="video/mp4; codecs=hevc,mp4a.40.2">
                                 <source src="./videos/Depth Mapping Demo - SSROV Camp/vp9.webm"
@@ -454,6 +454,51 @@
                         a
                         360 video a friend made in VR.
                     </p>
+                </div>
+                <div class="embla__carousel">
+                    <div class="embla__container">
+                        <div class="embla__slide">
+                            <video autoplay loop muted playsinline width="532" height="300" onplay="showimage(event)">
+                                <source src="./videos/Balance Rush Game   VR Prototype/hevc.mp4"
+                                    type="video/mp4; codecs=hevc,mp4a.40.2">
+                                <!-- <source
+                                                    src="./videos/Balance Rush Game   VR Prototype/av1.mp4"
+                                                    type="video/mp4; codecs=av01.0.05M.08,opus" > -->
+                                <source src="./videos/Balance Rush Game   VR Prototype/vp9.webm" type="video/webm codecs=vp9 opus">
+                                <source src="./videos/Balance Rush Game   VR Prototype/h264.mp4"
+                                    type="video/mp4; codecs=avc1.4D401E,mp4a.40.2">
+                            </video>
+                        </div>
+                        <div class="embla__slide">
+                            <video autoplay loop muted playsinline width="532" height="300" onplay="showimage(event)">
+                                <source src="./videos/Balance Rush Game - Prototype 1/hevc.mp4" type="video/mp4; codecs=hevc,mp4a.40.2">
+                                <!-- <source
+                                                    src="./videos/Balance Rush Game - Prototype 1/av1.mp4"
+                                                    type="video/mp4; codecs=av01.0.05M.08,opus" > -->
+                                <source src="./videos/Balance Rush Game - Prototype 1/vp9.webm" type="video/webm codecs=vp9 opus">
+                                <source src="./videos/Balance Rush Game - Prototype 1/h264.mp4"
+                                    type="video/mp4; codecs=avc1.4D401E,mp4a.40.2">
+                            </video>
+                        </div>
+                        <div class="embla__slide">
+                            <img onload="showimage(event)" src="./Cardboard/1.png">
+                        </div>
+                        <div class="embla__slide">
+                            <img onload="showimage(event)" src="./Cardboard/2.png">
+                        </div>
+                        <div class="embla__slide">
+                            <img onload="showimage(event)" src="./Cardboard/3.png">
+                        </div>
+                        <div class="embla__slide">
+                            <img onload="showimage(event)" src="./Cardboard/4.png">
+                        </div>
+                        <div class="embla__slide">
+                            <img onload="showimage(event)" src="./Cardboard/5.png">
+                        </div>
+                        <div class="embla__slide">
+                            <img onload="showimage(event)" src="./Cardboard/6.png">
+                        </div>
+                    </div>
                 </div>
                 <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
             </section>

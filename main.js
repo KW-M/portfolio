@@ -59,11 +59,11 @@ function getGithubPages() {
 const emblaCarouselOptions = { loop: true }
 function addCarousel(emblaNode) {
     const embla = EmblaCarousel(emblaNode, emblaCarouselOptions)
-    embla.on('select', (eventName) => {
+    embla.slideNodes()[0].classList.add('active')
+    embla.on('select', () => {
         embla.slideNodes()[embla.selectedScrollSnap()].classList.add('active')
         embla.slideNodes()[embla.previousScrollSnap()].classList.remove('active')
     })
-    console.log(embla)
     const slideNodes = embla.slideNodes();
     for (var i = 0; i < slideNodes.length; i++) {
         const slideIndex = i
