@@ -665,7 +665,9 @@ margin-top: -40px;
   display: inline-block;
   overflow: hidden;
 
+  box-sizing: border-box;
   width: calc(100% / 2 - 40px);
+  max-width: 200px;
   margin: 0 20px 20px 0;
   padding: 12px;
 
