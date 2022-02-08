@@ -532,13 +532,14 @@ margin-top: -40px;
   transition: transform 200ms ease, opacity .5s ease;
 
   opacity: 0;
-  border-radius: 2px;
+  border-radius: 6px;
 
 }
 
 .embla__slide img, .embla__slide video{
   height: 100%;
 
+  border-radius: 6px;
   box-shadow: 0 4px 16px -5px rgb(0 0 0 / 48%);
 }
 
