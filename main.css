@@ -29,6 +29,7 @@ a {
 
   color: #2196f3;
 }
+* { box-sizing: border-box; }
 
 header {
   position: fixed;
@@ -505,7 +506,8 @@ left: 0;
     line-height: 42px;
 }
 
-.embla__carousel {
+
+.carousel {
   position: relative;
   right: -14px;
   left: -14px;
@@ -513,72 +515,84 @@ left: 0;
   overflow: hidden;
 
   width: calc(100% + 28px);
-margin-top: -40px;
+  height: 560px;
+margin-top: 0;
+
+  cursor: ew-resize;outline: none;
 }
 
-.embla__container {
-  display: flex;
-  /* margin: 0 20px; */
+.carousel-cell {
+  display: block;
+  overflow: visible;
 
-  cursor: ew-resize;
+  width: fit-content;
+  min-width: 100px;
+  height: 400px;
+  margin: 80px 60px;
 }
 
-.embla__slide {
-  position: relative;
+.carousel-cell-image {
+  display: block;
 
-  flex: 0 1 100%;
+  height: 400px;
 
-  height: 300px;
-  padding: 80px 60px;
-
-  transition: transform 200ms ease, opacity .5s ease;
+  -webkit-transition: opacity 0.4s ease, transform 0.2s ease;
+  transition: opacity 0.4s ease, transform 0.2s ease;
 
   opacity: 0;
-  border-radius: 6px;
-
-}
-
-.embla__slide img, .embla__slide video{
-  height: 100%;
-
   border-radius: 6px;
   box-shadow: 0 4px 16px -5px rgb(0 0 0 / 48%);
 }
 
-.embla__slide.active {
-  z-index: 10;
+video.carousel-cell-image {
+  width: unset;
+height: 100% ;
 
+opacity: 1;
+}
+
+.carousel-cell.is-selected {
+  z-index: 10;
+}
+
+.carousel-cell.is-selected .carousel-cell-image {
   transform: scale(1.3);
 }
 
+.flikity-viewport {
+  outline: none;
+}
+
+/* fade in lazy loaded image */
+.carousel-cell-image.flickity-lazyloaded,
+.carousel-cell-image.flickity-lazyerror {
+  opacity: 1;
+}
+
 @media (min-width: 840px) {
-  /* .embla__container {
+  /* .carousel {
     margin: 0 -16px -30px -16px;
   }
-  .embla__slide {
+  .carousel-cell {
     margin: 67px 50px 100px 50px;
   } */
-  .active img, .active video {
+  .carousel-cell.is-selected .carousel-cell-image {
     -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
     box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
   }
-  .active:not(.no-zoom) {
+  .carousel-cell.is-selected .carousel-cell-image:not(.no-zoom) {
     transform: scale(1.3);
   }
 }
 
 @media (max-width: 630px) {
-  /* .embla__container {
+  /* .carousel {
     margin-right: -16px;
     margin-left: -16px;
   }
-  .embla__slide {
+  .carousel-cell {
     width: auto !important;
     height: calc(100vw / 2);
-  }
-  .embla__slide iframe {
-    width: 100%;
-    height: 100%;
   } */
   .intro-text h1 {
     font-size: 2.2em;

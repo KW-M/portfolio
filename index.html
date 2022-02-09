@@ -35,6 +35,7 @@
             event.target.parentNode.style.opacity = "1"
         }
     </script>
+    <style href="./Libs/flickity.min.css"></style>
 </head>
 
 <body>
@@ -165,24 +166,22 @@
                     <p> <b>Tech:</b> #ts #python #google-cloud #fullstack #algorithms
                     </p>
                 </div>
-                <div class="embla__carousel">
-                    <div class="embla__container">
-                        <div class="embla__slide"> <video style="width: 431px; height: 270px;" poster="./videos/WikiTrust_Desktop/cover.jpg"
-                                autoplay loop muted playsinline width="480" onplay="showimage(event)">
-                                <source src="./videos/WikiTrust_Desktop/hevc.mp4" type="video/mp4; codecs=hevc,mp4a.40.2">
-                                <source src="./videos/WikiTrust_Desktop/vp9.webm" type="video/webm codecs=vp9 opus">
-                                <source src="./videos/WikiTrust_Desktop/h264.mp4" type="video/mp4; codecs=avc1.4D401E,mp4a.40.2">
-                                </video> </div>
-                                <div class="embla__slide"> <img onload="showimage(event)" src="./WikiTrust/2.jpg"> </div>
-                                <div class="embla__slide"> <img onload="showimage(event)" src="./WikiTrust/1.png"> </div>
-                        <div class="embla__slide"> <video style="width: 128px; height: 270px;" poster="./videos/WikiTrust_Mobile/cover.jpg"
-                                autoplay loop muted playsinline width="480" onplay="showimage(event)">
-                                <source src="./videos/WikiTrust_Mobile/hevc.mp4" type="video/mp4; codecs=hevc,mp4a.40.2">
-                                <source src="./videos/WikiTrust_Mobile/vp9.webm" type="video/webm codecs=vp9 opus">
-                                <source src="./videos/WikiTrust_Mobile/h264.mp4" type="video/mp4; codecs=avc1.4D401E,mp4a.40.2">
-                                </video> </div>
+                <div class="carousel js-flickity" data-flickity-options='{ "lazyLoad": 2, "wrapAround": true, "pageDots": false }'>
+                    <div class="carousel-cell" style="width:640px"> <video class="carousel-cell-image"
+                            poster="./videos/WikiTrust_Desktop/cover.jpg" autoplay loop muted playsinline>
+                            <source src="./videos/WikiTrust_Desktop/hevc.mp4" type="video/mp4; codecs=hevc,mp4a.40.2">
+                            <source src="./videos/WikiTrust_Desktop/vp9.webm" type="video/webm codecs=vp9 opus">
+                            <source src="./videos/WikiTrust_Desktop/h264.mp4" type="video/mp4; codecs=avc1.4D401E,mp4a.40.2">
+                        </video> </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./WikiTrust/2.jpg" /> </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./WikiTrust/1.png" /> </div>
+                    <div class="carousel-cell" style="width:189px"> <video class="carousel-cell-image"
+                            poster="./videos/WikiTrust_Mobile/cover.jpg" autoplay loop muted playsinline>
+                            <source src="./videos/WikiTrust_Mobile/hevc.mp4" type="video/mp4; codecs=hevc,mp4a.40.2">
+                            <source src="./videos/WikiTrust_Mobile/vp9.webm" type="video/webm codecs=vp9 opus">
+                            <source src="./videos/WikiTrust_Mobile/h264.mp4" type="video/mp4; codecs=avc1.4D401E,mp4a.40.2">
+                        </video> </div>
                     </div>
-                </div>
             </section>
             <section class="card" id="ROV">
                 <div class="logo-container" aria-hidden="true">
@@ -207,15 +206,17 @@
                     <p><b>TECH:</b> #js #embeded-linux #webrtc #golang #fullstack
                     </p>
                 </div>
-                <div class="embla__carousel">
-                    <div class="embla__container">
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./ROV/0.jpg"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./ROV/2.png"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./ROV/5.jpg"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./ROV/3.jpg"> </div>
+                <div class="carousel js-flickity" data-flickity-options='{ "lazyLoad": 2, "wrapAround": true, "pageDots": false }'>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./ROV/0.jpg" />
                     </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./ROV/2.png" />
                     </div>
-                    </section>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./ROV/5.jpg" />
+                    </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./ROV/3.jpg" />
+                    </div>
+                </div>
+                </section>
             <section class="card" id="Graphics">
                 <div class="logo-container" aria-hidden="true">
                     <div aria-hidden="true" class="logo-blur-background"></div>
@@ -237,24 +238,21 @@
                     </p>
                     <p><strong>Tech:</strong> #WebGL #GLSL #UX #js</p>
                 </div>
-                <div class="embla__carousel">
-                    <div class="embla__container">
-                        <div class="embla__slide"> <video style="width: 480px; height: 270px;" autoplay loop muted playsinline width="480"
-                                onplay="showimage(event)">
-                                <source src="./videos/SDF_Graphics_Demo/hevc.mp4" type="video/mp4; codecs=hevc,mp4a.40.2">
-                                <source src="./videos/SDF_Graphics_Demo/vp9.webm" type="video/webm codecs=vp9 opus">
-                                <source src="./videos/SDF_Graphics_Demo/h264.mp4" type="video/mp4; codecs=avc1.4D401E,mp4a.40.2">
+                <div class="carousel js-flickity" data-flickity-options='{ "lazyLoad": 2, "wrapAround": true, "pageDots": false }'>
+                    <div class="carousel-cell" style="width:711px"> <video class="carousel-cell-image" autoplay loop muted playsinline>
+                            <source src="./videos/SDF_Graphics_Demo/hevc.mp4" type="video/mp4; codecs=hevc,mp4a.40.2">
+                            <source src="./videos/SDF_Graphics_Demo/vp9.webm" type="video/webm codecs=vp9 opus">
+                            <source src="./videos/SDF_Graphics_Demo/h264.mp4" type="video/mp4; codecs=avc1.4D401E,mp4a.40.2">
                             </video> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./GraphicsExperiments/1.png">
-                        </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./GraphicsExperiments/2.png">
-                        </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./GraphicsExperiments/3.png">
-                        </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./GraphicsExperiments/4.png">
-                        </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./GraphicsExperiments/5.png">
-                        </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./GraphicsExperiments/1.png">
+                    </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./GraphicsExperiments/2.png">
+                    </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./GraphicsExperiments/3.png">
+                    </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./GraphicsExperiments/4.png">
+                    </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./GraphicsExperiments/5.png">
                     </div>
                 </div>
             </section>
@@ -288,13 +286,16 @@
                         enjoy it and learn something too! </p>
                     <p><strong>Tech:</strong> #js #greensock #responsive #accessability </p>
                 </div>
-                <div class="embla__carousel">
-                    <div class="embla__container">
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./Geothermal/4.png"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./Geothermal/3.png"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./Geothermal/1.png"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./Geothermal/2.png"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./Geothermal/5.png"> </div>
+                <div class="carousel js-flickity" data-flickity-options='{ "lazyLoad": 2, "wrapAround": true, "pageDots": false }'>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./Geothermal/4.png" />
+                    </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./Geothermal/3.png" />
+                    </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./Geothermal/1.png" />
+                    </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./Geothermal/2.png" />
+                    </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./Geothermal/5.png" />
                     </div>
                 </div>
             </section>
@@ -329,14 +330,12 @@
                     </p>
                     <p><strong>Tech:</strong> #angular #ts #pwa #algolia #firebase #google-apis </p>
                 </div>
-                <div class="embla__carousel">
-                    <div class="embla__container">
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./StudyHub/1.png"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./StudyHub/2.png"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./StudyHub/3.png"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./StudyHub/4.png"> </div>
-                        <div class="embla__slide"> <img onload="showimage(event)" src="./StudyHub/5.png"> </div>
-                    </div>
+                <div class="carousel js-flickity" data-flickity-options='{ "lazyLoad": 2, "wrapAround": true, "pageDots": false }'>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./StudyHub/1.png" /> </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./StudyHub/2.png" /> </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./StudyHub/3.png" /> </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./StudyHub/4.png" /> </div>
+                    <div class="carousel-cell"> <img class="carousel-cell-image" data-flickity-lazyload="./StudyHub/5.png" /> </div>
                 </div>
             </section>
             <section>
@@ -375,7 +374,8 @@
             </select>
         </section>
     </div>
-    <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
+    <!-- <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script> -->
+    <script src="./Libs/flickity.pkgd.min.js"></script>
     <script src="main.js"></script>
 </body>
 

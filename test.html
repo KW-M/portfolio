@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Kyle Worcester-Moore | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./Libs/flickity.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        /* force scrollbar, not necessary, but may reduce gaps. Setting a max-height on .carousel also works */
+        html {
+            overflow-y: scroll;
+        }
+
+        .carousel {
+            /* padding: 40px 0; */
+            height: 560px;
+
+        }
+
+        .carousel-cell {
+            display: block;
+            overflow: visible;
+
+            min-width: 200px;
+            height: 400px;
+            margin: 80px 80px;
+        }
+
+        .carousel-cell-image {
+            display: block;
+
+            height: 400px;
+
+            -webkit-transition: opacity 0.4s, transform 0.4s;
+            transition: opacity 0.4s, transform 0.4s;
+
+            opacity: 0;
+            border-radius: 6px;
+            box-shadow: 0 4px 16px -5px rgb(0 0 0 / 48%);
+        }
+
+        .carousel-cell.is-selected {
+            z-index: 10;
+        }
+
+        .carousel-cell.is-selected .carousel-cell-image {
+            transform: scale(1.3);
+        }
+
+
+        /* fade in lazy loaded image */
+        .carousel-cell-image.flickity-lazyloaded,
+        .carousel-cell-image.flickity-lazyerror {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="none">
+        <div class="carousel">
+            <div class="carousel-cell"><img class="carousel-cell-image" data-flickity-lazyload-src="./Geothermal/4.png">
+            </div>
+            <div class="carousel-cell"> <img class="carousel-cell-image"
+                    data-flickity-lazyload-src="./Geothermal/3.png">
+            </div>
+            <div class="carousel-cell"> <img class="carousel-cell-image"
+                    data-flickity-lazyload-src="./Geothermal/1.png">
+            </div>
+            <div class="carousel-cell"> <img class="carousel-cell-image"
+                    data-flickity-lazyload-src="./Geothermal/2.png">
+            </div>
+            <div class="carousel-cell"> <img class="carousel-cell-image"
+                    data-flickity-lazyload-src="./Geothermal/5.png">
+
+            </div>
+
+        </div>
+    </div> -->
+
+    <h1>Flickity - lazyLoad natural sizes min-width</h1>
+
+    <!-- Flickity HTML init -->
+    <div class="carousel js-flickity" data-flickity-options='{ "lazyLoad": 2, "wrapAround": true, "pageDots": false }'>
+        <div class="carousel-cell">
+            <img class="carousel-cell-image" data-flickity-lazyload="./Geothermal/4.png" alt="tulip" />
+        </div>
+        <div class="carousel-cell">
+            <img class="carousel-cell-image" data-flickity-lazyload="./Geothermal/3.png" alt="grapes" />
+        </div>
+        <div class="carousel-cell">
+            <img class="carousel-cell-image" data-flickity-lazyload="./Geothermal/1.png" alt="raspberries" />
+        </div>
+        <div class="carousel-cell">
+            <img class="carousel-cell-image" data-flickity-lazyload="./Geothermal/2.png" alt="wolf" />
+        </div>
+        <div class="carousel-cell">
+            <img class="carousel-cell-image" data-flickity-lazyload="./Geothermal/5.png" alt="shore" />
+        </div>
+    </div>
+
+
+    <script src="./Libs/flickity.pkgd.min.js"></script>
+    <script>
+        // new Flickity('.carousel', { "autoPlay": true, "wrapAround": true, "lazyload": true, "prevNextButtons": false, "pageDots": false })
+    </script>
+</body>
+
+
+</html>

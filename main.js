@@ -80,9 +80,11 @@ function addCarousel(emblaNode) {
     }
 }
 
-for (deck of document.getElementsByClassName('embla__carousel')) {
-    addCarousel(deck)
-}
+// for (deck of document.getElementsByClassName('.carousel')) {
+//     // addCarousel(deck)
+//     new Flickity(deck, { "autoPlay": true, "wrapAround": true, "imagesLoaded": true, prevNextButtons: false, prevNextButtons: false, pageDots: false })
+// }
+// new Flickity('.carousel', { "autoPlay": true, "wrapAround": true, "lazyload": true, "imagesLoaded": true, prevNextButtons: false, pageDots: false })
 
 
 var focusTrapEvent = function (e) {
