@@ -1,0 +1,175 @@
+{
+	"frames": {
+		"Cloud1.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 1838,
+				"h": 1154
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1838,
+				"h": 1154
+			},
+			"sourceSize": {
+				"w": 1838,
+				"h": 1154
+			}
+		},
+		"Cloud2.png": {
+			"frame": {
+				"x": 1,
+				"y": 1157,
+				"w": 1793,
+				"h": 952
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1793,
+				"h": 952
+			},
+			"sourceSize": {
+				"w": 1793,
+				"h": 952
+			}
+		},
+		"Cloud3.png": {
+			"frame": {
+				"x": 1,
+				"y": 2111,
+				"w": 2055,
+				"h": 1146
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 2055,
+				"h": 1146
+			},
+			"sourceSize": {
+				"w": 2055,
+				"h": 1146
+			}
+		},
+		"Cloud4.png": {
+			"frame": {
+				"x": 1,
+				"y": 3259,
+				"w": 1833,
+				"h": 1252
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1833,
+				"h": 1252
+			},
+			"sourceSize": {
+				"w": 1833,
+				"h": 1252
+			}
+		},
+		"Cloud7.png": {
+			"frame": {
+				"x": 1,
+				"y": 4513,
+				"w": 2021,
+				"h": 503
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 2021,
+				"h": 503
+			},
+			"sourceSize": {
+				"w": 2021,
+				"h": 503
+			}
+		},
+		"blendGradient.png": {
+			"frame": {
+				"x": 1,
+				"y": 5018,
+				"w": 1,
+				"h": 600
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1,
+				"h": 600
+			},
+			"sourceSize": {
+				"w": 1,
+				"h": 600
+			}
+		},
+		"cloud5.png": {
+			"frame": {
+				"x": 1,
+				"y": 5620,
+				"w": 1838,
+				"h": 1838
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1838,
+				"h": 1838
+			},
+			"sourceSize": {
+				"w": 1838,
+				"h": 1838
+			}
+		},
+		"cloud6.png": {
+			"frame": {
+				"x": 1,
+				"y": 7460,
+				"w": 1951,
+				"h": 583
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1951,
+				"h": 583
+			},
+			"sourceSize": {
+				"w": 1951,
+				"h": 583
+			}
+		}
+	},
+	"meta": {
+		"app": "https://www.codeandweb.com/free-sprite-sheet-packer",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 2057,
+			"h": 8044
+		},
+		"scale": "1"
+	}
+}

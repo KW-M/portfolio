@@ -1,0 +1,7 @@
+<svg viewBox="0 0 36 100" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5">
+    <path
+        d="M36 18c0-9.934-8.066-18-18-18S0 8.066 0 18v22c0 9.934 8.066 18 18 18s18-8.066 18-18V18Zm-3 0v22c0 8.279-6.721 15-15 15S3 48.279 3 40V18C3 9.721 9.721 3 18 3s15 6.721 15 15Z" />
+    <path d="M18 11.979v7.07M8.76 65.757l9.24 9.24 9.24-9.24M8.76 84.254l9.24 9.24 9.24-9.24"
+        style="fill:none;stroke:#000;stroke-width:3px" />
+</svg>

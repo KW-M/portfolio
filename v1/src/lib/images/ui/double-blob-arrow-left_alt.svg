@@ -1,0 +1,16 @@
+<svg viewBox="0 0 98 173" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2">
+    <path style="fill:url(#a)" d="M19.478.05h57.915v173H19.478z" />
+    <path
+        d="M20.316 139.663c-.531 10.052 10.442 18.837 10.88 26.885.177 3.244-2.226 6.414-5.503 6.411-9.712-.009-25.743.091-25.743.091V-.05h26.169c5.156 0 9.177 4.023 8.098 9.093-2.747 12.914-9.819 14.231-8.896 32.478.741 14.648 19.565 24.763 11.819 39.029-5.821 10.722-8.856 13.215-7.913 27.781 1.061 16.401-8.129 16.515-8.911 31.332Z"
+        style="fill:#fff" />
+    <path d="m33.56 77.848-4.5-4.6 4.5-4.6-1.4-1.4-6 6 6 6 1.4-1.4Z" style="fill-rule:nonzero" />
+    <defs>
+        <radialGradient id="a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+            gradientTransform="matrix(169.967 -.00336 .00274 138.574 -97.76 86.5)">
+            <stop offset="0" style="stop-color:black;stop-opacity:.33" />
+            <stop offset=".51" style="stop-color:black;stop-opacity:.25" />
+            <stop offset="1" style="stop-color:black;stop-opacity:0" />
+        </radialGradient>
+    </defs>
+</svg>
