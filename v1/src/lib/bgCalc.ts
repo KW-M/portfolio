@@ -16,42 +16,47 @@ export const bgScreenspace = (bg: Sprite, zPlane: number, startY: number, offset
     }
 }
 
-const bgSplitSprites: NineSlicePlane[] = [];
+export const bgSplitSprites: NineSlicePlane[] = [];
 export const updateBackgrounds = (backgroundSprites: Sprite[], stage: Container) => {
     let startY = 0;
     const scrollY = window.scrollY;
     const zPlane = 2000;
     const scaleZ = PERSPECTIVE / (PERSPECTIVE + zPlane);
     const bgSplitPoints = [];
-    const splitSpriteHeight = window.innerHeight;
+    const splitSpriteHeight = 200;
     const splitSpriteFeatherHeight = 285 * 2;
     for (let i = 0; i < backgroundSprites.length; i++) {
         const bg = backgroundSprites[i];
-        const { x, y, scale, newY } = bgScreenspace(bg, zPlane, startY, 500, scrollY, window.innerWidth, window.innerHeight);
+        const { x, y, scale, newY } = bgScreenspace(bg, zPlane, startY, splitSpriteHeight, scrollY, window.innerWidth, window.innerHeight);
         startY += newY;
         bg.position.set(x, y);
         bg.scale.set(scale);
         const scrollStart = (startY - scrollY) * scaleZ;
-        if (scrollStart > -splitSpriteHeight + splitSpriteFeatherHeight && scrollStart < window.innerHeight + splitSpriteHeight + splitSpriteFeatherHeight) {
-            bgSplitPoints.push(scrollStart);
-            //     let splitSprite = bgSplitSprites[i]
-            //     if (!splitSprite) {
-            //         splitSprite = new NineSlicePlane(blendGradientTexture, ...blendGradient9SliceArgs)
-            //         // stage.addChild(splitSprite);
-            //         // splitSprite.tint = 0xCFCFCF;
-            //         bgSplitSprites[i] = splitSprite;
-            //     } else {
-            //         bgSplitSprites[i].renderable = true;
-            //     }
+        const startScaled = startY * scaleZ;
+        const scrollScaled = scrollY * scaleZ;
+        if (scrollScaled + window.innerHeight > startScaled - splitSpriteHeight - splitSpriteFeatherHeight && scrollScaled < startScaled + splitSpriteFeatherHeight) {
+            // bg.tint = 0xFFFF00;
+            bgSplitPoints.push(startScaled - scrollScaled - splitSpriteHeight);
+            const splitSprite = bgSplitSprites[i]
+            if (!splitSprite) {
+                // splitSprite = new NineSlicePlane(blendGradientTexture, ...blendGradient9SliceArgs)
+                // stage.addChild(splitSprite);
+                // splitSprite.zIndex = -1;
+                // // splitSprite.tint = 0xEFEFEF;
+                // bgSplitSprites[i] = splitSprite;
+            } else {
+                splitSprite.renderable = true;
+            }
 
-            //     splitSprite.scale.set(window.innerWidth, 1);
-            //     splitSprite.scale.y = 2;
-            //     splitSprite.height = splitSpriteHeight / 2 + splitSpriteFeatherHeight;
-            //     splitSprite.position.set(0, scrollStart - splitSpriteHeight - splitSpriteFeatherHeight);
+            splitSprite.scale.set(window.innerWidth, 1);
+            splitSprite.scale.y = 2;
+            splitSprite.height = splitSpriteHeight / 2 + splitSpriteFeatherHeight;
+            splitSprite.position.set(0, scrollStart - splitSpriteHeight - splitSpriteFeatherHeight);
+            // break;
+        } else if (bgSplitSprites[i]) {
+            bgSplitSprites[i].renderable = false;
         }
-        // } else if (bgSplitSprites[i]) {
-        //     bgSplitSprites[i].renderable = false;
-        // }
+
     }
     return bgSplitPoints;
 }

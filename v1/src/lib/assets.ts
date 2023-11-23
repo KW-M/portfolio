@@ -3,6 +3,7 @@ import { Assets, Spritesheet, Texture } from 'pixi.js';
 import blendGradient from "../../../cloudAssets/blendGradient.png?url";
 export const sprites = await Assets.load('spritesheet.json') as Spritesheet;
 export const baseClouds = ['Cloud1', 'Cloud2', 'Cloud3', 'Cloud4', 'cloud5', 'cloud6', 'Cloud7'].map((name) => sprites.textures[name + '.png']);
+export const bigClouds = ['Cloud1', 'Cloud2', 'Cloud3', 'Cloud4'].map((name) => sprites.textures[name + '.png']);
 export const blendGradientTexture = Texture.from(blendGradient);
 export const blendGradient9SliceArgs = [1, 285, 1, 285];
 

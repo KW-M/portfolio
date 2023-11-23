@@ -36,13 +36,13 @@ export const parallaxMovmentBetweenLayers = (z1: number, z2: number, shiftInZ1: 
 
 
 export const getSpriteBbox = (x: number, y: number, scale: number, sprite: Sprite): bbox => {
-    const halfWidth = sprite.width / sprite.scale.x * scale / 2;
-    const halfHeight = sprite.height / sprite.scale.y * scale / 2;
+    const width = sprite.width / sprite.scale.x * scale;
+    const height = sprite.height / sprite.scale.y * scale;
     return {
-        left: x - halfWidth,
-        right: x + halfWidth,
-        top: y - halfHeight,
-        bottom: y + halfHeight,
+        left: x,
+        right: x + width,
+        top: y,
+        bottom: y + height,
     } as bbox
 }
 
