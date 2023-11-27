@@ -31,7 +31,7 @@ export const addCloud = (cloudSprite: Sprite, x: number = 0, y: number = 0, z: n
         originalHeight: cloudSprite.height,
         alpha: alpha,
         scaling: scale,
-        speedX: 1,
+        speedX: 3,
         cloudSprite: cloudSprite,
         debugRect: debugRect,
     };
@@ -50,7 +50,7 @@ export const addCoverCloud = (cloudSprite: Sprite, x: number = 0, y: number = 0,
         originalHeight: cloudSprite.height,
         alpha: alpha,
         scaling: scale,
-        speedX: 2,
+        speedX: 0.1,
         cloudSprite: cloudSprite,
         debugRect: debugRect,
     };
@@ -75,6 +75,20 @@ export const calculateCloudPosition3d = (cloud: cloudDetails, timeElapsed: numbe
     const startY = (startPos.y + cloudHeight) % yWrap - cloudHeight * 2;
     const y = -Math.floor((startY - scrollY + cloudHeight) / yWrap) * yWrap + startY //- depthCloudHeight + 20;
     return { x, y, z };
+}
+
+export const calculateXtileCloudPosition = (cloud: cloudDetails, timeElapsed: number, scrollY: number, splitPoint: number, screenWidth: number, screenHeight: number, globalScaling: number) => {
+    const startPos = cloud.startPos;
+    const z = startPos.z;
+    const pScale = PERSPECTIVE / (PERSPECTIVE + z);
+    const cloudWidth = screenWidth;
+    const cloudHeight = cloud.originalHeight * cloud.scaling * globalScaling;
+    // const depthScreenHeight = screenHeight / pScale;
+    // const depthScreenWidth = screenWidth / pScale;
+    const x = (startPos.x + timeElapsed * cloud.speedX) % screenWidth;
+    const startY = (startPos.y + cloudHeight) % screenHeight - cloudHeight * 2;
+    const y = (startY - scrollY) * pScale;
+    return { x, y, z, width: cloudWidth, height: cloudHeight };
 }
 
 // export const calculateCoverCloudPosition3d = (cloud: coverCloudDetails, timeElapsed: number, scrollY: number, screenWidth: number, screenHeight: number, splitPoints: number[]) => {
@@ -109,6 +123,21 @@ export const placeUniformCloud = (width: number, height: number, z: number, scre
     const x = startX % wrap - width;
     const y = startY + Math.floor((startX - width) / (wrap)) * ySpacing;
     return { x, y, z };
+}
+
+
+export const placeSplitpointCloud = (splitPoints: number[], splitPointHeight: number, backgroundZ: number, cloudZ: number) => {
+    const scale1 = PERSPECTIVE / (PERSPECTIVE + backgroundZ);
+    const scale2 = PERSPECTIVE / (PERSPECTIVE + cloudZ);
+
+    const splitPointStart = splitPoints[0] - splitPointHeight;
+    const splitPointEnd = splitPoints[0];
+
+    const startY = splitPointEnd * scale1 / scale2
+    // const startY = parallaxMovmentBetweenLayers(backgroundZ, cloudZ, splitPointEnd);
+    // const endY = parallaxMovmentBetweenLayers(backgroundZ, cloudZ, splitPointEnd);
+    console.log(`placing cloud at ${0},${startY},${cloudZ} <= ${0},${splitPointStart},${backgroundZ}`, splitPoints)
+    return { x: 0, y: startY, z: cloudZ };
 }
 
 // export const placeCloud = (cloud: cloudDetails, screenX: number, screenY: number, scrollY: number) => {
@@ -151,6 +180,7 @@ export const updateClouds = (deltaTime: number, bgSplitPoints: number[], globalS
     for (let i = 0; i < clouds.length; i++) {
         const cloud = clouds[i];
         const pos3d = calculateCloudPosition3d(cloud, sumTime, scrollY, screenWidth, screenHeight, globalScaling);
+        // const pos3d = { x: cloud.startPos.x, y: cloud.startPos.y, z: cloud.startPos.z }
         const { x, y, scale } = worldspaceToScreenspace(pos3d, scrollY);
         const trueScale = scale * cloud.scaling * globalScaling;
         const bbox = getSpriteBbox(x, y, trueScale, cloud.cloudSprite)
@@ -160,7 +190,7 @@ export const updateClouds = (deltaTime: number, bgSplitPoints: number[], globalS
             cloud.debugRect.height = (bbox.bottom - bbox.top) || 0;
         }
 
-        const faderate = 0.0005 * cloud.speedX;
+        const faderate = 0.001 * cloud.speedX;
         let alpha = cloud.cloudSprite.alpha;
         const leftBound = window.innerWidth * (2 / 5);
         const rightBound = window.innerWidth * (2 / 5)
@@ -197,6 +227,9 @@ export const updateClouds = (deltaTime: number, bgSplitPoints: number[], globalS
         //     0
         // ) * 3 // + (Math.sin(scrollY / 1000) + 1);
 
+        cloud.cloudSprite.x = x;
+        cloud.cloudSprite.y = y;
+
         if (alpha > 0) {
             cloud.cloudSprite.x = x;
             cloud.cloudSprite.y = y;
@@ -208,33 +241,39 @@ export const updateClouds = (deltaTime: number, bgSplitPoints: number[], globalS
         }
     }
 
-    for (let i = 0; i < coverClouds.length; i++) {
-        const cloud = coverClouds[i];
-        const pos3d = calculateCloudPosition3d(cloud, sumTime, scrollY, screenWidth, screenHeight, globalScaling);
-        const { x, y, scale } = worldspaceToScreenspace(pos3d, scrollY);
-        const trueScale = scale * cloud.scaling * globalScaling;
-        const bbox = getSpriteBbox(x, y, trueScale, cloud.cloudSprite)
-        if (cloud.debugRect) {
-            cloud.debugRect.position.set(bbox.left, bbox.top);
-            cloud.debugRect.width = (bbox.right - bbox.left) || 0;
-            cloud.debugRect.height = (bbox.bottom - bbox.top) || 0;
-        }
-        let alpha = 0.0;
-        const smoothing = 300;
-        for (let j = 0; j < bgSplitPoints.length; j++) {
-            const splitPointStart = bgSplitPoints[j] - 450;
-            const splitPointEnd = bgSplitPoints[j];
-            alpha += Math.max(0, Math.min(y - splitPointStart + smoothing, smoothing) * Math.min(splitPointEnd - y + smoothing, smoothing) / smoothing / smoothing)
-        }
-        if (alpha > 0) {
-            cloud.cloudSprite.x = x;
-            cloud.cloudSprite.y = y;
-            cloud.cloudSprite.alpha = alpha;
-            cloud.cloudSprite.scale.set(trueScale);
-            cloud.cloudSprite.renderable = true;
-        } else {
-            cloud.cloudSprite.renderable = false;
-        }
+    for (let i = 0; i < bgSplitPoints.length; i++) {
+        const cloudTop = coverClouds[2 * i];
+        const cloudBottom = coverClouds[2 * i + 1];
+
+
+        // const pos3d = calculateCloudPosition3d(cloud, sumTime, scrollY, screenWidth, screenHeight, globalScaling);
+        const yStart = calcOffsetBetweenLayers(bgSplitPoint[1], window.innerHeight + 250, window.innerHeight, 2000, 1000);
+        const yEnd = calcOffsetBetweenLayers(bgSplitPoint[1], -50, 0, 2000, 1000);
+
+        // const { x, y, scale } = worldspaceToScreenspace(pos3d, scrollY);
+        // const trueScale = scale * cloud.scaling * globalScaling;
+        // const bbox = getSpriteBbox(x, y, trueScale, cloud.cloudSprite)
+        // if (cloud.debugRect) {
+        //     cloud.debugRect.position.set(bbox.left, bbox.top);
+        //     cloud.debugRect.width = (bbox.right - bbox.left) || 0;
+        //     cloud.debugRect.height = (bbox.bottom - bbox.top) || 0;
+        // }
+        // let alpha = 0.0;
+        // const smoothing = 300;
+        // for (let j = 0; j < bgSplitPoints.length; j++) {
+        //     const splitPointStart = bgSplitPoints[j] - 450;
+        //     const splitPointEnd = bgSplitPoints[j];
+        //     alpha += Math.max(0, Math.min(y - splitPointStart + smoothing, smoothing) * Math.min(splitPointEnd - y + smoothing, smoothing) / smoothing / smoothing)
+        // }
+        // if (alpha > 0) {
+        //     cloud.cloudSprite.x = x;
+        //     cloud.cloudSprite.y = y;
+        //     cloud.cloudSprite.alpha = alpha;
+        //     cloud.cloudSprite.scale.set(trueScale);
+        //     cloud.cloudSprite.renderable = true;
+        // } else {
+        //     cloud.cloudSprite.renderable = false;
+        // }
     }
 
     // for (let i = 0; i < coverClouds.length; i++) {

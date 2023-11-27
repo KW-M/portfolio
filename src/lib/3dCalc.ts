@@ -34,6 +34,14 @@ export const parallaxMovmentBetweenLayers = (z1: number, z2: number, shiftInZ1: 
     return shiftInZ1 * scale2 / scale1;
 }
 
+export const calcOffsetBetweenLayers = (originalFromY: number, screenYFrom: number, screenYTo: number, zFrom: number, zTo: number) => {
+    const scale1 = PERSPECTIVE / (PERSPECTIVE + zFrom);
+    const scale2 = PERSPECTIVE / (PERSPECTIVE + zTo);
+    const scrollYofFrom = (screenYFrom / scale1 - originalFromY) * -1;
+    const toEndY = screenYTo / scale2 + scrollYofFrom;
+    return toEndY;
+};
+
 
 export const getSpriteBbox = (x: number, y: number, scale: number, sprite: Sprite): bbox => {
     const width = sprite.width / sprite.scale.x * scale;

@@ -34,9 +34,10 @@ export const updateBackgrounds = (backgroundSprites: Sprite[], stage: Container)
         const scrollStart = (startY - scrollY) * scaleZ;
         const startScaled = startY * scaleZ;
         const scrollScaled = scrollY * scaleZ;
+        bgSplitPoints.push(startY);
         if (scrollScaled + window.innerHeight > startScaled - splitSpriteHeight - splitSpriteFeatherHeight && scrollScaled < startScaled + splitSpriteFeatherHeight) {
             // bg.tint = 0xFFFF00;
-            bgSplitPoints.push(startScaled - scrollScaled - splitSpriteHeight);
+            // bgSplitPoints.push(startScaled - scrollScaled - splitSpriteHeight);
             const splitSprite = bgSplitSprites[i]
             if (!splitSprite) {
                 // splitSprite = new NineSlicePlane(blendGradientTexture, ...blendGradient9SliceArgs)
@@ -45,7 +46,7 @@ export const updateBackgrounds = (backgroundSprites: Sprite[], stage: Container)
                 // // splitSprite.tint = 0xEFEFEF;
                 // bgSplitSprites[i] = splitSprite;
             } else {
-                splitSprite.renderable = true;
+                // splitSprite.renderable = true;
             }
 
             splitSprite.scale.set(window.innerWidth, 1);
