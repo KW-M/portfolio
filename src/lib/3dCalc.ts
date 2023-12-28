@@ -54,8 +54,19 @@ export const getSpriteBbox = (x: number, y: number, scale: number, sprite: Sprit
     } as bbox
 }
 
-export const bboxIsVisible = (box: bbox, screenWidth: number, screenHeight: number) => {
-    return box.right > 0 && box.left < screenWidth && box.bottom > 0 && box.top < screenHeight;
+export const getSpriteBboxPost = (sprite: Sprite): bbox => {
+    const width = sprite.width
+    const height = sprite.height
+    return {
+        left: sprite.x,
+        right: sprite.x + width,
+        top: sprite.y,
+        bottom: sprite.y + height,
+    } as bbox
+}
+
+export const bboxIsVisible = (box: bbox, windowWidth: number, windowHeight: number) => {
+    return box.right > 0 && box.left < windowWidth && box.bottom > 0 && box.top < windowHeight;
 }
 
 /** @returns  true if any part of box1 overlaps with box2 */
@@ -69,8 +80,8 @@ export const bboxIsOffTop = (box: bbox) => {
 }
 
 /** @returns  true if the box is completely off the bottom of the screen */
-export const bboxIsOffBottom = (box: bbox, screenHeight: number) => {
-    return box.top > screenHeight;
+export const bboxIsOffBottom = (box: bbox, windowHeight: number) => {
+    return box.top > windowHeight;
 }
 
 /** @returns  true if the box is completely off the left of the screen */
@@ -79,6 +90,6 @@ export const bboxIsOffLeft = (box: bbox) => {
 }
 
 /** @returns  true if the box is completely off the right of the screen */
-export const bboxIsOffRight = (box: bbox, screenWidth: number) => {
-    return box.left > screenWidth;
+export const bboxIsOffRight = (box: bbox, windowWidth: number) => {
+    return box.left > windowWidth;
 }

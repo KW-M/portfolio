@@ -1,5 +1,7 @@
 <script lang="ts">
-  import "../app.postcss";
+  import "../app.css";
+  import { setAccesibiltyPrefs } from "$lib/consts";
+  setAccesibiltyPrefs();
 
   // Floating UI for Popups
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
