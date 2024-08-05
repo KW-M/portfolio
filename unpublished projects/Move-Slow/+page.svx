@@ -1,0 +1,10 @@
+---
+title: "Move Slow"
+categories:
+  - "Game Dev"
+  - "Unity"
+  - "AR/VR"
+  - "Graphics"
+---
+
+VR and mobile experience where the natural environment responds to the player's body movement. I did most of the programming & level design.

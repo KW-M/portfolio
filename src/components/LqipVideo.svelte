@@ -1,7 +1,9 @@
 <script lang="ts">
-  export let video: { type: "video"; title?: string; formats: { src: string; type: string }[]; placeholder: { src: string; width: number; height: number; lqip: string } };
-  export let loadHiRez: boolean = false;
+  import { attachZoom } from "../actions/ImageZoom.action";
 
+  export let video: { type: "video"; title?: string; formats: { src: string; type: string }[]; src: string; width: number; height: number; lqip: string };
+  export let loadHiRez: boolean = false;
+  export let zoomed = false;
   let shouldLoad = false;
   let loaded: boolean = false;
   let loadedOnce: boolean = false;
@@ -17,15 +19,20 @@
   }
 </script>
 
-<figure style={`background-image: url(${video.placeholder.lqip}); background-size:cover; aspect-ratio: ${video.placeholder.width} / ${video.placeholder.height}`} class={$$props.class + " blurable"} class:blur={!loaded}>
+<figure style={`background-image: url(${video.lqip}); background-size:cover; aspect-ratio: ${video.width} / ${video.height}`} class={$$props.class + " blurable"} class:blur={!loaded} class:invisible={zoomed}>
   {#if shouldLoad}
     <video
-      width={video.placeholder.width || ""}
-      height={video.placeholder.height || ""}
-      class={" pic"}
+      use:attachZoom={{ zoomed, width: video.width, height: video.height }}
+      on:zoomClose={() => {
+        zoomed = false;
+      }}
+      width={video.width || ""}
+      height={video.height || ""}
+      class=" pic"
       class:loaded
+      class:zoomed
       title={video.title || ""}
-      poster={shouldLoad ? video.placeholder.src : ""}
+      poster={shouldLoad ? video.src : ""}
       loop
       autoplay
       muted
@@ -50,8 +57,12 @@
     opacity: 0;
   }
   .pic.loaded {
-    /* transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); */
     opacity: 1;
+  }
+
+  .pic.zoomed {
+    opacity: 1;
+    cursor: zoom-out;
   }
 
   .blurable {

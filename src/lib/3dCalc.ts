@@ -14,17 +14,17 @@ export interface bbox {
     bottom: number;
 }
 
-export const worldspaceToScreenspace = (pos: position3d, scrollY: number) => {
+export const worldspaceToScreenspace = (pos: position3d, shiftX: number, shiftY: number) => {
     const scale = PERSPECTIVE / (PERSPECTIVE + pos.z);
-    const x = pos.x * scale;
-    const y = (pos.y - scrollY) * scale;
+    const x = (pos.x - shiftX) * scale;
+    const y = (pos.y - shiftY) * scale;
     return { x, y, scale };
 }
 
-export const screenspaceToWorldspace = (screenPos: position3d, scrollY: number) => {
+export const screenspaceToWorldspace = (screenPos: position3d, shiftY: number) => {
     const scale = PERSPECTIVE / (PERSPECTIVE + screenPos.z);
     const x = screenPos.x / scale;
-    const y = screenPos.y / scale + scrollY;
+    const y = screenPos.y / scale + shiftY;
     return { x, y, z: screenPos.z };
 }
 
@@ -35,13 +35,20 @@ export const parallaxMovmentBetweenLayers = (z1: number, z2: number, shiftInZ1: 
 }
 
 export const calcOffsetBetweenLayers = (originalFromY: number, screenYFrom: number, screenYTo: number, zFrom: number, zTo: number) => {
-    const scale1 = PERSPECTIVE / (PERSPECTIVE + zFrom);
-    const scale2 = PERSPECTIVE / (PERSPECTIVE + zTo);
-    const scrollYofFrom = (screenYFrom / scale1 - originalFromY) * -1;
-    const toEndY = screenYTo / scale2 + scrollYofFrom;
+    const sFrom = PERSPECTIVE / (PERSPECTIVE + zFrom);
+    const sTo = PERSPECTIVE / (PERSPECTIVE + zTo);
+    const shiftYofFrom = (screenYFrom / sFrom - originalFromY);
+    const toEndY = screenYTo / sTo - shiftYofFrom;
     return toEndY;
+
 };
 
+export const calcOffsetBetweenLayers2 = (fromY: number, winY: number, zFrom: number, zTo: number) => {
+    const sFrom = PERSPECTIVE / (PERSPECTIVE + zFrom);
+    const sTo = PERSPECTIVE / (PERSPECTIVE + zTo);
+    const a = fromY * (sTo / sFrom) + winY * sTo * (sFrom - sTo);
+    return a;
+};
 
 export const getSpriteBbox = (x: number, y: number, scale: number, sprite: Sprite): bbox => {
     const width = sprite.width / sprite.scale.x * scale;

@@ -1,0 +1,13 @@
+---
+title: "Autonomous Boat Platform - RoBoat"
+categories:
+  - "Highlights"
+  - "C++"
+  - "CAD"
+  - "Robotics"
+---
+
+RoBoats are low cost autonomous boats designed for near shore oceanagraphic research and education. They are build on the Pixhawk hardware platform running the open source Ardupilot flight stack adapted for surface vessels. Our team improved on the hardware of the inital university prototype. Our changes gave the boats signifigant improvements in performance and precision in atonomous mode through tuning of hardware and software parameters. RoBoats can be controlled remotely or autonomously and can be outfited with a variety of payloads including sonar for e.g. depth mapping or biomass estimation.
+<hr>
+### My Role
+ Hardware assembly, software tuning.

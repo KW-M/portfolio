@@ -1,62 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" class="dark">
+<!doctype html>
+<html lang="en">
 
 <head>
 	<meta charset="utf-8" />
 	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-	<meta name="viewport" content="width=device-width" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	%sveltekit.head%
-	<style>
-		@keyframes spin {
-			0% {
-				transform: rotate(360deg);
-			}
-
-			100% {
-				transform: rotate(1deg)
-			}
-		}
-
-		#cursor {
-			top: 0;
-			left: 0;
-			z-index: 9999;
-			height: 30px;
-			width: 30px;
-			position: fixed;
-			display: block;
-			/* animation: spin 1s linear infinite;, */
-		}
-	</style>
 </head>
 
-<body data-sveltekit-preload-data="hover" data-theme="gold-nouveau" style="background:white;">
-	<section id="firstload-text" class="midground"
-		style="position: absolute;top:0;left:0;right:0;color:black; padding: 2em;font-family: monospace; font-size: large; font-weight:  normal;">
-		Hello internet traveler! </br>
-		Welcome to my website. </br>
-		<!-- <marquee>
-			l.o.a.d.i.n.g......l.o..a..d..i...n...g........(^*^)......l.o..a...d....i.....n.....g............ʕ•ᴥ•ʔ.........l.....o..............a....................d......°º¤ø,..,ø¤º°`°º¤ø,.,ø¤°º¤ø,.,ø¤º°`°º¤ø,........i..............................
-		</marquee> -->
-		</br>
-		<noscript>
-			Darn! Javascript is disabled in this web browser. This will work a whole lot better with javascript
-			turned
-			on.</br>
-		</noscript>
-		<!-- <img id="cursor" src="./favicon.png">
-		<script>
-			var cursor = document.getElementById("cursor");
-			var x = 0, y = 0;
-			var delay = 0.1;
-			window.addEventListener("mousemove", function (e) {
-				x += (e.clientX - 15 - x) * delay, y += (e.clientY - 15 - y) * delay;
-				cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-			});
-		</script> -->
-	</section>
+<body data-sveltekit-preload-data="hover" data-theme="blueBird">
 	<div style="display: contents">%sveltekit.body%</div>
-
 </body>
 
 </html>

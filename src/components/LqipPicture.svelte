@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { attachZoom } from "./ImageZoom.action";
+  import { attachZoom } from "../actions/ImageZoom.action";
 
   export let picture: { alt?: string; src: string; width: number; height: number; lqip: string };
   export let loadHiRez: boolean = false;
+  export let zoomed = false;
   let shouldLoad = false;
   let loaded: boolean = false;
   let loadedOnce: boolean = false;
@@ -10,6 +11,7 @@
   $: if (loadHiRez) {
     shouldLoad = true;
   } else {
+    zoomed = false;
     loaded = false;
     setTimeout(() => {
       if (!loadHiRez) shouldLoad = false;
@@ -18,19 +20,28 @@
   }
 </script>
 
-<picture style={`background-image: url(${picture.lqip}); background-size:cover`} class="blurable" class:blur={!loaded}>
+<picture style={`background-image: url(${picture.lqip}); aspect-ratio: ${picture.width}/${picture.height}`} class="blurable block h-full bg-cover" class:blur={!loaded} class:invisible={zoomed}>
   <!-- <source srcset={shouldLoad ? picture.src : ""} /> -->
   <img
-    class={$$props.class + " pic"}
+    style={`background-image: url(${picture.lqip}); background-size:cover`}
+    use:attachZoom={{
+      zoomed,
+      width: picture.width,
+      height: picture.height,
+    }}
+    on:zoomClose={() => {
+      zoomed = false;
+    }}
+    class={$$props.class + " pic "}
     src={shouldLoad ? picture.src : ""}
-    loading="lazy"
     class:loaded
+    class:zoomed
     alt={picture.alt || ""}
     width={picture.width || ""}
     height={picture.height || ""}
     on:load={() => {
       loadedOnce = true;
-      console.log((loaded = true));
+      loaded = true;
     }}
   />
 </picture>
@@ -40,10 +51,16 @@
     transition: opacity ease-in 0.6s;
     transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     opacity: 0;
+    pointer-events: none;
   }
+
   .pic.loaded {
-    /* transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); */
     opacity: 1;
+  }
+
+  .pic.zoomed {
+    opacity: 1;
+    pointer-events: none;
   }
 
   .blurable {

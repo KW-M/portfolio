@@ -47,14 +47,19 @@ interface htmlVideoInfo {
     type: "video";
     title?: string;
     formats: { src: string; type: string }[];
-    placeholder: {
-        src: string;
-        width: number;
-        height: number;
-        lqip: string
-    }
+    width: number;
+    height: number;
+    src: string; // the preview image source
+    lqip: string;
 }
 
 
 
 type carouselMediaInfo = htmlPictureInfo | htmlVideoInfo
+
+declare namespace svelteHTML {
+    // enhance attributes
+    interface HTMLAttributes<T> {
+        'on:zoomClose'?: () => void;
+    }
+}

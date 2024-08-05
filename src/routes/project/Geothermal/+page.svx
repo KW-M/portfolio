@@ -1,0 +1,27 @@
+---
+title: "Geothermal Futures Infographic"
+date: "2023-01-05"
+updated: "2023-01-05"
+categories:
+  - "Highlights"
+  - "Web Dev"
+  - "Typescript"
+  - "Accessibility"
+  - "Sci Viz"
+  - "Eco"
+---
+
+ For the 2020 US Department of Energy Geothermal Design Challenge, our team wanted to tackle the lack of public awareness around the potential of next-gen geothermal energy and technologies that are making it possible.
+
+<hr>
+
+### Process
+ We decided to make an interactive infographic website from scratch. The whole process, from brainstorming to research to writing to art, design, & development took about two months. Doing the writing for the infographic was especially challenging because I was writing for a general audience so I needed to break down tricky topics into easily understood chunks. After writing and creating the artwork, we assembled the website in HTML & CSS. I used the Greensock animation library plus micromodal.js for it’s accessibility features and some custom interaction code to handle the rotating planet on all input types & responsive css & js to lay out all the elements on different form factors.
+
+### Result
+ Our site got 2nd place in the challenge & we hope it is reaching a broader audience thanks to the @geothermalfact X bot that our team wrote which tweats geothermal fun facts and directs people to our site.
+
+Visit: [geothermal-future.web.app](https://geothermal-future.web.app) — I hope you enjoy it and learn something too!
+
+#### My Role:
+Team Lead, Animations, Reasearch

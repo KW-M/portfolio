@@ -16,7 +16,7 @@ export function pickPsudoRandom<T>(array: T[], PRNG: () => number): T {
 export function psudoRandomGenerator(a: number) {
     return function () {
         a |= 0; a = a + 0x9e3779b9 | 0;
-        var t = a ^ a >>> 16; t = Math.imul(t, 0x21f0aaad);
+        let t = a ^ a >>> 16; t = Math.imul(t, 0x21f0aaad);
         t = t ^ t >>> 15; t = Math.imul(t, 0x735a2d97);
         return ((t = t ^ t >>> 15) >>> 0) / 4294967296;
     }
@@ -50,11 +50,12 @@ export function oneShotSubscribe<V>(store: nStoreT<V>, callback: (value: V) => v
 }
 
 // source: https://www.30secondsofcode.org/js/s/throttle-function/
-export const throttle = (fn: (a: any) => void, wait: number) => {
-    let inThrottle, lastFn, lastTime;
-    return function () {
-        const context = this,
-            args = arguments;
+export const throttle = (fn: (a: IArguments) => void, wait: number) => {
+    let inThrottle: boolean, lastFn: number, lastTime: number;
+    return function (...args: [IArguments]) {
+        // @ts-expect-error tricky context capture
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
+        const context = this;
         if (!inThrottle) {
             fn.apply(context, args);
             lastTime = Date.now();

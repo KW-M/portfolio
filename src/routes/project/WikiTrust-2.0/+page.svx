@@ -1,0 +1,22 @@
+---
+title: "WikiTrust 2.0"
+date: "2023-01-05"
+updated: "2023-01-05"
+categories:
+  - "Highlights"
+  - "Web Dev"
+  - "Mobile"
+  - "Google Cloud"
+  - "Typescript"
+  - "Python"
+  - "API"
+  - "Fullstack"
+---
+
+
+Turned the original WikiTrust algorithms into a functional MVP cross-browser extension in typescript and processing server backend in python. Our system can calculate a metric of accuracy or "consensus" for every word on Wikipedia using only the article's revision history and author cross contributions. We hope WikiTrust will give readers & editors of Wikipedia better insight into the accuracy of statements and protect against content vandalism.
+
+<hr>
+
+#### My Role
+ Frontend extension and page algorithms, backend API and cloud database abstraction layer.

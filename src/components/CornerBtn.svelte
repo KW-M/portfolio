@@ -1,0 +1,41 @@
+<script lang="ts">
+  import type { Action } from "svelte/action";
+
+  export let onClick = () => {};
+  export let icon_src = "";
+  export let corner = "tl";
+</script>
+
+<button on:click={onClick} class="fixed w-16 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto" class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`}></button>
+
+<style>
+  .corner-btn {
+    background-size: 36px;
+  }
+
+  .corner-btn:hover,
+  .corner-btn:active {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  .corner-btn-tl {
+    @apply rounded-br-2xl top-0 left-0;
+    background-position: top 0.8rem left 0.8rem;
+  }
+
+  .corner-btn-br {
+    @apply rounded-tl-2xl bottom-0 right-0;
+    background-position: bottom 0.8rem right 0.8rem;
+  }
+
+  .corner-btn-tr {
+    @apply rounded-bl-2xl top-0 right-0;
+    background-position: top 0.8rem right 0.8rem;
+  }
+
+  .corner-btn-bl {
+    @apply rounded-tr-2xl bottom-0 left-0;
+    background-position: bottom 0.8rem left 0.8rem;
+  }
+</style>
