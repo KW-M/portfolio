@@ -29,10 +29,10 @@
 <CanvasRenderer />
 
 <nav class="fixed border-nav pointer-events-none z-40">
-  <CornerLinkBtn href="/" useAction={backHomeBtn} useActionData={{ currentRoute: data.currentRoute }} icon_src={navIcons.home} corner="tl"></CornerLinkBtn>
-  <CornerLinkBtn href="https://github.com/kw-m" icon_src={ghIcon} corner="tr"></CornerLinkBtn>
+  <CornerLinkBtn fixed={true} href="/" useAction={backHomeBtn} useActionData={{ currentRoute: data.currentRoute }} icon_src={navIcons.home} corner="tl"></CornerLinkBtn>
+  <CornerLinkBtn fixed={true} href="https://github.com/kw-m" icon_src={ghIcon} corner="tr"></CornerLinkBtn>
   <CornerBtn corner="br" icon_src={!$PREFERS_REDUCED_MOTION ? cloudOnIcon : cloudOffIcon} onClick={() => PREFERS_REDUCED_MOTION.set(!PREFERS_REDUCED_MOTION.get())} />
-  <CornerLinkBtn href="/about" icon_src={meIcon} corner="bl"></CornerLinkBtn>
+  <CornerLinkBtn fixed={true} href="/about" icon_src={meIcon} corner="bl"></CornerLinkBtn>
 </nav>
 
 {#key SvelteURL}
@@ -53,16 +53,6 @@
 
   :global(main) {
     padding: 0 30px;
-  }
-  .clouds-toggle-btn {
-    top: 100px;
-    right: 100px;
-    z-index: 1000;
-    background-color: transparent;
-    border: none;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
   }
 
   .skip-link {

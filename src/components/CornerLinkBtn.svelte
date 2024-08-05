@@ -5,11 +5,12 @@
   export let icon_src = "";
   // export const aria = "";
   export let corner = "tl";
+  export let fixed = true;
   export let useAction: Action<HTMLAnchorElement, Object> = (_: HTMLAnchorElement) => {};
   export let useActionData: Object = {};
 </script>
 
-<a {href} use:useAction={useActionData} class="fixed w-16 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto" class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`}> </a>
+<a {href} use:useAction={useActionData} class={" w-16 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto"} class:fixed class:absolute={!fixed} class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`}> </a>
 
 <style>
   .corner-btn {

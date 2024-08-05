@@ -4,8 +4,9 @@ import { render } from 'svelte/server';
 import path from 'path';
 
 export const fetchPageExports = async (route: string) => {
-    const tsPath = path.join("/src/routes/", route, "+page.server.ts");
-    return await import(tsPath);
+    const routeParts = route.split("/").filter((r) => r.length != 0)
+    const projectName = routeParts[routeParts.length - 1]
+    return await import(`../../routes/project/${projectName}/+page.server.ts`);
 };
 
 export const fetchMarkdownMetadata = async (path: string) => {

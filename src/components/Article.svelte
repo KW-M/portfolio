@@ -7,6 +7,11 @@
 </script>
 
 <script lang="ts">
+  import { navIcons } from "$lib/assets";
+  import { backBtn } from "../actions/backButton";
+
+  import CornerBtn from "./CornerBtn.svelte";
+  import CornerLinkBtn from "./CornerLinkBtn.svelte";
   import EmblaCarousel from "./EmblaCarousel.svelte";
 
   export let title = "";
@@ -17,7 +22,7 @@
   const visibleCategories = categories.filter((c) => c != "Highlights");
   $$props.class = "";
   let mediaSlideIndex = 0;
-  const hasBottomButton = (articleType === ArticleType.summary && moreUrl != "") || articleType === ArticleType.solo;
+  const hasBottomButton = false; // (articleType === ArticleType.summary && moreUrl != "") || articleType === ArticleType.solo;
 </script>
 
 <div class={"relative card border-0 mb-16 overflow-hidden shadow-2xl border-surface-200-800 divide-surface-200-800 block divide-y article-card prose prose-slate prose-blockquote:border-slate-300 prose-purple lg:prose-xl " + $$props.class} class:solo-article-card={articleType === ArticleType.solo}>
@@ -33,7 +38,7 @@
 
   <!-- `space-y-4 ` -->
   <div class="relative !border-secondary-950" class:bottom-curve={hasBottomButton}>
-    <article class="pt-8 pb-4 md:pt-10 md:pb-5 bg-slate-100 bg-opacity-90" class:pb-10={hasBottomButton}>
+    <article class="pt-8 pb-4 md:pt-10 md:pb-5 bg-slate-100 bg-opacity-90 relative" class:pb-10={hasBottomButton}>
       {#if moreUrl != ""}
         <a href={moreUrl} class="h2 !mb-4 text-center !mt-0 no-underline not-prose">{title}</a>
       {:else}
@@ -46,6 +51,13 @@
         {/each}
       </div>
       <slot></slot>
+      {#if hasBottomButton}
+        {#if articleType === ArticleType.solo}
+          <CornerLinkBtn fixed={false} href="" useAction={backBtn} useActionData={{ currentRoute: location.pathname }} icon_src={navIcons.back} corner="br"></CornerLinkBtn>
+        {:else}
+          <CornerLinkBtn fixed={false} href={moreUrl} icon_src={navIcons.unfold} corner="br"></CornerLinkBtn>
+        {/if}
+      {/if}
     </article>
   </div>
 </div>

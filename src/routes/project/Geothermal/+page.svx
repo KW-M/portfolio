@@ -13,7 +13,7 @@ categories:
 
  For the 2020 US Department of Energy Geothermal Design Challenge, our team wanted to tackle the lack of public awareness around the potential of next-gen geothermal energy and technologies that are making it possible.
 
-<hr>
+<hr/>
 
 ### Process
  We decided to make an interactive infographic website from scratch. The whole process, from brainstorming to research to writing to art, design, & development took about two months. Doing the writing for the infographic was especially challenging because I was writing for a general audience so I needed to break down tricky topics into easily understood chunks. After writing and creating the artwork, we assembled the website in HTML & CSS. I used the Greensock animation library plus micromodal.js for it’s accessibility features and some custom interaction code to handle the rotating planet on all input types & responsive css & js to lay out all the elements on different form factors.

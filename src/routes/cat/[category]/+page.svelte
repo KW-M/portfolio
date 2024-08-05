@@ -6,7 +6,6 @@
   import CornerLinkBtn from "../../../components/CornerLinkBtn.svelte";
   export let data;
   const { category, posts } = data;
-  console.log(posts);
 
   // import { graphicsExperiments, wikitrustDesktopVideo, wikitrustMobileVideo } from "$lib/assets";
   // const mediaSlides = graphicsExperiments.map((pic, i) => {
@@ -26,7 +25,7 @@
   <CategoryHeroText icon={categoryIcons.electronics} text={category} />
   {#each posts as post}
     {@const mediaSlides = post.carousel || []}
-    <Article coverImage={post.meta.coverImage} title={post.meta.title} categories={post.meta.categories} moreUrl={post.path} {mediaSlides} articleType={ArticleType.summary}>
+    <Article coverImage={post.meta.coverImage} title={post.meta.title} categories={post.meta.categories} moreUrl={post.hasMore ? post.path : ""} {mediaSlides} articleType={ArticleType.summary}>
       {@html post.content}
       <!-- <div class="float-right m-0 clear-start w-32 h-32 bg-amber-500"></div> -->
       {#if post.hasMore}

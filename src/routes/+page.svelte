@@ -11,4 +11,4 @@
 </HomeHeroText>
 <FloatingCategoryButtons categoryNames={data.categories} />
 
-<h1 aria-hidden="true" class="absolute top-[2000vh] w-full overflow-clip text-center h1 text-9xl !pb-80 -z-10">🥥🪩🧿</h1>
+<h1 class="absolute top-[2000vh] w-full overflow-clip text-center h1 text-9xl !pb-80 -z-10">🥥🪩🧿</h1>
