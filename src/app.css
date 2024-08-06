@@ -6,3 +6,8 @@ html {
     scroll-behavior: smooth;
     background-color: black;
 }
+
+body {
+    overflow-x: clip;
+    overflow-y: auto;
+}

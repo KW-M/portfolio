@@ -1,6 +1,6 @@
 let spiral_base_points: { x: number, y: number }[] = [];
 export const generateSpiralPoints = (numPoints: number, scale: number) => {
-    const arrSize = numPoints * 5;
+    const arrSize = numPoints * 10;
     const out = new Array(arrSize);
     const wind = 9200;
     const curve = 0.5; // 0.5

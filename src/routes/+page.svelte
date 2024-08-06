@@ -2,7 +2,7 @@
   import { navIcons } from "$lib/assets";
   import FloatingCategoryButtons from "../components/FloatingCategoryButtons.svelte";
   import HomeHeroText from "../components/HomeHeroText.svelte";
-  import DownArrowIcon from "../images/icons/navIcons/black/arrow_downward_24dp_000000.svg";
+  import DownArrowIcon from "../images/icons/navIcons/black/arrow_downward_24dp_000000.svg?url";
   export let data;
 </script>
 

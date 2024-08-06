@@ -98,7 +98,7 @@
     screenWidth = browser ? innerWidth : 768;
     screenHeight = browser ? innerHeight : 1024;
     const scale = Math.log((screenWidth + screenHeight) / 2);
-    spiralPoints = getVisibleSpiralPoints(categoryCount, scale, screenWidth * 0.75, screenHeight * 0.75);
+    spiralPoints = getVisibleSpiralPoints(categoryCount, scale, screenWidth - 200, screenHeight);
   };
 
   onResize();

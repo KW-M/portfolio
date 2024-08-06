@@ -3,11 +3,11 @@
   import CornerLinkBtn from "../components/CornerLinkBtn.svelte";
 
   import { navIcons } from "$lib/assets";
-  import experimentsIcon from "../images/icons/categoryIcons/experiments_24dp_000000.svg";
-  import ghIcon from "../images/icons/github_circle_white.svg";
-  import meIcon from "../images/profile-photo2.png";
-  import cloudOffIcon from "../images/icons/cloud_off_24dp.svg";
-  import cloudOnIcon from "../images/icons/wind_cloud_24dp.svg";
+  // import experimentsIcon from "../images/icons/categoryIcons/experiments_24dp_000000.svg?url";
+  import ghIcon from "../images/icons/github_circle_white.svg?url";
+  import meIcon from "../images/profile-photo2.png?url";
+  import cloudOffIcon from "../images/icons/cloud_off_24dp.svg?url";
+  import cloudOnIcon from "../images/icons/wind_cloud_24dp.svg?url";
 
   import CanvasRenderer from "../components/CanvasRenderer.svelte";
   export let data;

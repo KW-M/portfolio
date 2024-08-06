@@ -53,6 +53,7 @@
   }
 
   function emblaInit(evt: CustomEvent<EmblaCarouselType>) {
+    console.log(navIcons.back);
     emblaApi = evt.detail;
     // emblaApi.on("select", console.log);
     mounted = true;

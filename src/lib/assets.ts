@@ -1,25 +1,25 @@
 import { Assets } from 'pixi.js';
 import { browser } from '$app/environment';
 
-import favorites from "../images/icons/categoryIcons/favorite_24dp_000000.svg";
-import robotics from "../images/icons/categoryIcons/precision_manufacturing_24dp_000000.svg";
-import webDev from "../images/icons/categoryIcons/devices_24dp_000000.svg";
-import electronics from "../images/icons/categoryIcons/offline_bolt_24dp_000000.svg";
-import graphics from "../images/icons/categoryIcons/view_in_ar_24dp_000000.svg";
-import experiments from "../images/icons/categoryIcons/experiments_24dp_000000.svg";
-import science from "../images/icons/categoryIcons/biotech_24dp_000000.svg";
-import environment from "../images/icons/categoryIcons/energy_savings_leaf_24dp_000000.svg";
+import favorites from "../images/icons/categoryIcons/favorite_24dp_000000.svg?url";
+import robotics from "../images/icons/categoryIcons/precision_manufacturing_24dp_000000.svg?url";
+import webDev from "../images/icons/categoryIcons/devices_24dp_000000.svg?url";
+import electronics from "../images/icons/categoryIcons/offline_bolt_24dp_000000.svg?url";
+import graphics from "../images/icons/categoryIcons/view_in_ar_24dp_000000.svg?url";
+import experiments from "../images/icons/categoryIcons/experiments_24dp_000000.svg?url";
+import science from "../images/icons/categoryIcons/biotech_24dp_000000.svg?url";
+import environment from "../images/icons/categoryIcons/energy_savings_leaf_24dp_000000.svg?url";
 export const categoryIcons = { favorites, robotics, electronics, graphics, webDev, experiments, science, environment };
 
 
-import home from "../images/icons/navIcons/arrow_tl_24dp.svg";
-import back from "../images/icons/navIcons/navigate_before_24dp.svg";
-import forward from "../images/icons/navIcons/navigate_next_24dp.svg";
-import expand from "../images/icons/navIcons/expand_more_24dp.svg";
-import fold from "../images/icons/navIcons/unfold_less_24dp.svg";
-import unfold from "../images/icons/navIcons/unfold_more_24dp.svg";
-import fullscreen from "../images/icons/navIcons/open_in_full_24dp.svg";
-import arrowDown from "../images/icons/navIcons/arrow_downward_24dp.svg";
+import home from "../images/icons/navIcons/arrow_tl_24dp.svg?url";
+import back from "../images/icons/navIcons/navigate_before_24dp.svg?url";
+import forward from "../images/icons/navIcons/navigate_next_24dp.svg?url";
+import expand from "../images/icons/navIcons/expand_more_24dp.svg?url";
+import fold from "../images/icons/navIcons/unfold_less_24dp.svg?url";
+import unfold from "../images/icons/navIcons/unfold_more_24dp.svg?url";
+import fullscreen from "../images/icons/navIcons/open_in_full_24dp.svg?url";
+import arrowDown from "../images/icons/navIcons/arrow_downward_24dp.svg?url";
 export const navIcons = { home, back, forward, expand, fold, unfold, arrowDown, fullscreen };
 
 
