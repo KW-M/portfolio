@@ -1,0 +1,12 @@
+---
+title: "Web Graphics Experiments"
+date: "2023-01-05"
+updated: "2023-01-05"
+categories:
+  - "Experiments"
+  - "Web Dev"
+  - "Graphics"
+---
+
+
+For the UCSC computer graphics course, I wanted to explore graphics technologies beyond the traditional polygonal raster pipeline that powers most real-time 3D visualizations today. I decided to try to recreate an efficient form of ray tracing called ray marching in the browser using WebGL paired with a trackpad gesture based modeling flow. This project was all about learning for me, so the end website is not as polished as I would normaly do, but I think it nicely shows the power of alternative realtime rendering and modeling modalities.
