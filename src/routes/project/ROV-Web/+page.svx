@@ -12,7 +12,6 @@ categories:
   - "Python"
   - "Docker"
   - "CAD"
-  - "Cloud"
   - "Robotics"
 ---
 

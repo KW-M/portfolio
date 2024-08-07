@@ -55,6 +55,7 @@
     transition: opacity ease-in 0.6s;
     transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     opacity: 0;
+    width: 100%;
   }
   .pic.loaded {
     opacity: 1;
