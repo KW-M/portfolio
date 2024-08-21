@@ -98,7 +98,7 @@
     screenWidth = browser ? innerWidth : 768;
     screenHeight = browser ? innerHeight : 1024;
     const scale = Math.log((screenWidth + screenHeight) / 2);
-    spiralPoints = getVisibleSpiralPoints(categoryCount, scale, screenWidth - 200, screenHeight);
+    spiralPoints = getVisibleSpiralPoints(categoryCount, scale, screenWidth - 200, screenHeight - 200);
   };
 
   onResize();
@@ -116,28 +116,46 @@
 </script>
 
 {#if ready}
-  {#each spiralPoints as { x, y }, i}
-    {@const category = categories[i]}
-    {@const color = colors[i % 6]}
-
-    {#if category.icon}
-      <a href={`${base}/cat/${categories[i].name}`} class="dot-button-contnr" in:fade|global={{ duration: PAGE_FADE_DURATION, delay: PAGE_FADE_DELAY + 50 * i }} out:fade|global={{ duration: PAGE_FADE_DURATION }} style={`Transform: translate(${screenWidth / 2 + x}px,${screenHeight / 2 + y}px)`}>
-        <div class:dot-circle-btn={true} class={color} style={`background-image: url("${category.icon}")`}></div>
-        <div class:dot-caption={true} class={color}>{category.name}</div>
-      </a>
-    {:else}
-      <a href={`${base}/cat/${categories[i].name}`} class="dot-button-contnr" in:fade|global={{ duration: PAGE_FADE_DURATION, delay: PAGE_FADE_DELAY + 50 * i }} out:fade|global={{ duration: PAGE_FADE_DURATION }} style={`Transform: translate(${screenWidth / 2 + x}px,${screenHeight / 2 + y}px)`}>
-        <div class:dot-caption={true} class:dot-caption-only={true} class={color}>{category.name}</div>
-      </a>
-      <!-- <div class="dot-button-contnr opacity-45" in:fade|global={{ duration: PAGE_FADE_DURATION, delay: PAGE_FADE_DELAY + 100 * i }} out:fade|global={{ duration: PAGE_FADE_DURATION }} style={`Transform: translate(${innerWidth / 2 + x}px,${innerHeight / 2 + y}px)`}>
-      <div class:dot-circle-btn={true} class={"bg-gray-500"} style={`background-image: url("${categories[0].icon}")`}></div>
-      <div class:dot-caption={true} class={"bg-gray-500"}>{categories[i].name}</div>
-    </div> -->
-    {/if}
-  {/each}
+  <div class="inset-0 w-100 overflow-visible left-1/2 top-1/2 absolute">
+    {#each spiralPoints as { x, y }, i}
+      {@const category = categories[i]}
+      {@const color = colors[i % 6]}
+      <div class="absolute" style={`Transform: translate(${x}px,${y}px)`} in:fade|global={{ duration: PAGE_FADE_DURATION, delay: PAGE_FADE_DELAY + 50 * i }} out:fade|global={{ duration: PAGE_FADE_DURATION }}>
+        {#if category.icon}
+          <!-- <a href={`${base}/cat/${categories[i].name}`} class="dot-button-contnr" in:fade|global={{ duration: PAGE_FADE_DURATION, delay: PAGE_FADE_DELAY + 50 * i }} out:fade|global={{ duration: PAGE_FADE_DURATION }} style={`Transform: translate(${screenWidth / 2 + x}px,${screenHeight / 2 + y}px)`}>
+            <div class:dot-caption={true} class={color}>{category.name}</div>
+          </a> -->
+          <a href={`${base}/cat/${categories[i].name}`} class={"min-w-20 translate-y-12 btn btn-md absolute bg-tap-target-xl flex-shrink  w-min " + color}>
+            <div tabindex="-1" class={"w-full aspect-square rounded-t-full bg-center bg-size-32 bg-no-repeat absolute left-1/2 -translate-y-1/2 -translate-x-1/2 -z-10 " + color} style={`background-image: url("${category.icon}")`}></div>
+            <span>{category.name}</span>
+          </a>
+        {:else}
+          <a href={`${base}/cat/${categories[i].name}`} class={"btn btn-md absolute bg-tap-target-xl " + color}>
+            {category.name}
+          </a>
+        {/if}
+      </div>
+    {/each}
+  </div>
 {/if}
 
 <style>
+  .bg-size-32 {
+    background-size: 3rem;
+  }
+
+  .bg-tap-target-xl::before {
+    content: " ";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: transparent;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100000px;
+  }
+
   .dot-button-contnr {
     display: block;
     position: absolute;

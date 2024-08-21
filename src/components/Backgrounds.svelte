@@ -33,7 +33,7 @@
 {:else}
   {#each backgroundList as background, i (background)}
     {#if i === 0}
-      <div in:fade|global={{ duration: fadeDurration }} out:fade|global={{ duration: fadeDurration }} style={`background-image: url("${background}")`} class="fixed scale-110 top-0 left-0 w-full h-full bg-cover bg-center -z-10"></div>
+      <div in:fade|global={{ duration: fadeDurration }} out:fade|global={{ duration: fadeDurration }} style={`background-image: url("${background}")`} class="fixed scale-100 top-0 left-0 w-full h-full bg-cover bg-center -z-10"></div>
     {/if}
   {/each}
 {/if}

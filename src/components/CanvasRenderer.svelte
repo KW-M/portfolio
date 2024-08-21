@@ -67,11 +67,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     pointer-events: none;
     image-rendering: smooth;
     border: solid rgb(0, 0, 0) 20px;
-    border-radius: 120px;
+    /* border-radius: 120px; */
   }
 </style>

@@ -41,6 +41,9 @@ importers:
       stats.js:
         specifier: ^0.17.0
         version: 0.17.0
+      svelte-reparent:
+        specifier: ^0.0.1
+        version: 0.0.1(svelte@5.0.0-next.200)
       swiper:
         specifier: ^11.1.9
         version: 11.1.9
@@ -2043,6 +2046,11 @@ packages:
         optional: true
       typescript:
         optional: true
+
+  svelte-reparent@0.0.1:
+    resolution: {integrity: sha512-pkZ+Lx+4fA9HXAaYbOqRLKyARuizoOADcSJ+LQ/8aQEM06l3KYyrVCD5+9wjGOrARUd47AOM5nN4rtIGPbzIlA==}
+    peerDependencies:
+      svelte: '>=4.0.0'
 
   svelte@5.0.0-next.200:
     resolution: {integrity: sha512-Tf1cOsl2WTmn/TB7k151OFRdoYTIVtAwVThVPeuI+hymUkNd4esn3ApEPxV9r5loqfItBI0z4+EX1nbH4EeEAg==}
@@ -4197,6 +4205,10 @@ snapshots:
       postcss: 8.4.40
       postcss-load-config: 4.0.2(postcss@8.4.40)
       typescript: 5.5.4
+
+  svelte-reparent@0.0.1(svelte@5.0.0-next.200):
+    dependencies:
+      svelte: 5.0.0-next.200
 
   svelte@5.0.0-next.200:
     dependencies:

@@ -1,15 +1,15 @@
 import nStore from "$lib/libraries/nStore";
-
-const durration = 600;
-const MARGIN = 0;
 export const previewZoomOpen = nStore<boolean>(false);
-
 
 interface ZoomOptions {
   zoomed: boolean;
   width: number;
   height: number;
 }
+
+export const TRANSITION_DURRATION = 400;
+const SCROLL_THRESHOLD = 60;
+const MARGIN = 5;
 
 const calculateTargetZoom = (width: number, height: number) => {
   const windowWidth = window.innerWidth;
@@ -39,8 +39,7 @@ const calculateReverseZoom = (originalBbox: DOMRect, fullWidth: number, fullHeig
 type TargetZoom = ReturnType<typeof calculateTargetZoom>;
 
 export function attachZoom(zoomElem: HTMLElement, options: ZoomOptions) {
-  const zoomContainer = document.getElementById('imgZoomContainer');
-
+  let zoomContainer = document.getElementById('svelte_root');
   let thisZoomOpen = false;
   let scrollStart = 0;
   let transitionDone = true;
@@ -55,7 +54,7 @@ export function attachZoom(zoomElem: HTMLElement, options: ZoomOptions) {
   }
 
   const handleScroll = () => {
-    if (Math.abs(window.scrollY - scrollStart) > 10) {
+    if (Math.abs(window.scrollY - scrollStart) > SCROLL_THRESHOLD) {
       zoomContract();
     }
   }
@@ -80,7 +79,7 @@ export function attachZoom(zoomElem: HTMLElement, options: ZoomOptions) {
       position,
       touchAction: 'pinch-zoom',
       borderRadius: '10px',
-      zIndex: showOnTop ? 1001 : 0,
+      zIndex: showOnTop ? 45 : 0,
       width: fullWidth + 'px',
       height: fullHeight + 'px',
       top,
@@ -89,14 +88,20 @@ export function attachZoom(zoomElem: HTMLElement, options: ZoomOptions) {
   }
 
   const transitionOut = () => {
-    if (previewZoomOpen.get() || !zoomContainer || !zoomElem || transitionDone) return;
+    if (previewZoomOpen.get() || !zoomContainer || !zoomElem || transitionDone) return transitionOutFinished();
     if (parentElement) originalBbox = parentElement.getBoundingClientRect();
-    const transitionTimeLeft = Math.max(durration - (Date.now() - transtitonOutStartTime), 0);
-    applyStyle(true, true, true, true, transitionTimeLeft);
+    const transitionTimeLeft = Math.max(TRANSITION_DURRATION - (Date.now() - transtitonOutStartTime), 0);
+    if (transitionTimeLeft == 0) {
+      transitionOutFinished();
+      return;
+    } else {
+      applyStyle(true, false, true, true, transitionTimeLeft);
+    }
     requestAnimationFrame(transitionOut);
   }
 
   const transitionOutFinished = () => {
+    console.log('transitionOutFinished', parentElement);
     if (transitionDone) return;
     transitionDone = true;
     if (!zoomElem) return;
@@ -114,20 +119,24 @@ export function attachZoom(zoomElem: HTMLElement, options: ZoomOptions) {
   const handleResize = () => {
     if (!open || !zoomContainer || !zoomElem) return;
     targetZoom = calculateTargetZoom(options.width, options.height);
-    applyStyle(false, true, false, true);
+    applyStyle(false, false, false, true);
   }
 
   const zoomExpand = () => {
+    zoomContainer = zoomContainer || document.getElementById('img_zoom_backdrop');
+    // zoomCloseButton = zoomCloseButton || document.getElementById('img_zoom_close_btn');
+    if (previewZoomOpen.get()) return; //transitionOutFinished();
+    if (!zoomContainer || !zoomElem) return;
     transitionDone = false;
-    if (previewZoomOpen.get() || !zoomContainer || !zoomElem) return;
-    if (zoomElem.nodeName == 'VIDEO') {
-      (zoomElem as HTMLVideoElement).controls = true;
-      (zoomElem as HTMLVideoElement).play();
-    }
+    // if (zoomElem.nodeName == 'VIDEO') {
+    //   (zoomElem as HTMLVideoElement).controls = true;
+    //   (zoomElem as HTMLVideoElement).play();
+    // }
     const pe = zoomElem.parentElement;
     if (pe && pe != document.body) parentElement = zoomElem.parentElement as HTMLElement;
     if (!parentElement) return;
-    previewZoomOpen.set(thisZoomOpen = true);
+    thisZoomOpen = true;
+    previewZoomOpen.set(true);
     scrollStart = window.scrollY;
     originalBbox = parentElement.getBoundingClientRect();
     if (!originalStyle) originalStyle = {
@@ -138,33 +147,31 @@ export function attachZoom(zoomElem: HTMLElement, options: ZoomOptions) {
       top: zoomElem.style.top,
       left: zoomElem.style.left,
       opacity: zoomElem.style.opacity,
+      position: zoomElem.style.position,
+      zIndex: zoomElem.style.zIndex,
     } as CSSStyleDeclaration;
-
-    zoomContainer.classList.add('zoomOpen');
-    document.body.appendChild(zoomElem);
+    zoomContainer.appendChild(zoomElem);
     targetZoom = calculateTargetZoom(options.width, options.height);
-    zoomContainer.addEventListener('click', zoomContract);
-    zoomElem.addEventListener('click', zoomContract);
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
-    applyStyle(true, true, false, true);
+    applyStyle(true, false, false, true);
     requestAnimationFrame(() => {
       if (!open || !zoomContainer || !zoomElem) return;
-      applyStyle(false, true, true, true);
+      applyStyle(false, false, true, true);
       transitionDone = true;
     });
   }
 
-  const zoomContract = (event?: PointerEvent) => {
+  const zoomContract = (event?: MouseEvent) => {
     if (event && event.bubbles) { event.preventDefault(); event.stopPropagation(); }
-    if (!thisZoomOpen || !transitionDone) return;
+    if (!thisZoomOpen) return;
     transitionDone = false;
-    previewZoomOpen.set(thisZoomOpen = false);
+    thisZoomOpen = false;
+    previewZoomOpen.set(false);
     if (zoomContainer && zoomElem && parentElement) {
       zoomContainer.classList.remove('zoomOpen');
       zoomContainer.removeEventListener('click', zoomContract);
-      zoomElem.removeEventListener('click', zoomContract);
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
@@ -186,10 +193,13 @@ export function attachZoom(zoomElem: HTMLElement, options: ZoomOptions) {
       }
     },
     destroy() {
-      if (thisZoomOpen) previewZoomOpen.set(thisZoomOpen = false);
+      if (thisZoomOpen) {
+        thisZoomOpen = false;
+        previewZoomOpen.set(false);
+      }
       if (zoomElem) {
         zoomElem.removeEventListener('transitionend', transitionOutFinished);
-        zoomElem.removeEventListener('click', zoomContract);
+        // zoomElem.removeEventListener('click', zoomContract);
         if (parentElement) parentElement.appendChild(zoomElem);
         else zoomElem.parentElement?.removeChild(zoomElem);
         Object.assign(zoomElem.style, originalStyle);

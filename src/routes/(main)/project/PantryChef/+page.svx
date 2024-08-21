@@ -1,0 +1,10 @@
+---
+title: "Pantry Chef"
+categories:
+  - "Experiments"
+  - "ML"
+  - "Python"
+  - "API"
+---
+
+Experimental AI based recipe generator created during the Cruzhacks 2023 hackathon. Pantry Chef is about using AI to inspire tasty dishes from what you already have in your pantry - and an oportunity for me to learn how to train and use generative AI. The frontend is made in Vue and uses tailwind css components. Our page uses NLP to parse ingredients out of the natural language prompt and gather relavant food info on the public Edemam API. We fine tuned a Cohere genrative text model to output resonable recipes from provided ingredients. Our fine tuning dataset was generated in Python by combining, cleaning, and standardizing several online recipe datasets. We used Edemam API to augment our dataset with alergen and dietary restriction info based on ingredients. We further randomized the training data through ingredient masking to avoid overfitting.

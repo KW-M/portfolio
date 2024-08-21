@@ -11,7 +11,7 @@
   {#if icon}
     <img src={icon} alt="icon" class="mx-auto mb-4" />
   {/if}
-  <h1 class="text-center mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl break-words">{text}</h1>
+  <h1 class="text-center mb-4 text-4xl font-extrabold tracking-tight leading-none text-surface-950-50 md:text-5xl break-words">{text}</h1>
   <!-- <h3 in:fade={inOptions} class="text-center tracking-tight leading-none text-gray-900 main-hero-subtitle">Projects</h3> -->
 </div>
 

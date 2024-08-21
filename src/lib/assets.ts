@@ -20,8 +20,20 @@ import fold from "../images/icons/navIcons/unfold_less_24dp.svg?url";
 import unfold from "../images/icons/navIcons/unfold_more_24dp.svg?url";
 import fullscreen from "../images/icons/navIcons/open_in_full_24dp.svg?url";
 import arrowDown from "../images/icons/navIcons/arrow_downward_24dp.svg?url";
-export const navIcons = { home, back, forward, expand, fold, unfold, arrowDown, fullscreen };
+import close from "../images/icons/navIcons/close_24dp.svg?url";
+export const navIcons = { home, back, forward, expand, fold, unfold, arrowDown, fullscreen, close };
 
+
+import homeDark from "../images/icons/navIcons/black/arrow_tl_24dp_000000.svg?url";
+import backDark from "../images/icons/navIcons/black/navigate_before_24dp_000000.svg?url";
+import forwardDark from "../images/icons/navIcons/black/navigate_next_24dp_000000.svg?url";
+import expandDark from "../images/icons/navIcons/black/expand_more_24dp_000000.svg?url";
+import foldDark from "../images/icons/navIcons/black/unfold_less_24dp_00000.svg?url";
+import unfoldDark from "../images/icons/navIcons/black/unfold_more_24dp_000000.svg?url";
+import fullscreenDark from "../images/icons/navIcons/black/open_in_full_24dp_00000.svg?url";
+import arrowDownDark from "../images/icons/navIcons/black/arrow_downward_24dp_000000.svg?url";
+import closeDark from "../images/icons/navIcons/black/close_24dp_000000.svg?url";
+export const navIconsDark = { homeDark, backDark, forwardDark, expandDark, foldDark, unfoldDark, arrowDownDark, fullscreenDark, closeDark };
 
 import tileCloud from "../images/cloudAssets/Raw Clouds/Artboard2.png?lqip";
 export const tileXCloud = tileCloud;
@@ -53,69 +65,6 @@ import background14 from "../images/backgrounds/sky.jpg?lqip";
 import background15 from "../images/backgrounds/shelter.jpg?lqip";
 import background16 from "../images/backgrounds/seaClifs2.jpg?lqip";
 export const backgrounds = [background1, background2, background3, background4, background5, background6, background7, background8, background9, background10, background11, background12, background13, background14, background15, background16];
-
-// import grahicsExperiments1 from "../images/pageAssets/GraphicsExperiments/1.png?lqip";
-// import grahicsExperiments2 from "../images/pageAssets/GraphicsExperiments/2.png?lqip";
-// import grahicsExperiments3 from "../images/pageAssets/GraphicsExperiments/3.png?lqip";
-// import grahicsExperiments4 from "../images/pageAssets/GraphicsExperiments/4.png?lqip";
-// import grahicsExperiments5 from "../images/pageAssets/GraphicsExperiments/5.png?lqip";
-// export const graphicsExperiments = [grahicsExperiments1, grahicsExperiments2, grahicsExperiments3, grahicsExperiments4, grahicsExperiments5];
-
-// import wikitrustMobileVideoPlaceholder from "../images/pageAssets/videos/WikiTrust-Mobile/cover.jpg?lqip"
-// import wikitrustMobileVideoH264 from "../images/pageAssets/videos/WikiTrust-Mobile/h264.mp4"
-// import wikitrustMobileVideoHevc from "../images/pageAssets/videos/WikiTrust-Mobile/hevc.mp4"
-// export const wikitrustMobileVideo: htmlVideoInfo = {
-//     ...wikitrustMobileVideoPlaceholder,
-//     type: "video",
-//     title: "WikiTrust Mobile ",
-//     formats: [
-//         // {
-//         //     src: wikitrustMobileVideoVp9,
-//         //     type: 'video/webm codecs=vp9 opus'
-//         // },
-//         {
-//             src: wikitrustMobileVideoH264,
-//             type: 'video/mp4; codecs=avc1.4D401E,mp4a.40.2'
-//         },
-//         {
-//             src: wikitrustMobileVideoHevc,
-//             type: 'video/mp4; codecs=hevc,mp4a.40.2'
-//         },
-//     ],
-// }
-
-// import wikitrustDesktopVideoPlaceholder from "../images/pageAssets/videos/WikiTrust-Desktop/cover.jpg?lqip"
-// import wikitrustDesktopVideoH264 from "../images/pageAssets/videos/WikiTrust-Desktop/h264.mp4"
-// import wikitrustDesktopVideoHevc from "../images/pageAssets/videos/WikiTrust-Desktop/hevc.mp4"
-// import wikitrustDesktopVideoVp9 from "../images/pageAssets/videos/WikiTrust-Desktop/vp9.webm"
-// export const wikitrustDesktopVideo: htmlVideoInfo = {
-//     ...wikitrustDesktopVideoPlaceholder,
-//     type: "video",
-//     title: "WikiTrust Desktop",
-//     formats: [
-//         {
-//             src: wikitrustDesktopVideoVp9,
-//             type: 'video/webm codecs=vp9 opus'
-//         },
-//         {
-//             src: wikitrustDesktopVideoH264,
-//             type: 'video/mp4; codecs=avc1.4D401E,mp4a.40.2'
-//         },
-//         {
-//             src: wikitrustDesktopVideoHevc,
-//             type: 'video/mp4; codecs=hevc,mp4a.40.2'
-//         },
-//     ],
-// }
-
-
-// import Geothermal1 from "../images/pageAssets/Geothermal/1.png?lqip";
-// import Geothermal2 from "../images/pageAssets/Geothermal/2.png?lqip";
-// import Geothermal3 from "../images/pageAssets/Geothermal/3.png?lqip";
-// import Geothermal4 from "../images/pageAssets/Geothermal/4.png?lqip";
-// import Geothermal5 from "../images/pageAssets/Geothermal/5.png?lqip";
-// export const geothermal = [Geothermal1, Geothermal2, Geothermal3, Geothermal4, Geothermal5];
-
 
 if (browser) {
     Assets.backgroundLoad(tileXCloud.src);

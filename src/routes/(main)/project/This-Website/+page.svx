@@ -1,0 +1,7 @@
+---
+title: "This Website"
+categories:
+  - "Svelte"
+---
+
+Whoa! This website is also was made by me in SvelteKit. I used Pixi.js to animate the clouds in WebGL, and Skeleton UI + Tailwind CSS for the UI components. The site precaches server-side-rendered pages to take advantage of static CDN speeds as much as possible. The backgrounds for this site were inspired by that feeling of geting past the clouds & rain and seeing something wonderful. All the background photos were shot by me in some of my favorite places on this planet. I hope you enjoy!

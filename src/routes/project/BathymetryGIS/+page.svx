@@ -1,9 +1,0 @@
----
-title: "Automating Seafloor Mapping with QGIS"
-categories:
-  - "GIS"
-  - "Python"
-  - "Education"
----
-
-Utilizing QGIS and Python to automate the process of creating baseline sea floor bathymetric maps from low-cost fishfinder sonar data. Used these tools to introduce GIS concepts in local highschools by allowing to students to make there own maps. We are also using QGIS in the classroom to demonstrate the effects of resolution and sampling bias using existing bathymetric datasets.

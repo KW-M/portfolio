@@ -5,9 +5,27 @@
 html {
     scroll-behavior: smooth;
     background-color: black;
+    scrollbar-gutter: stable;
+    scrollbar-color: rgb(200, 200, 200) black;
 }
 
 body {
+    overflow-x: hidden;
     overflow-x: clip;
     overflow-y: auto;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: black;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(200, 200, 200);
+    border-radius: 20px;
+    border: 6px solid black;
 }

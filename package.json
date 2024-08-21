@@ -2,7 +2,7 @@
 	"name": "my-app",
 	"version": "0.0.1",
 	"private": true,
-	"packageManager": "pnpm@9.6.0",
+	"packageManager": "pnpm@9.7.1",
 	"scripts": {
 		"dev": "vite dev --host",
 		"build": "vite build",
@@ -47,6 +47,7 @@
 		"medium-zoom": "^1.1.0",
 		"pixi.js": "^8.2.5",
 		"stats.js": "^0.17.0",
+		"svelte-reparent": "^0.0.1",
 		"swiper": "^11.1.9"
 	}
 }
