@@ -1,26 +1,27 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import { getVisibleSpiralPoints } from "../lib/spiralGen";
-  import { categoryIcons } from "../lib/assets";
+  import { categoryIcons, IconEnvironment, IconExperiments, IconGraphics, IconHighlights, IconRobotics, IconScience, IconWebDev } from "../lib/assets";
   import { fade } from "svelte/transition";
   import { PAGE_FADE_DELAY, PAGE_FADE_DURATION } from "$lib/consts";
   import { browser } from "$app/environment";
   import { base } from "$app/paths";
+  import { bgColors, categoryColorMap, categoryIconMap } from "$lib/globals";
 
-  const iconMap: { [key: string]: string } = {
-    Highlights: categoryIcons.favorites,
-    Robotics: categoryIcons.robotics,
-    "Web Dev": categoryIcons.webDev,
-    "Game Dev": categoryIcons.graphics,
-    "Data Science": categoryIcons.science,
-    Experiments: categoryIcons.experiments,
-    Eco: categoryIcons.environment,
-  };
-  const colors = ["bg-yellow-500", "bg-orange-500", "bg-blue-500", "bg-purple-500", "bg-teal-500", "bg-green-500", "bg-indigo-500"];
+  // const categoryIconMap: { [key: string]: string } = {
+  //   Highlights: categoryIcons.favorites,
+  //   Robotics: categoryIcons.robotics,
+  //   "Web Dev": categoryIcons.webDev,
+  //   "Game Dev": categoryIcons.graphics,
+  //   "Data Science": categoryIcons.science,
+  //   Experiments: categoryIcons.experiments,
+  //   Eco: categoryIcons.environment,
+  // };
 
   let ready = false;
+
   export let categoryNames: string[] = [];
-  const categories = categoryNames.map((name) => ({ name, icon: iconMap[name] || "" }));
+  const categories = categoryNames.map((name, i) => ({ name, icon: categoryIconMap[name] || "", color: categoryColorMap[name] || bgColors[i % bgColors.length] }));
   const categoryCount = categories.length;
   // const categories = [
   //   { name: "Highlights", icon: categoryIcons.favorites },
@@ -98,7 +99,7 @@
     screenWidth = browser ? innerWidth : 768;
     screenHeight = browser ? innerHeight : 1024;
     const scale = Math.log((screenWidth + screenHeight) / 2);
-    spiralPoints = getVisibleSpiralPoints(categoryCount, scale, screenWidth - 200, screenHeight - 200);
+    spiralPoints = getVisibleSpiralPoints(categoryCount, scale, screenWidth - 160, screenHeight - 160);
   };
 
   onResize();
@@ -116,21 +117,24 @@
 </script>
 
 {#if ready}
-  <div class="inset-0 w-100 overflow-visible left-1/2 top-1/2 absolute">
+  <div class="inset-0 w-100 overflow-visible left-1/2 top-1/2 absolute text-white">
     {#each spiralPoints as { x, y }, i}
       {@const category = categories[i]}
-      {@const color = colors[i % 6]}
+      {@const color = category.color + " dark:" + category.color.replace(/-[0-9]+/, "-600")}
+      <!-- <div class="absolute size-3 z-40 bg-neutral-400" style={`Transform: translate(${x}px,${y}px)`}></div> -->
       <div class="absolute" style={`Transform: translate(${x}px,${y}px)`} in:fade|global={{ duration: PAGE_FADE_DURATION, delay: PAGE_FADE_DELAY + 50 * i }} out:fade|global={{ duration: PAGE_FADE_DURATION }}>
         {#if category.icon}
           <!-- <a href={`${base}/cat/${categories[i].name}`} class="dot-button-contnr" in:fade|global={{ duration: PAGE_FADE_DURATION, delay: PAGE_FADE_DELAY + 50 * i }} out:fade|global={{ duration: PAGE_FADE_DURATION }} style={`Transform: translate(${screenWidth / 2 + x}px,${screenHeight / 2 + y}px)`}>
             <div class:dot-caption={true} class={color}>{category.name}</div>
           </a> -->
-          <a href={`${base}/cat/${categories[i].name}`} class={"min-w-20 translate-y-12 btn btn-md absolute bg-tap-target-xl flex-shrink  w-min " + color}>
-            <div tabindex="-1" class={"w-full aspect-square rounded-t-full bg-center bg-size-32 bg-no-repeat absolute left-1/2 -translate-y-1/2 -translate-x-1/2 -z-10 " + color} style={`background-image: url("${category.icon}")`}></div>
+          <a href={`${base}/cat/${categories[i].name}`} class={"min-w-20 -translate-x-1/2 translate-y-1/2 btn btn-md absolute bg-tap-target-xl flex-shrink shadow-xl active:shadow-md w-min " + color}>
+            <!-- <div tabindex="-1" class={"w-full aspect-square rounded-t-full bg-center bg-size-32 bg-no-repeat absolute left-1/2 -translate-y-1/2 -translate-x-1/2 -z-10  " + color} style={`background-image: url("${category.icon}")`}></div> -->
+            <!-- <div class="aspect-square rounded-t-full w-full absolute left-1/2 -translate-y-1/2 -translate-x-1/2 -z-10"><svelte:component this={category.icon} class="w-32 h-32"></svelte:component></div> -->
+            <svelte:component this={category.icon} class={"absolute drop-shadow-lg left-1/2 -translate-y-full  -translate-x-1/2 w-16 h-16 " + color.replace("bg", "text")}></svelte:component>
             <span>{category.name}</span>
           </a>
         {:else}
-          <a href={`${base}/cat/${categories[i].name}`} class={"btn btn-md absolute bg-tap-target-xl " + color}>
+          <a href={`${base}/cat/${categories[i].name}`} class={"btn btn-md absolute bg-tap-target-xl -translate-x-1/2 -translate-y-1/2 opacity-30 hover:opacity-100 focus:opacity-100 hover:shadow-xl active:shadow-md " + color}>
             {category.name}
           </a>
         {/if}
@@ -170,11 +174,6 @@
     cursor: pointer;
   }
 
-  .dot-button-contnr:hover .dot-circle-btn {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-
   .dot-circle-btn {
     width: 100px;
     height: 100px;
@@ -185,11 +184,6 @@
 
     opacity: 0.7;
     background-size: 70px;
-  }
-
-  .dot-button-contnr:hover .dot-caption {
-    opacity: 1 !important;
-    transform: scale(1.1);
   }
 
   .dot-caption {
@@ -214,8 +208,17 @@
     opacity: 0.5;
   }
 
-  .dot-button-contnr:hover .dot-caption-only {
+  /* .dot-button-contnr:hover .dot-caption-only {
     opacity: 1 !important;
     transform: translateY(-1.5em) scale(1.1);
   }
+
+    .dot-button-contnr:hover .dot-circle-btn {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  .dot-button-contnr:hover .dot-caption {
+    opacity: 1 !important;
+    transform: scale(1.1);
+  } */
 </style>

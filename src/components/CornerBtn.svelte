@@ -6,7 +6,7 @@
   export let corner = "tl";
 </script>
 
-<button on:click={onClick} class="fixed w-16 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto" class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`}></button>
+<button on:click={onClick} class="fixed w-16 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto" class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`} aria-label="go to full article"></button>
 
 <style>
   .corner-btn {

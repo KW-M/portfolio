@@ -2,16 +2,21 @@ let spiral_base_points: { x: number, y: number }[] = [];
 export const generateSpiralPoints = (numPoints: number, scale: number) => {
     const arrSize = numPoints * 10;
     const out = new Array(arrSize);
-    const wind = 9200;
-    const curve = 0.5; // 0.5
-    const rot_offset = 0.93 * scale + 0.73;
+
+    const SPIRAL_TIGHTNESS = 25; //0.04
+    const POINT_SPACING = 10 * SPIRAL_TIGHTNESS; //9200
+    const START_OFFSET = 1;
+    const OVERALL_ROTATION = scale - Math.PI / 2//Math.PI / 4; //0.93 * scale +
+    const CENTER_VOID_RADIUS = 150;
+
+    const start_radius = Math.sqrt(POINT_SPACING * START_OFFSET / SPIRAL_TIGHTNESS) * SPIRAL_TIGHTNESS;
     for (let i = 0; i < arrSize; i++) {
+        const index = i + START_OFFSET;
+        const interval = Math.sqrt(POINT_SPACING * index / SPIRAL_TIGHTNESS);
+        const radius = interval * SPIRAL_TIGHTNESS - start_radius + CENTER_VOID_RADIUS;
 
-        const interval = Math.sqrt(scale * wind * i) / Math.log(8) / 17
-        const radius = Math.pow(scale, 2) * interval * 0.35;
-
-        const x = Math.sin(interval * curve + rot_offset) * radius;
-        const y = Math.cos(interval * curve + rot_offset) * radius;
+        const x = Math.sin(interval + OVERALL_ROTATION) * radius;
+        const y = Math.cos(interval + OVERALL_ROTATION) * radius;
         out[i] = { x, y };
     }
     spiral_base_points = out;
@@ -24,7 +29,7 @@ let spiral_visible_points: { x: number, y: number }[] = [];
 export const getVisibleSpiralPoints = (numPoints: number, scale: number, width: number, height: number) => {
     let i = 0;
     const out = [];
-    console.log(scale, width, height);
+    // console.log(scale, width, height);
     generateSpiralPoints(numPoints, scale);
     while (out.length < numPoints && i < spiral_base_points.length) {
         let { x, y } = spiral_base_points[i];

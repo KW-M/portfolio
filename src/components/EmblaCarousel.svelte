@@ -5,12 +5,13 @@
   import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
   import LqipPicture from "./LqipPicture.svelte";
   import LqipVideo from "./LqipVideo.svelte";
-  import { Limbo, teleport, Portal } from "svelte-reparent";
   import { onDestroy } from "svelte";
   import { navIcons } from "$lib/assets";
+  import { disableBrowserBackSwipe } from "$lib/globals";
 
   $$props.class = "";
   const yPadding = 18;
+  export let color = "bg-slate-900";
   export let slides: carouselMediaInfo[] = [];
   //   export let index = 0;
   //   export let enabled = false;
@@ -84,7 +85,7 @@
 <!-- <Limbo bind:component={limboContainer}> -->
 <!-- class:invisible={!mounted} -->
 <section class="embla" class:embla__fullscreen={false} use:emblaCarouselSvelte={{ options, plugins }} on:emblaInit={emblaInit}>
-  <ol class="embla__container" aria-live="polite" role="listbox" tabindex="0">
+  <ol class="embla__container" aria-live="polite" role="listbox" tabindex="0" on:mouseenter={() => disableBrowserBackSwipe.set(true)} on:mouseleave={() => disableBrowserBackSwipe.set(true)}>
     {#each slides as item, i}
       {#if item != null}
         <li class="embla__slide embla__class-names" data-index={i} aria-label={format(i18n.counter, i, length)} aria-roledescription={i18n.slide} role="group">
@@ -98,8 +99,8 @@
       {/if}
     {/each}
   </ol>
-  <button class="btn-icon btn-icon-lg preset-filled-secondary-500 shadow-lg variant-filled-primary embla__btn left-4" on:click={prev} style={`background-image:url('${navIcons.back}')`}></button>
-  <button class="btn-icon btn-icon-lg preset-filled-secondary-500 shadow-lg variant-filled-primary embla__btn right-4" on:click={next} style={`background-image:url('${navIcons.forward}')`}></button>
+  <button class={"btn-icon btn-icon-lg shadow-lg embla__btn left-4 " + color} on:click={prev} style={`background-image:url('${navIcons.back}')`} aria-label="previous photo"></button>
+  <button class={"btn-icon btn-icon-lg shadow-lg embla__btn right-4 " + color} on:click={next} style={`background-image:url('${navIcons.forward}')`} aria-label="next photo"></button>
 </section>
 
 <!-- </Limbo> -->
@@ -167,11 +168,11 @@
     @apply h-full;
   }
 
-  .embla.embla__fullscreen .embla__slide > div {
+  :global(.embla.embla__fullscreen .embla__slide > div) {
     @apply scale-95;
   }
 
-  .expand-button {
+  /* .expand-button {
     background-size: 68px;
-  }
+  } */
 </style>

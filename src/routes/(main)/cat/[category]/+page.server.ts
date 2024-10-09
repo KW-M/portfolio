@@ -6,8 +6,9 @@ function getPreviewContent(post) {
     else return { ...post, content: post.content.substring(0, splitpont), hasMore: true };
 }
 
-export const load = async ({ params }) => {
+export const load = async ({ params, parent }) => {
     const { category } = params;
+    const { categories } = await parent();
     const allPosts = await fetchMarkdownProjects();
     const filteredPosts = category.toLowerCase() === "all" ? allPosts : allPosts.filter((post) => post.meta.categories.includes(category)).sort((a, b) => {
         const dateA = a.meta.dateUpdated || a.meta.date || "1970-01-01";
@@ -19,7 +20,9 @@ export const load = async ({ params }) => {
         post.carousel = pageExports._mediaSlides || [];
         return post;
     }));
+    const categoryIndex = categories.indexOf(category) || 0;
     return {
+        categoryIndex,
         category,
         posts
     };

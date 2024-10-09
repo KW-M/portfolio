@@ -5,7 +5,7 @@
   import { fade } from "svelte/transition";
   let backgroundList: string[] = [];
 
-  const fadeDurration = 10000;
+  const fadeDurration = 20000;
   const step = 1; //Math.floor(Math.random() * 3) + 1;
   let index = Math.floor(Math.random() * backgrounds.length);
 
@@ -24,16 +24,16 @@
   onNavigate(changeBg);
 
   onMount(() => {
-    changeBg();
+    // changeBg();
   });
 </script>
 
-{#if backgroundList.length === 0 || backgroundList[0] === null}
-  <div out:fade={{ delay: fadeDurration, duration: fadeDurration }} style={`background: linear-gradient(to bottom, #fff94f 0%, rgb(0, 208, 255) 100%) fixed`} class="fixed scale-110 top-0 left-0 w-full h-full bg-cover bg-center -z-10"></div>
-{:else}
-  {#each backgroundList as background, i (background)}
-    {#if i === 0}
-      <div in:fade|global={{ duration: fadeDurration }} out:fade|global={{ duration: fadeDurration }} style={`background-image: url("${background}")`} class="fixed scale-100 top-0 left-0 w-full h-full bg-cover bg-center -z-10"></div>
-    {/if}
-  {/each}
-{/if}
+<!-- {#if backgroundList.length === 0 || backgroundList[0] === null} -->
+<div out:fade={{ delay: fadeDurration, duration: fadeDurration }} style={`background: linear-gradient(to bottom, #fff94f 0%, rgb(0, 208, 255) 100%) fixed`} class="fixed scale-110 top-0 left-0 w-full h-full bg-cover bg-center -z-10"></div>
+<!-- {:else} -->
+{#each backgroundList as background, i (background)}
+  {#if i === 0}
+    <div in:fade|global={{ duration: fadeDurration }} out:fade|global={{ duration: fadeDurration }} style={`background-image: url("${background}")`} class="fixed scale-100 top-0 left-0 w-full h-full bg-cover bg-center -z-10 opacity-60"></div>
+  {/if}
+{/each}
+<!-- {/if} -->

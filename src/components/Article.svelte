@@ -19,6 +19,7 @@
   import EmblaCarousel from "./EmblaCarousel.svelte";
   import LqipPicture from "./LqipPicture.svelte";
   import LqipVideo from "./LqipVideo.svelte";
+  import { categoryColorMap } from "$lib/globals";
 
   export let title = "";
   export let currentCategory: string = "";
@@ -31,10 +32,11 @@
   const id = title.replaceAll(" ", "-");
   $$props.class = "";
   let mediaSlideIndex = 0;
+  const color = categoryColorMap[currentCategory] || "bg-surface-800";
   const hasBottomButton = (articleType === ArticleType.summary && moreUrl != "") || articleType === ArticleType.solo;
 </script>
 
-<div {id} class={"relative card border-0 mb-16 overflow-hidden shadow-2xl border-surface-800-200 divide-surface-200-800 block divide-y article-card prose prose-slate prose-blockquote:border-slate-300 prose-purple lg:prose-xl " + $$props.class} class:solo-article-card={articleType === ArticleType.solo}>
+<div {id} class={"relative card border-0 mb-16 overflow-hidden shadow-2xl border-surface-800-200 divide-surface-200-800 block divide-y article-card prose prose-slate prose-blockquote:border-slate-300 prose-purple lg:prose-xl dark:prose-invert" + $$props.class} class:solo-article-card={articleType === ArticleType.solo}>
   {#if mediaSlides.length > 0}
     <header class="bg-surface-800 not-prose bg-opacity-80">
       {#if mediaSlides.length == 1}
@@ -45,13 +47,19 @@
           <LqipVideo video={coverMedia} loadHiRez={true} rounded={false} />
         {/if}
       {:else}
-        <EmblaCarousel slides={mediaSlides} class="" />
+        <EmblaCarousel slides={mediaSlides} class="" {color} />
       {/if}
     </header>
   {/if}
 
   <!-- `space-y-4 ` -->
   <div class="relative !border-secondary-950-50">
+    {#if hasBottomButton}
+      {#if articleType !== ArticleType.solo}
+        <!-- <CornerLinkBtn fixed={false} href={moreUrl} icon_src={navIcons.unfold} corner="br"></CornerLinkBtn> -->
+        <CornerCutoutBtn onclick={() => goto(moreUrl)} iconUrl={navIcons.forward}></CornerCutoutBtn>
+      {/if}
+    {/if}
     <article class="pt-8 pb-4 md:pt-10 md:pb-5 bg-surface-50-950 bg-opacity-90 relative" class:pb-10={hasBottomButton}>
       {#if moreUrl != ""}
         <a href={moreUrl} class="h2 !mb-4 text-center !mt-0 no-underline not-prose">{title}</a>
@@ -61,7 +69,8 @@
       <!-- card border-surface-200-800 rounded-lg p-2 border-2 -->
       <div class="category-chip-list flex justify-center flex-wrap">
         {#each visibleCategories as category (category)}
-          <a href={"/cat/" + category} type="button" class:disabled={category == currentCategory} class="chip text-sm preset-filled-primary-500 my-1 mx-1 no-underline">{category}</a>
+          {@const catColor = "bg-primary-500"}
+          <a href={"/cat/" + category} type="button" class:disabled={category == currentCategory} class={"chip text-sm preset-filled-primary-500 my-1 mx-1 no-underline " + catColor}>{category}</a>
         {/each}
       </div>
       <slot></slot>
@@ -74,12 +83,6 @@
         {/each}
       </div>
     </article>
-    {#if hasBottomButton}
-      {#if articleType !== ArticleType.solo}
-        <!-- <CornerLinkBtn fixed={false} href={moreUrl} icon_src={navIcons.unfold} corner="br"></CornerLinkBtn> -->
-        <CornerCutoutBtn onclick={() => goto(moreUrl)} iconUrl={navIcons.forward}></CornerCutoutBtn>
-      {/if}
-    {/if}
   </div>
 </div>
 

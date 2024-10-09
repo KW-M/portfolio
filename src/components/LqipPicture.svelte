@@ -22,9 +22,12 @@
 </script>
 
 <div class="h-full relative bg-black cursor-zoom-in overflow-clip" class:rounded-xl={rounded} style={`aspect-ratio: ${picture.width}/${picture.height}`}>
-  <figure use:attachZoom={{ zoomed, width: picture.width, height: picture.height }} style={`background-image: url(${picture.lqip}); aspect-ratio: ${picture.width}/${picture.height}; animation-delay: ${-instanceNum * 500}ms;`} class="blurable overflow-clip block h-full max-w-full bg-cover relative animate-pulse" class:rounded-xl={rounded} class:blur={!loaded} class:animate-pulse={!loaded}>
+  <figure use:attachZoom={{ zoomed, width: picture.width, height: picture.height }} style={`aspect-ratio: ${picture.width}/${picture.height};`} class=" overflow-clip block h-full max-w-full relative" class:rounded-xl={rounded}>
     <button
-      class="max-w-full h-full"
+      style={`background-image: url(${picture.lqip});animation-delay: ${-instanceNum * 500}ms;`}
+      class="max-w-full w-full h-full blurable bg-cover"
+      class:blur={!loaded}
+      class:animate-pulse={!loaded}
       aria-label={"zoom image " + (picture.alt || "")}
       on:click={() => {
         if (onClick()) zoomed = !zoomed;

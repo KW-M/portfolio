@@ -1,4 +1,4 @@
-import { Ticker, type Application } from "pixi.js";
+import { type Ticker, type Application } from "pixi.js";
 import nStore from "$lib/libraries/nStore"
 
 // export const backgroundPixiCanvas = nStore<null | Application>(null);
@@ -67,7 +67,6 @@ const updateCanvasScaling = (app: Application, width: number, height: number) =>
 };
 
 const updateCanvasResolution = (app: Application, width: number, height: number) => {
-    console.log(fps)
     const resolutionFactor = (window.devicePixelRatio || 1) * 0.5 * Math.min(Math.max(fps, 0.3), 1.0); //0.2
     app.renderer.resize(width * resolutionFactor, height * resolutionFactor);
     updateCanvasScaling(app, width, height);

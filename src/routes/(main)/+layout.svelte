@@ -18,8 +18,15 @@
   import Backgrounds from "../../components/Backgrounds.svelte";
   import { previewZoomOpen, TRANSITION_DURRATION } from "../../actions/ImageZoom.action";
   import { afterNavigate } from "$app/navigation";
-  import { historyStack } from "$lib/globals";
+  import { disableBrowserBackSwipe, historyStack } from "$lib/globals";
   import { fade } from "svelte/transition";
+  import { browser } from "$app/environment";
+
+  $: if ($disableBrowserBackSwipe) {
+    if (browser) document.body.classList.add("overscroll-x-none");
+  } else {
+    if (browser) document.body.classList.remove("overscroll-x-none");
+  }
 
   afterNavigate(async ({ to, from, delta }) => {
     if (delta && delta < 0) {
@@ -66,7 +73,7 @@
 
 {#if $previewZoomOpen}
   <div on:click={() => previewZoomOpen.set(false)} aria-hidden="true" id="img_zoom_backdrop" class="z-40" transition:fade={{ duration: TRANSITION_DURRATION }}></div>
-  <div class="fixed inset-0 w-full h-full z-50 pointer-events-none" transition:fade={{ duration: TRANSITION_DURRATION }}>
+  <div class=" fixed inset-0 w-full h-full z-50 pointer-events-none" transition:fade={{ duration: TRANSITION_DURRATION }}>
     <button on:click={() => previewZoomOpen.set(false)} class="btn-icon btn-icon-lg cursor-zoom-out pointer-events-auto preset-filled-surface-950-50 absolute top-4 right-4 bg-no-repeat bg-center bg-size-32" aria-label="close image zoom" style={`background-image: url(${navIcons.close}) `}></button>
   </div>
 {/if}
@@ -77,6 +84,9 @@
 <style>
   :global(main) {
     padding: 0 30px;
+  }
+  :global(:root) {
+    --scrollbar-width: 0px;
   }
 
   .skip-link {

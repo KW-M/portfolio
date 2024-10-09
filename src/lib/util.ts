@@ -51,7 +51,7 @@ export function oneShotSubscribe<V>(store: nStoreT<V>, callback: (value: V) => v
 
 // source: https://www.30secondsofcode.org/js/s/throttle-function/
 export const throttle = (fn: (a: IArguments) => void, wait: number) => {
-    let inThrottle: boolean, lastFn: number, lastTime: number;
+    let inThrottle: boolean, lastFn: NodeJS.Timeout, lastTime: number;
     return function (...args: [IArguments]) {
         // @ts-expect-error tricky context capture
         // eslint-disable-next-line @typescript-eslint/no-this-alias

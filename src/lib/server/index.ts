@@ -1,3 +1,4 @@
+import { categoryIconMap } from '$lib/globals';
 import type { Component } from 'svelte';
 import { render } from 'svelte/server';
 
@@ -18,9 +19,11 @@ export const fetchPageExports = async (route: string) => {
 };
 
 export const fetchMarkdownMetadata = async (path: string) => {
+
+    console.log("fetching markdown for", path.toLowerCase());
     const allPostFiles = await fetchMarkdownProjects();
 
-    console.log(allPostFiles.map((k) => k.path.toLowerCase()), path.toLowerCase());
+    console.log(allPostFiles.map((k) => k.path.toLowerCase()));
     const post = allPostFiles.find((post) => post.path.toLowerCase() === path.toLowerCase());
     return {
         meta: post ? post.meta : null,
@@ -51,12 +54,14 @@ export const fetchMarkdownProjects = async () => {
 
 export const fetchProjectCategories = async () => {
     const allPosts = await fetchMarkdownProjects();
-    const sortedCategories = allPosts.map((post) => post.meta.categories).flat(1).sort();
+    const sortedCategories = allPosts.map((post) => post.meta.categories).flat(1);
     const categoryCounts = sortedCategories.reduce((acc, category: string) => {
         acc[category] = (acc[category] || 0) + 1;
         return acc;
     }, {} as { [key: string]: number });
-    const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]).map((c) => c[0]);
-    //     const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]).map((c) => c[0] + " (" + c[1] + ")");
-    return categories;
+    const categories = Object.entries(categoryCounts)
+        .sort((a, b) => b[1] - a[1])  // sort categories by number of posts in category decending
+        .map((c) => c[0])
+        .sort((a, b) => (categoryIconMap[a] ? -1 : 1) - (categoryIconMap[b] ? -1 : 1)); // sort so categories with icons go first
+    return categories
 }

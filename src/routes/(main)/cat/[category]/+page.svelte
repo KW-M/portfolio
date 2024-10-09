@@ -1,16 +1,20 @@
 <script lang="ts">
   import CategoryHeroText from "../../../../components/CategoryHeroText.svelte";
-  import { categoryIcons, navIcons } from "$lib/assets";
+  import { navIcons } from "$lib/assets";
   import MainContainer from "../../../../components/MainContainer.svelte";
   import Article, { ArticleType } from "../../../../components/Article.svelte";
   import BottomBackButton from "../../../../components/BottomBackButton.svelte";
+  import { bgColors, categoryColorMap, categoryIconMap } from "$lib/globals";
   export let data;
   $: category = data.category || "Projects";
   $: posts = data.posts || [];
+  $: icon = categoryIconMap[category];
+  $: index = posts.length;
+  $: color = categoryColorMap[category] || bgColors[(data.categoryIndex || 0) % bgColors.length];
 </script>
 
 <MainContainer>
-  <CategoryHeroText icon={categoryIcons.electronics} text={category} />
+  <CategoryHeroText {icon} {color} text={category} />
   {#each posts as post (post.path)}
     {@const mediaSlides = post.carousel || []}
     <Article coverImage={post.meta.coverImage} title={post.meta.title} links={post.meta.links} categories={post.meta.categories} currentCategory={category} moreUrl={post.hasMore ? post.path : ""} {mediaSlides} articleType={ArticleType.summary}>
@@ -21,5 +25,5 @@
       {/if} -->
     </Article>
   {/each}
-  <BottomBackButton />
+  <BottomBackButton {color} />
 </MainContainer>

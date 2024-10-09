@@ -4,12 +4,11 @@
   import MainContainer from "../../../components/MainContainer.svelte";
   export let data;
 
-  const currentRoute = data.currentRoute;
   const mediaSlides = data.mediaSlides;
   const categories = data.meta && data.meta.categories ? (data.meta.categories as string[]) : [];
   const links = data.meta && data.meta.links ? (data.meta.links as { [key: string]: string }) : {};
   const title = data.meta && data.meta.title ? (data.meta.title as string) : "";
-  console.log(data);
+  // console.log(data);
 </script>
 
 <MainContainer>

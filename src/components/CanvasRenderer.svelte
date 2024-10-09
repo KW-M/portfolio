@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  import { Application, Sprite, Texture, Ticker } from "pixi.js";
+  import { Application, Sprite, Texture, type Ticker } from "pixi.js";
   import { browser } from "$app/environment";
   import { CANVAS_HTML_HEIGHT, CANVAS_HTML_WIDTH, CANVAS_SCALED_HEIGHT, CANVAS_SCALED_WIDTH, cleanupAccesibiltyPrefs, CURSOR_X, CURSOR_Y, htmlCoordsToCanvasCoords, initDisplayVariables, PREFERS_REDUCED_MOTION, setAccesibiltyPrefs, updateDisplayVariables } from "$lib/canvasScale";
   import { addClouds, destroyClouds, updateClouds } from "$lib/clouds";

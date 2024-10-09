@@ -1,6 +1,13 @@
 import { Assets } from 'pixi.js';
 import { browser } from '$app/environment';
 
+export { default as IconCaretBack } from '~icons/ph/caret-left-duotone';
+export { default as IconCaretForward } from '~icons/ph/caret-right-duotone';
+export { default as IconArrowRight } from '~icons/ph/arrow-right-duotone';
+export { default as IconArrowLeft } from '~icons/ph/arrow-left-duotone';
+
+
+
 import favorites from "../images/icons/categoryIcons/favorite_24dp_000000.svg?url";
 import robotics from "../images/icons/categoryIcons/precision_manufacturing_24dp_000000.svg?url";
 import webDev from "../images/icons/categoryIcons/devices_24dp_000000.svg?url";
@@ -10,6 +17,16 @@ import experiments from "../images/icons/categoryIcons/experiments_24dp_000000.s
 import science from "../images/icons/categoryIcons/biotech_24dp_000000.svg?url";
 import environment from "../images/icons/categoryIcons/energy_savings_leaf_24dp_000000.svg?url";
 export const categoryIcons = { favorites, robotics, electronics, graphics, webDev, experiments, science, environment };
+
+export { default as IconHighlights } from '~icons/ph/sparkle-duotone';
+export { default as IconRobotics } from '~icons/icon-park-twotone/robot-two';
+export { default as IconWebDev } from '~icons/ph/devices-duotone';
+export { default as IconElectronics } from '~icons/ph/lightning-duotone';
+export { default as IconGraphics } from '~icons/ph/cube-focus-duotone';
+export { default as IconExperiments } from '~icons/ph/flask-duotone';
+export { default as IconScience } from '~icons/ph/atom-duotone'; // '~icons/ph/microscope-duotone';
+export { default as IconEnvironment } from '~icons/ph/leaf-duotone';
+
 
 
 import home from "../images/icons/navIcons/arrow_tl_24dp.svg?url";

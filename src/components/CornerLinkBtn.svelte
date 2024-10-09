@@ -10,7 +10,7 @@
   // export let useActionData: Object = {};
 </script>
 
-<a {href} use:useAction={null} class={"w-16 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto"} class:fixed class:absolute={!fixed} class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`}> </a>
+<a {href} use:useAction={null} class={"w-16 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto"} class:fixed class:absolute={!fixed} class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`} aria-label="go to full article"> </a>
 
 <style>
   .corner-btn {

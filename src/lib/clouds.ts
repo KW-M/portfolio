@@ -1,6 +1,6 @@
-import { Sprite, Application, Texture } from "pixi.js";
+import { Sprite, Application } from "pixi.js";
 import { CLOUD_FADE_RATE, CLOUD_OPACITY, CLOUD_SPEED, NUM_CLOUDS, PERSPECTIVE, ZRANGE_CLOUD, ZRANGE_CLOUD_MAX, ZRANGE_CLOUD_MIN } from "./consts";
-import { type position3d, bboxOverlaps, getSpriteBbox, worldspaceToScreenspace } from "./3dCalc";
+import { type position3d, getSpriteBbox, worldspaceToScreenspace } from "./3dCalc";
 import { baseClouds } from "./assets";
 import { addSpriteAsync, greyscaleTintSprite, placeSpriteScaled } from "./pixiUtils";
 import { pickPsudoRandom } from "./util";
