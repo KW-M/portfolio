@@ -127,6 +127,7 @@
     position: fixed;
     border: solid black 140px;
     border-radius: 160px;
+    border-bottom-right-radius: 240px;
     bottom: -120px;
     right: calc(-120px - var(--scrollbar-width));
     left: -120px;
