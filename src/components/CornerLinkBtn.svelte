@@ -2,7 +2,7 @@
   import type { Action } from "svelte/action";
 
   export let href = "#";
-  export let icon_src = "";
+  export let icon;
   // export const aria = "";
   export let corner = "tl";
   export let fixed = true;
@@ -10,7 +10,9 @@
   // export let useActionData: Object = {};
 </script>
 
-<a {href} use:useAction={null} class={"w-16 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto"} class:fixed class:absolute={!fixed} class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`} aria-label="go to full article"> </a>
+<a {href} use:useAction={null} class={"w-16 h-16 m-0 corner-btn pointer-events-auto opacity-80"} class:fixed class:absolute={!fixed} class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} aria-label="go to full article">
+  <svelte:component this={icon} class="size-10 m-2 rotate-45" />
+</a>
 
 <style>
   .corner-btn {

@@ -2,7 +2,7 @@
   import "../../app.css";
   import CornerLinkBtn from "../../components/CornerLinkBtn.svelte";
 
-  import { navIcons } from "$lib/assets";
+  import { IconCaretBack, IconExpandIn, navIcons } from "$lib/assets";
   // import experimentsIcon from "../../images/icons/categoryIcons/experiments_24dp_000000.svg?url";
   import ghIcon from "../../images/icons/github_circle_white.svg?url";
   import meIcon from "../../images/profile-photo2.png?url";
@@ -61,10 +61,10 @@
 <CanvasRenderer />
 
 <nav class="fixed border-nav pointer-events-none z-40">
-  <CornerLinkBtn fixed={true} href="/" useAction={backHomeBtn} icon_src={navIcons.home} corner="tl"></CornerLinkBtn>
-  <!-- <CornerLinkBtn fixed={true} href="https://github.com/kw-m" icon_src={ghIcon} corner="tr"></CornerLinkBtn>
+  <CornerLinkBtn fixed={true} href="/" useAction={backHomeBtn} icon={IconCaretBack} corner="tl"></CornerLinkBtn>
+  <!-- <CornerLinkBtn fixed={true} href="https://github.com/kw-m" icon_src={ghIcon} corner="tr"></CornerLinkBtn> -->
   <CornerBtn corner="br" icon_src={!$PREFERS_REDUCED_MOTION ? cloudOnIcon : cloudOffIcon} onClick={() => PREFERS_REDUCED_MOTION.set(!PREFERS_REDUCED_MOTION.get())} />
-  <CornerLinkBtn fixed={true} href="/about" icon_src={meIcon} corner="bl"></CornerLinkBtn> -->
+  <!-- <CornerLinkBtn fixed={true} href="/about" icon_src={meIcon} corner="bl"></CornerLinkBtn> -->
 </nav>
 
 {#key SvelteURL}
@@ -74,7 +74,9 @@
 {#if $previewZoomOpen}
   <div on:click={() => previewZoomOpen.set(false)} aria-hidden="true" id="img_zoom_backdrop" class="z-40" transition:fade={{ duration: TRANSITION_DURRATION }}></div>
   <div class=" fixed inset-0 w-full h-full z-50 pointer-events-none" transition:fade={{ duration: TRANSITION_DURRATION }}>
-    <button on:click={() => previewZoomOpen.set(false)} class="btn-icon btn-icon-lg cursor-zoom-out pointer-events-auto preset-filled-surface-950-50 absolute top-4 right-4 bg-no-repeat bg-center bg-size-32" aria-label="close image zoom" style={`background-image: url(${navIcons.close}) `}></button>
+    <button on:click={() => previewZoomOpen.set(false)} class="btn-icon btn-icon-lg cursor-zoom-out pointer-events-auto preset-filled-surface-950-50 absolute top-4 right-4 bg-size-32" aria-label="close image zoom">
+      <IconExpandIn class="size-7 pointer-events-none" />
+    </button>
   </div>
 {/if}
 

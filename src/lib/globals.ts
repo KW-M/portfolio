@@ -34,6 +34,6 @@ export const categoryColorMap: { [key: string]: string } = {
     Svelte: "bg-orange-400",
 };
 export const bgColors = ["bg-yellow-400", "bg-orange-400", "bg-blue-400", "bg-purple-400", "bg-teal-400", "bg-green-400", "bg-indigo-400", "bg-red-400", "bg-pink-400"];
-// const colorsDark = ["bg-yellow-600", "bg-orange-600", "bg-blue-600", "bg-purple-600", "bg-teal-600", "bg-green-600", "bg-indigo-600", "bg-red-600", "bg-pink-600"];
+// const colorsDark = ["dark:bg-yellow-500", "dark:bg-orange-500", "dark:bg-blue-500", "dark:bg-purple-500", "dark:bg-teal-500", "dark:bg-green-500", "dark:bg-indigo-500", "dark:bg-red-500", "dark:bg-pink-500"];
 // const colorsText = ["text-yellow-400", "text-orange-400", "text-blue-400", "text-purple-400", "text-teal-400", "text-green-400", "text-indigo-400", "text-red-400", "text-pink-400"];
-// const colorsTextDark = ["text-yellow-600", "text-orange-600", "text-blue-600", "text-purple-600", "text-teal-600", "text-green-600", "text-indigo-600", "text-red-600", "text-pink-600"];
+// const colorsTextDark = ["dark:text-yellow-500", "dark:text-orange-500", "dark:text-blue-500", "dark:text-purple-500", "dark:text-teal-500", "dark:text-green-500", "dark:text-indigo-500", "dark:text-red-500", "dark:text-pink-500"];

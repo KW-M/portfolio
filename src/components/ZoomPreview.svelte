@@ -67,7 +67,7 @@
 </div>
 
 <!-- <div class="fixed inset-0 w-full h-full z-50 pointer-events-none" transition:fade={{ duration: TRANSITION_DURRATION }}>
-  <button on:click={() => previewZoomOpen.set(false)} class="btn-icon btn-icon-lg cursor-zoom-out pointer-events-auto preset-filled-surface-950-50 absolute top-4 right-4 bg-no-repeat bg-center bg-size-32" aria-label="close image zoom" style={`background-image: url(${navIcons.close}) `}></button>
+  <button on:click={() => previewZoomOpen.set(false)} class="btn-icon btn-icon-lg cursor-zoom-out pointer-events-auto preset-filled-surface-950-50 absolute top-4 right-4 bg-no-repeat bg-center bg-size-32" aria-label="close image zoom"></button>
 </div> -->
 
 <style>

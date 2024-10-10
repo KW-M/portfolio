@@ -1,10 +1,15 @@
 import { Assets } from 'pixi.js';
 import { browser } from '$app/environment';
 
-export { default as IconCaretBack } from '~icons/ph/caret-left-duotone';
-export { default as IconCaretForward } from '~icons/ph/caret-right-duotone';
-export { default as IconArrowRight } from '~icons/ph/arrow-right-duotone';
-export { default as IconArrowLeft } from '~icons/ph/arrow-left-duotone';
+export { default as IconCaretBack } from '~icons/ph/caret-left-bold';
+export { default as IconCaretForward } from '~icons/ph/caret-right-bold';
+export { default as IconArrowRight } from '~icons/ph/arrow-right-bold';
+export { default as IconArrowLeft } from '~icons/ph/arrow-left-bold';
+export { default as IconArrowDown } from '~icons/ph/arrow-down-bold';
+export { default as IconArrowUp } from '~icons/ph/arrow-up-bold';
+export { default as IconExpandOut } from '~icons/ph/arrows-out-simple-bold';
+export { default as IconExpandIn } from '~icons/ph/arrows-in-simple-bold';
+export { default as IconLinkOut } from '~icons/ph/arrow-square-out-bold';
 
 
 

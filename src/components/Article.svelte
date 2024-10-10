@@ -10,7 +10,7 @@
   import { goto } from "$app/navigation";
   import { goBack } from "../actions/backButton";
 
-  import { navIcons } from "$lib/assets";
+  import { IconArrowRight, IconLinkOut } from "$lib/assets";
   import { backBtn } from "../actions/backButton";
 
   import CornerBtn from "./CornerBtn.svelte";
@@ -32,7 +32,7 @@
   const id = title.replaceAll(" ", "-");
   $$props.class = "";
   let mediaSlideIndex = 0;
-  const color = categoryColorMap[currentCategory] || "bg-surface-800";
+  export let color = "bg-primary-400 dark:bg-primary-500";
   const hasBottomButton = (articleType === ArticleType.summary && moreUrl != "") || articleType === ArticleType.solo;
 </script>
 
@@ -54,12 +54,6 @@
 
   <!-- `space-y-4 ` -->
   <div class="relative !border-secondary-950-50">
-    {#if hasBottomButton}
-      {#if articleType !== ArticleType.solo}
-        <!-- <CornerLinkBtn fixed={false} href={moreUrl} icon_src={navIcons.unfold} corner="br"></CornerLinkBtn> -->
-        <CornerCutoutBtn onclick={() => goto(moreUrl)} iconUrl={navIcons.forward}></CornerCutoutBtn>
-      {/if}
-    {/if}
     <article class="pt-8 pb-4 md:pt-10 md:pb-5 bg-surface-50-950 bg-opacity-90 relative" class:pb-10={hasBottomButton}>
       {#if moreUrl != ""}
         <a href={moreUrl} class="h2 !mb-4 text-center !mt-0 no-underline not-prose">{title}</a>
@@ -76,12 +70,18 @@
       <slot></slot>
       <div class="flex pb-4 pr-5 justify-start align-middle">
         {#each Object.entries(links) as [title, link]}
-          <a href={link} class="btn mr-2 preset-outlined-tertiary-500 flex-1 flex max-w-60 overflow-hidden justify-start">
+          <a href={link} class="btn mr-2 gap-3 preset-outlined-tertiary-500 flex overflow-visible justify-start">
             <span class="flex-1 flex-shrink overflow-hidden">{title}</span>
-            <span class="flex-0">&rarr;</span>
+            <!-- <span class="flex-0">&rarr;</span> -->
+            <svelte:component this={IconLinkOut} class="flex-0"></svelte:component>
           </a>
         {/each}
       </div>
+      {#if hasBottomButton}
+        {#if articleType !== ArticleType.solo}
+          <CornerCutoutBtn onclick={() => goto(moreUrl)} icon={IconArrowRight}></CornerCutoutBtn>
+        {/if}
+      {/if}
     </article>
   </div>
 </div>

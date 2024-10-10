@@ -3,6 +3,7 @@
   import { attachZoom, previewZoomOpen } from "../actions/ImageZoom.action";
   import { staticIndex } from "./LqipPicture.svelte";
   import { ProgressRing } from "@skeletonlabs/skeleton-svelte";
+  import { IconExpandOut } from "$lib/assets";
   export let video: { type: "video"; title?: string; formats: { src: string; type: string }[]; src: string; width: number; height: number; lqip: string };
   export let loadHiRez: boolean = true;
   export let onClick = () => true;
@@ -21,6 +22,7 @@
   let loaded: boolean = true;
   let playing: boolean = false;
   let hovered: boolean = false;
+  let focused: boolean = false;
   let mounted: boolean = false;
   let videoElement: HTMLVideoElement;
 
@@ -98,13 +100,26 @@
     {/if}
     <!-- </button> -->
     {#if video.title && video.title != ""}
-      <figcaption class="bg-surface-950/80 text-surface-50-950 py-2 px-3 absolute bottom-0 w-full transition-opacity whitespace-nowrap" class:opacity-0={!hovered} {onclickcapture}>
+      <figcaption class="backdrop-blur-md bg-surface-50/60 text-surface-contrast-50 dark:bg-surface-950/60 dark:text-surface-contrast-950 py-2 px-3 absolute bottom-0 w-full transition-transform whitespace-nowrap translate-y-full" class:translate-y-0={hovered || focused} {onclickcapture}>
         <!-- <button class="inline-block size-12 overflow-hidden">▶</button> -->
         <span class="inline-block" class:text-base={zoomed}>{video.title}</span>
       </figcaption>
     {/if}
+    {#if loaded && !zoomed}
+      <button
+        onclick={() => {
+          if (onClick()) zoomed = !zoomed;
+        }}
+        tabindex="-1"
+        aria-hidden="true"
+        class="absolute top-4 right-4 btn opacity-0 btn-icon-lg bg-surface-50/60 backdrop-blur-md text-surface-contrast-50 dark:bg-surface-950/60 dark:text-surface-contrast-950 z-10"
+        class:opacity-100={hovered || focused}
+      >
+        <IconExpandOut class="size-7 mx-auto" />
+      </button>
+    {/if}
     {#if !loaded}
-      <ProgressRing value={undefined} size="size-14" meterStroke="stroke-tertiary-600-400" trackStroke="stroke-tertiary-50-950" classes="!absolute left-1/2 top-1/2  -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+      <ProgressRing value={null} size="size-14" meterStroke="stroke-tertiary-600-400" trackStroke="stroke-tertiary-50-950" classes="!absolute left-1/2 top-1/2  -translate-x-1/2 -translate-y-1/2 opacity-30 pointer-events-none" />
     {/if}
   </figure>
 </div>
@@ -133,5 +148,15 @@
 
   .blur {
     filter: blur(4px);
+  }
+
+  figure:hover figcaption,
+  figure:focus figcaption {
+    --tw-translate-y: 0;
+  }
+
+  figure:hover .zoom-icon-btn,
+  figure:focus .zoom-icon-btn {
+    opacity: 1;
   }
 </style>

@@ -20,7 +20,7 @@ export const load = async ({ params, parent }) => {
         post.carousel = pageExports._mediaSlides || [];
         return post;
     }));
-    const categoryIndex = categories.indexOf(category) || 0;
+    const categoryIndex = Math.max(categories.indexOf(category), 0);
     return {
         categoryIndex,
         category,

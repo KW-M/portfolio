@@ -6,7 +6,7 @@
   import LqipPicture from "./LqipPicture.svelte";
   import LqipVideo from "./LqipVideo.svelte";
   import { onDestroy } from "svelte";
-  import { navIcons } from "$lib/assets";
+  import { IconCaretBack, IconCaretForward } from "$lib/assets";
   import { disableBrowserBackSwipe } from "$lib/globals";
 
   $$props.class = "";
@@ -94,13 +94,16 @@
           {:else if item.type === "video"}
             <LqipVideo video={item} class={"w-auto h-full embla__slide__img"} loadHiRez={mounted} isCentered={centerSlide === i} onClick={() => onSlideClick(i)} />
           {/if}
-          <!-- <button on:click={() => onSlideClick(i)} aria-current={true ? "true" : undefined} class="hidden absolute inset-0 transition-opacity duration-300 delay-700 opacity-0 hover:opacity-100 bg-slate-900/70 text-white text-5xl expand-button bg-center bg-no-repeat" style={`background-image:url('${navIcons.fullscreen}')`}></button> -->
         </li>
       {/if}
     {/each}
   </ol>
-  <button class={"btn-icon btn-icon-lg shadow-lg embla__btn left-4 " + color} on:click={prev} style={`background-image:url('${navIcons.back}')`} aria-label="previous photo"></button>
-  <button class={"btn-icon btn-icon-lg shadow-lg embla__btn right-4 " + color} on:click={next} style={`background-image:url('${navIcons.forward}')`} aria-label="next photo"></button>
+  <button class={"btn-icon btn-icon-lg shadow-lg embla__btn left-4 " + color} on:click={prev} aria-label="previous photo">
+    <IconCaretBack class="size-6 pointer-events-none"></IconCaretBack>
+  </button>
+  <button class={"btn-icon btn-icon-lg shadow-lg embla__btn right-4 " + color} on:click={next} aria-label="next photo">
+    <IconCaretForward class="size-6 pointer-events-none"></IconCaretForward>
+  </button>
 </section>
 
 <!-- </Limbo> -->
@@ -171,8 +174,4 @@
   :global(.embla.embla__fullscreen .embla__slide > div) {
     @apply scale-95;
   }
-
-  /* .expand-button {
-    background-size: 68px;
-  } */
 </style>
