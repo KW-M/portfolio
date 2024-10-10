@@ -52,7 +52,7 @@
 </script>
 
 <svelte:head>
-  <title>{$page.data.title}</title>
+  <title>{$page.data.title || "Kyle W-M"}</title>
 </svelte:head>
 
 <a class="skip-link z-50" href="#main">Skip to content</a>

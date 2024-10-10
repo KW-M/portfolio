@@ -1,0 +1,19 @@
+---
+title: "EcoHus Sustainable Home"
+links:
+  On Instagram: "https://www.instagram.com/ucsc_ocsd/"
+  In the News: "https://news.ucsc.edu/2023/11/sustainability-decathlon.html"
+  Website: "http://ecohushomes.com/"
+categories:
+  - "Eco"
+---
+
+EcoHus is a full-built home designed and constructed by a small team of UCSC students which competed in the Orange County Sustanability Decathalon. EcoHus won best in category for innovation, energy efficiency, and water use. EcoHus integrates a host of cutting edge techniques into a self contained off-grid system that minimises environmental impacts over the life of the building while saving costs durring construction and use.
+
+<hr/>
+
+The EcoHus is prefabricated in two shipping containers within a canopy overstructure that is adaptable for shading, ventalation, or insulation depending on the climate. This structure supports various sizes of solar arrays including our in-house developed hybrid pink solar pannels that aid plant growth in the rooftop garden while simultaneously generating power.
+
+Water from rain, sinks and showers within the ecohus is recycled through a multistage filtration system that incorporates an engeneered native plant wetland that removes heavy metals and organic contaminants as well as uv sterilization, carbon filtration and storage all monitored by a suite of water quality sensors that can be viewed wirelessly from the many smart devices within the home.
+
+All lighting and many appliances in the house are controlled intellgently as part of a smart home to adapt to enery production of the house, weather and available battery storage.

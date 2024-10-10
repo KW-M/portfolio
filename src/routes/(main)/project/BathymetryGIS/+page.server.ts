@@ -6,12 +6,12 @@ import Img3 from "./carousel/3.png?lqip";
 export const _mediaSlides = [
     {
         type: "img",
-        alt: "Visualizing coastal bathymetry generated from echosounder data",
+        alt: "Visualizing coastal bathymetry from echosounder data",
         ...Img1
     },
     {
         type: "img",
-        alt: "Depth map of a local lake we generated for the City of Monterey",
+        alt: "Depth map of a local lake generated for the City of Monterey",
         ...Img2
     },
     {

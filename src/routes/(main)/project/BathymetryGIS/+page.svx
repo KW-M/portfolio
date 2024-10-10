@@ -1,8 +1,14 @@
 ---
-title: "Automating Seafloor Mapping with QGIS"
+title: "Automating Low-cost Water Body Mapping with QGIS"
 categories:
   - "GIS"
   - "Python"
+links:
+  Coastal Bathymetry Viz: https://d7j7nx.csb.app/
 ---
 
-Utilizing QGIS and Python to automate the process of creating baseline sea floor bathymetric maps from low-cost fishfinder sonar data. Used these tools to introduce GIS concepts in local highschools by allowing to students to make there own maps. We are also using QGIS in the classroom to demonstrate the effects of resolution and sampling bias using existing bathymetric datasets.
+Developed QGIS and Python pipelines to automate the creation of baseline marine & freshwater bathymetric maps from low-cost fishfinder data. We brought these tools to local highschools through the SSROV Summer Camp to introduce students to GIS concepts and allow students to make their own maps. We are also using QGIS in the classroom to demonstrate the effects of resolution and sampling bias using existing bathymetric datasets.
+
+#### My Role
+
+QGIS pipeline development, Near-shore data collection
