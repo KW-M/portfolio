@@ -1,11 +1,15 @@
 ---
 title: "EcoHus Sustainable Home"
+date: "2023-10-05"
+updated: "2023-10-05"
 links:
   On Instagram: "https://www.instagram.com/ucsc_ocsd/"
   In the News: "https://news.ucsc.edu/2023/11/sustainability-decathlon.html"
   Website: "http://ecohushomes.com/"
-categories:
-  - "Eco"
+categories: ["Eco", "Highlights"]
+tags:
+  - "Data Science"
+  - "System Integration"
 ---
 
 EcoHus is a full-built home designed and constructed by a small team of UCSC students which competed in the Orange County Sustanability Decathalon. EcoHus won best in category for innovation, energy efficiency, and water use. EcoHus integrates a host of cutting edge techniques into a self contained off-grid system that minimises environmental impacts over the life of the building while saving costs durring construction and use.

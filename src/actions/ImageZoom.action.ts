@@ -7,7 +7,7 @@ interface ZoomOptions {
   height: number;
 }
 
-export const TRANSITION_DURRATION = 400;
+export const TRANSITION_DURRATION = 300;
 const SCROLL_THRESHOLD = 60;
 const MARGIN = 5;
 

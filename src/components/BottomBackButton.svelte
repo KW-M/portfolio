@@ -3,7 +3,7 @@
   import { IconCaretBack } from "$lib/assets";
   import { page } from "$app/stores";
   import { base } from "$app/paths";
-  export let color = "bg-surface-800";
+  export let color = "bg-secondary-300";
   $: currentPath = $page.route.id;
   const home = base;
 </script>

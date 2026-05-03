@@ -23,7 +23,7 @@
   $: if (!$previewZoomOpen) zoomed = false;
 </script>
 
-<div class="h-full relative bg-black cursor-zoom-in overflow-clip" class:rounded-xl={rounded} style={`aspect-ratio: ${picture.width}/${picture.height}`}>
+<div class="h-full relative bg-transparent cursor-zoom-in overflow-clip" class:rounded-xl={rounded} style={`aspect-ratio: ${picture.width}/${picture.height}`}>
   <figure use:attachZoom={{ zoomed, width: picture.width, height: picture.height }} style={`aspect-ratio: ${picture.width}/${picture.height};`} class=" overflow-hidden block h-full max-w-full relative" class:rounded-xl={rounded}>
     <button
       style={`background-image: url(${picture.lqip});animation-delay: ${-instanceNum * 500}ms;`}

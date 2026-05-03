@@ -2,9 +2,10 @@
 title: "WikiTrust 2.0"
 date: "2023-01-05"
 updated: "2023-01-05"
-categories:
-  - "Highlights"
-  - "Web Dev"
+links:
+  More Info: "https://sites.google.com/view/wikitrust2"
+categories: ["Web"]
+tags:
   - "Mobile"
   - "Google Cloud"
   - "Typescript"

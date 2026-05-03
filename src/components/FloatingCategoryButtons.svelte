@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import { getVisibleSpiralPoints } from "../lib/spiralGen";
-  import { categoryIcons, IconEnvironment, IconExperiments, IconGraphics, IconHighlights, IconRobotics, IconScience, IconWebDev } from "../lib/assets";
+  import { categoryIcons, IconEnvironment, IconExperiments, IconGraphics, IconHighlights, IconSystemIntegration, IconScience, IconWebDev } from "../lib/assets";
   import { fade } from "svelte/transition";
   import { PAGE_FADE_DELAY, PAGE_FADE_DURATION } from "$lib/consts";
   import { browser } from "$app/environment";
@@ -10,8 +10,8 @@
 
   // const categoryIconMap: { [key: string]: string } = {
   //   Highlights: categoryIcons.favorites,
-  //   Robotics: categoryIcons.robotics,
-  //   "Web Dev": categoryIcons.webDev,
+  //   SystemIntegration: categoryIcons.SystemIntegration,
+  //   "Web": categoryIcons.webDev,
   //   "Game Dev": categoryIcons.graphics,
   //   "Data Science": categoryIcons.science,
   //   Experiments: categoryIcons.experiments,

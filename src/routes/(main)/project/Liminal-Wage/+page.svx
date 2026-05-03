@@ -1,10 +1,17 @@
 ---
 title: "Liminal Wage"
-categories:
-  - "Game Dev"
+date: "2023-4-05"
+updated: "2023-4-05"
+links:
+   Code: https://github.com/ColinSORourke/LiminalWage
+categories: ["Game Dev","Highlights"]
+tags:
   - "Unity"
-  - "Performance"
   - "Graphics"
+  - "C#"
 ---
 
-Non-Euclidian pizza delivery game. Did graphics programming to get the infinite wraparound working (made in Unity).
+A short form game and tech demo that puts you in the shoes of a food delivery worker. Set in a future city in a non-euclidian universe. You must deliver pizza to every customer in record time to keep your moral (and income) afloat. Completed in a 1 month sprint with a team of six as part of a university capstone course. We were challenged to develop a game that incorporates concepts infinity, and as such this is an infinite labrinth of a city with infinite hunger for pizza.
+
+## My role
+Developed graphics & logic programming to get the non-euclidian city layout to feel and infinite horizions working in the Unity Game engine.

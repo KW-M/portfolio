@@ -1,6 +1,6 @@
 
 import { base } from "$app/paths";
-import { IconEnvironment, IconExperiments, IconGraphics, IconHighlights, IconRobotics, IconScience, IconWebDev } from "./assets";
+import { IconEnvironment, IconExperiments, IconGraphics, IconHighlights, IconSystemIntegration, IconScience, IconWebDev } from "./assets";
 import nStore from "./libraries/nStore";
 
 export const homePath = base + "/";
@@ -10,11 +10,13 @@ export const historyStack = nStore<string[]>([]);
 export const disableBrowserBackSwipe = nStore(false);
 
 
+export const navOpen = nStore(false);
+
 //
 export const categoryIconMap: { [key: string]: typeof IconHighlights } = {
     Highlights: IconHighlights,
-    Robotics: IconRobotics,
-    "Web Dev": IconWebDev,
+    "System Integration": IconSystemIntegration,
+    "Web": IconWebDev,
     "Game Dev": IconGraphics,
     "Data Science": IconScience,
     Experiments: IconExperiments,
@@ -23,8 +25,8 @@ export const categoryIconMap: { [key: string]: typeof IconHighlights } = {
 
 export const categoryColorMap: { [key: string]: string } = {
     Highlights: "bg-yellow-400",
-    Robotics: "bg-teal-400",
-    "Web Dev": "bg-orange-400",
+    "System Integration": "bg-teal-400",
+    "Web": "bg-orange-400",
     "Game Dev": "bg-pink-400",
     "Data Science": "bg-blue-400",
     Experiments: "bg-purple-400",

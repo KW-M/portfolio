@@ -4,12 +4,11 @@ date: "2023-01-05"
 updated: "2023-01-05"
 links:
   Live Infographic: https://geothermal-future.web.app
-categories:
-  - "Highlights"
-  - "Web Dev"
+categories: ["Eco", "Highlights"]
+tags:
+  - "Web"
   - "Typescript"
   - "Sci Viz"
-  - "Eco"
 ---
 
 For the 2020 US Department of Energy Geothermal Design Challenge, our team wanted to tackle the lack of public awareness around the potential of next-gen geothermal energy and technologies that are making it possible.
@@ -24,7 +23,7 @@ We decided to make an interactive infographic website from scratch. The whole pr
 
 Our site got 2nd place in the challenge & we hope it is reaching a broader audience thanks to the @geothermalfact X bot that our team wrote which tweats geothermal fun facts and directs people to our site.
 
-Visit: [geothermal-future.web.app](https://geothermal-future.web.app) — I hope you enjoy it and learn something too!
+I hope you enjoy it and learn something too!
 
 #### My Role:
 

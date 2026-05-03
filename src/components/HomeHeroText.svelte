@@ -1,8 +1,8 @@
 <script>
   import { PAGE_FADE_DELAY, PAGE_FADE_DURATION } from "$lib/consts";
   import { fade } from "svelte/transition";
-  export let headerText = "Greetings Internet Traveler!";
-  export let subText = "Choose a label to see <br/> what I've been up to.";
+  export let headerText = "Greetings Netizen!";
+  export let subText = "Choose a category to see <br/> what I've been up to.";
 </script>
 
 <div class="absolute size-80 bg-white/40 -mt-4 rounded-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-150 blur-3xl" in:fade|global={{ duration: PAGE_FADE_DURATION, delay: PAGE_FADE_DELAY }} out:fade|global={{ duration: PAGE_FADE_DURATION }}></div>

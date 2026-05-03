@@ -28,7 +28,7 @@
 
   const onmouseenter = () => (hovered = true);
   const onmouseleave = () => (hovered = false);
-  const onclickcapture = (e) => {
+  const onclickcapture = (e: Event) => {
     if (videoElement && videoElement.paused) {
       videoElement.play();
       return onClick();
@@ -46,7 +46,7 @@
   $: if (!$previewZoomOpen) zoomed = false;
 </script>
 
-<div class="h-full relative bg-black cursor-zoom-in rounded-xl overflow-hidden" style={`aspect-ratio: ${video.width}/${video.height}`}>
+<div class="h-full relative bg-transparent cursor-zoom-in rounded-xl overflow-hidden" style={`aspect-ratio: ${video.width}/${video.height}`}>
   <figure use:attachZoom={{ zoomed, width: video.width, height: video.height }} style={`background-image: url(${video.lqip}); aspect-ratio: ${video.width}/${video.height}; animation-delay: ${-instanceNum * 500}ms;`} class="blurable rounded-xl overflow-hidden block h-full bg-cover relative animate-pulse" class:blur={!loaded} class:animate-pulse={!loaded} {onmouseenter} {onmouseleave}>
     <!-- <button
       class="w-full h-full"

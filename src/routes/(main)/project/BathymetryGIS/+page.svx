@@ -1,8 +1,10 @@
 ---
 title: "Automating Low-cost Water Body Mapping with QGIS"
-categories:
+categories: ["Data Science"]
+tags:
   - "GIS"
   - "Python"
+  - "Eco"
 links:
   Coastal Bathymetry Viz: https://d7j7nx.csb.app/
 ---

@@ -6,7 +6,9 @@ type svelteRenderedComponent = Component
 
 interface projectMetadata {
     title: string;
-    categories: string[];
+    highlight?: boolean,
+    categories?: string[];
+    tags?: string[]
     links?: { [key: string]: string };
     date?: string;
     dateUpdated?: string;
@@ -19,9 +21,8 @@ export const fetchPageExports = async (route: string) => {
 };
 
 export const fetchMarkdownMetadata = async (path: string) => {
-
     console.log("fetching markdown for", path.toLowerCase());
-    const allPostFiles = await fetchMarkdownProjects();
+    const allPostFiles = await fetchProjects();
 
     console.log(allPostFiles.map((k) => k.path.toLowerCase()));
     const post = allPostFiles.find((post) => post.path.toLowerCase() === path.toLowerCase());
@@ -30,7 +31,7 @@ export const fetchMarkdownMetadata = async (path: string) => {
     };
 };
 
-export const fetchMarkdownProjects = async () => {
+export const fetchProjects = async () => {
     const allPostFiles = import.meta.glob('/src/routes/\\(main\\)/project/*/*.svx');
     const iterablePostFiles = Object.entries(allPostFiles);
     const allProjects = await Promise.all(
@@ -53,8 +54,8 @@ export const fetchMarkdownProjects = async () => {
 };
 
 export const fetchProjectCategories = async () => {
-    const allPosts = await fetchMarkdownProjects();
-    const sortedCategories = allPosts.map((post) => post.meta.categories).flat(1);
+    const allPosts = await fetchProjects();
+    const sortedCategories = allPosts.map((post) => post.meta.categories || []).flat(1);
     const categoryCounts = sortedCategories.reduce((acc, category: string) => {
         acc[category] = (acc[category] || 0) + 1;
         return acc;

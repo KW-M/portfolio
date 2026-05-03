@@ -24,15 +24,15 @@
   export let title = "";
   export let currentCategory: string = "";
   export let categories: string[] = [];
+  export let tags: string[] = [];
   export let links: { [key: string]: string } = {};
   export let moreUrl = "";
   export let mediaSlides: carouselMediaInfo[] = [];
   export let articleType: ArticleType = ArticleType.plain;
-  const visibleCategories = categories.filter((c) => c != "Highlights");
   const id = title.replaceAll(" ", "-");
   $$props.class = "";
   let mediaSlideIndex = 0;
-  export let color = "bg-primary-400 dark:bg-primary-500";
+  export let color = "bg-secondary-200";
   const hasBottomButton = (articleType === ArticleType.summary && moreUrl != "") || articleType === ArticleType.solo;
 </script>
 
@@ -61,10 +61,12 @@
         <a href={"#" + id} class="h2 !mb-4 text-center !mt-0 no-underline not-prose">{title}</a>
       {/if}
       <!-- card border-surface-200-800 rounded-lg p-2 border-2 -->
-      <div class="category-chip-list flex justify-center flex-wrap">
-        {#each visibleCategories as category (category)}
-          {@const catColor = "bg-primary-500"}
-          <a href={"/cat/" + category} type="button" class:disabled={category == currentCategory} class={"chip text-sm preset-filled-primary-500 my-1 mx-1 no-underline " + catColor}>{category}</a>
+      <div class="category-chip-list flex items-center justify-center flex-wrap text">
+        <b class="mx-3">Tags:</b>
+        {#each tags as tag (tag)}
+          {@const tagColor = "bg-secondary-500"}
+          <!-- <a href={"/tag/" + tag} type="button" class={"chip text-sm preset-filled-primary-500 my-1 mx-1 no-underline " + tagColor}>{tag}</a> -->
+          <span type="button" class={"badge text-sm preset-filled-secondary-500 my-1 mx-1 no-underline " + tagColor}>{tag}</span>
         {/each}
       </div>
       <slot></slot>

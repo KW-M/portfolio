@@ -1,8 +1,10 @@
 ---
 title: "Web Sea Drone Project"
-categories:
-  - "Highlights"
-  - "Web Dev"
+date: "2025-01-05"
+updated: "2025-02-05"
+categories: ["System Integration", "Highlights"]
+tags:
+  - "Web"
   - "Svelte"
   - "Typescript"
   - "Embeded Linux"
@@ -11,10 +13,9 @@ categories:
   - "Golang"
   - "Docker"
   - "CAD"
-  - "Robotics"
 ---
 
-Building an underwater drone architecture that will allow students in landlocked parts of the country to explore the ocean remotely. The system leverages redundant P2P WebRTC with realtime server fallback for maximum quality and responsiveness while being easy to operate. The end user needs only a web browser with a touchscreen or game controller to operate it. The drone is capable of being deployed anywhere 4G coverage exists using only a smartphone or 4G antenna. We are currently testing our 3rd prototype based around the BlueROV 2 drone base from Blue Robotics.
+Built an underwater drone and software architecture to allow students in landlocked parts of the country to explore the ocean remotely. The system leverages P2P WebRTC with a realtime server fallback for maximum quality and responsiveness while being easy to operate. The end user needs only a web browser with a touchscreen or game controller to operate it. The drone is capable of being deployed anywhere 4G coverage exists using only a smartphone or 4G antenna. Testing our 3rd design iteration based around the BlueROV 2 underwater drone from Blue Robotics has been put on hold due to fedral funding shortages, but we hope to continue improving soon.
 
 #### My Role
  Technical Lead, Programmer, Systems Architecture, CAD Design, Frontend.

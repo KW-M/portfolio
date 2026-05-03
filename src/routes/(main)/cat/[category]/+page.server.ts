@@ -1,5 +1,5 @@
 
-import { fetchMarkdownProjects, fetchPageExports, fetchProjectCategories } from '$lib/server/index.js';
+import { fetchProjects as fetchProjects, fetchPageExports, fetchProjectCategories } from '$lib/server/index.js';
 function getPreviewContent(post) {
     const splitpont = post.content.indexOf('<hr>');
     if (splitpont == -1) return { ...post, hasMore: false };
@@ -9,11 +9,11 @@ function getPreviewContent(post) {
 export const load = async ({ params, parent }) => {
     const { category } = params;
     const { categories } = await parent();
-    const allPosts = await fetchMarkdownProjects();
-    const filteredPosts = category.toLowerCase() === "all" ? allPosts : allPosts.filter((post) => post.meta.categories.includes(category)).sort((a, b) => {
+    const allProjects = await fetchProjects();
+    const filteredPosts = category.toLowerCase() === "all" ? allProjects : allProjects.filter((post) => (post.meta.categories || []).includes(category)).sort((a, b) => {
         const dateA = a.meta.dateUpdated || a.meta.date || "1970-01-01";
         const dateB = b.meta.dateUpdated || b.meta.date || "1970-01-01";
-        return new Date(dateA).getTime() - new Date(dateB).getTime();
+        return new Date(dateB).getTime() - new Date(dateA).getTime();
     });
     const posts = await Promise.all(filteredPosts.map(getPreviewContent).map(async (post) => {
         const pageExports = await fetchPageExports(post.path)

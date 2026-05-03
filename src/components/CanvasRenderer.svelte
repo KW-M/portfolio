@@ -5,6 +5,7 @@
   import { CANVAS_HTML_HEIGHT, CANVAS_HTML_WIDTH, CANVAS_SCALED_HEIGHT, CANVAS_SCALED_WIDTH, cleanupAccesibiltyPrefs, CURSOR_X, CURSOR_Y, htmlCoordsToCanvasCoords, initDisplayVariables, PREFERS_REDUCED_MOTION, setAccesibiltyPrefs, updateDisplayVariables } from "$lib/canvasScale";
   import { addClouds, destroyClouds, updateClouds } from "$lib/clouds";
   import { CLOUD_FADE_RATE, PRNG } from "$lib/consts";
+  import { navOpen } from "$lib/globals";
 
   let app: Application = new Application();
   let canvas: HTMLCanvasElement;
@@ -71,7 +72,5 @@
     height: 100%;
     pointer-events: none;
     image-rendering: smooth;
-    border: solid rgb(0, 0, 0) 20px;
-    /* border-radius: 120px; */
   }
 </style>

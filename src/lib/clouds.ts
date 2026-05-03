@@ -66,8 +66,8 @@ export const updateClouds = (deltaTime: number) => {
             continue;
         }
 
-        const pos3d = calculateCloudPosition3d(cloud, SUM_TIME, SCROLL_X + SHIFT_X, SCROLL_Y - SHIFT_Y);
-        const { x, y, scale } = worldspaceToScreenspace(pos3d, SCROLL_X + SHIFT_X, SCROLL_Y - SHIFT_Y);
+        const pos3d = calculateCloudPosition3d(cloud, SUM_TIME, SCROLL_X + SHIFT_X, SCROLL_Y / 3 - SHIFT_Y);
+        const { x, y, scale } = worldspaceToScreenspace(pos3d, SCROLL_X + SHIFT_X, SCROLL_Y / 3 - SHIFT_Y);
         const trueScale = scale * cloud.scaling;
 
         const bbox = getSpriteBbox(x, y, trueScale * GLOBALSCALE, cloud.cloudSprite);

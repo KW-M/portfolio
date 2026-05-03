@@ -14,17 +14,17 @@ export { default as IconLinkOut } from '~icons/ph/arrow-square-out-bold';
 
 
 import favorites from "../images/icons/categoryIcons/favorite_24dp_000000.svg?url";
-import robotics from "../images/icons/categoryIcons/precision_manufacturing_24dp_000000.svg?url";
+import SystemIntegration from "../images/icons/categoryIcons/precision_manufacturing_24dp_000000.svg?url";
 import webDev from "../images/icons/categoryIcons/devices_24dp_000000.svg?url";
 import electronics from "../images/icons/categoryIcons/offline_bolt_24dp_000000.svg?url";
 import graphics from "../images/icons/categoryIcons/view_in_ar_24dp_000000.svg?url";
 import experiments from "../images/icons/categoryIcons/experiments_24dp_000000.svg?url";
 import science from "../images/icons/categoryIcons/biotech_24dp_000000.svg?url";
 import environment from "../images/icons/categoryIcons/energy_savings_leaf_24dp_000000.svg?url";
-export const categoryIcons = { favorites, robotics, electronics, graphics, webDev, experiments, science, environment };
+export const categoryIcons = { favorites, SystemIntegration, electronics, graphics, webDev, experiments, science, environment };
 
 export { default as IconHighlights } from '~icons/ph/sparkle-duotone';
-export { default as IconRobotics } from '~icons/icon-park-twotone/robot-two';
+export { default as IconSystemIntegration } from '~icons/icon-park-twotone/robot-two';
 export { default as IconWebDev } from '~icons/ph/devices-duotone';
 export { default as IconElectronics } from '~icons/ph/lightning-duotone';
 export { default as IconGraphics } from '~icons/ph/cube-focus-duotone';
