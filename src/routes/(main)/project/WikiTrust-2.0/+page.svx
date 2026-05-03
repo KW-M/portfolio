@@ -4,7 +4,7 @@ date: "2023-01-05"
 updated: "2023-01-05"
 links:
   More Info: "https://sites.google.com/view/wikitrust2"
-categories: ["Web"]
+categories: ["Web", "Highlights"]
 tags:
   - "Mobile"
   - "Google Cloud"

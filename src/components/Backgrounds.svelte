@@ -29,11 +29,11 @@
 </script>
 
 <!-- {#if backgroundList.length === 0 || backgroundList[0] === null} -->
-<div out:fade={{ delay: fadeDurration, duration: fadeDurration }} style={`background: linear-gradient(to bottom, #009EAE 0%, #0087C8 100%) fixed`} class="fixed top-0 left-0 w-full h-full bg-cover bg-center -z-10"></div>
+<div out:fade={{ delay: fadeDurration, duration: fadeDurration }} style={`background: linear-gradient(to bottom, #009EAE 0%, #0087C8 100%) fixed`} class="fixed top-0 left-0 w-full h-full bg-cover bg-center"></div>
 <!-- {:else} -->
 {#each backgroundList as background, i (background)}
   {#if i === 0}
-    <div in:fade|global={{ duration: fadeDurration }} out:fade|global={{ duration: fadeDurration }} style={`background-image: url("${background}")`} class="fixed top-0 left-0 w-full h-full bg-cover bg-center -z-10 opacity-60"></div>
+    <div in:fade|global={{ duration: fadeDurration }} out:fade|global={{ duration: fadeDurration }} style={`background-image: url("${background}")`} class="fixed top-0 left-0 w-full h-full bg-cover bg-center opacity-60"></div>
   {/if}
 {/each}
 
