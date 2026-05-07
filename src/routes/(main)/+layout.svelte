@@ -4,7 +4,7 @@
 
   import cornerRoundSvg from "../../images/ui/CornerBtnBr.svg?url";
 
-  import { IconArrowDown, IconCaretBack, IconExpandIn, navIcons } from "$lib/assets";
+  import { IconArrowDown, IconArrowUp, IconCaretBack, IconExpandIn, navIcons } from "$lib/assets";
   // import experimentsIcon from "../../images/icons/categoryIcons/experiments_24dp_000000.svg?url";
   import ghIcon from "../../images/icons/github_circle_white.svg?url";
   import meIcon from "../../images/profile-photo2.png?url";
@@ -92,13 +92,13 @@
 <CanvasRenderer />
 
 <nav class="fixed border-nav pointer-events-none z-30 duration-300 ease-in-out" class:nav-open={mainNavOpen}>
-  <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" class="absolute -top-[1px] -left-[1px] w-40 h-40 duration-300 ease-in-out transition-transform origin-top-left scale-50" class:scale-[15%]={!mainNavOpen}>
+  <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" class="absolute -top-[1px] -left-[1px] w-40 h-40 duration-300 ease-in-out transition-transform origin-top-left" class:scale-50={mainNavOpen}>
     <path d="M60 0v60H0c33.115 0 60-26.885 60-60z" transform="rotate(180)" transform-origin="center center" />
   </svg>
   <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" class="absolute -top-[1px] -right-[1px] w-40 h-40 duration-300 ease-in-out transition-transform origin-top-right scale-50" class:scale-[15%]={!mainNavOpen}>
     <path d="M60 0v60H0c33.115 0 60-26.885 60-60z" transform="rotate(270)" transform-origin="center center" />
   </svg>
-  <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" class="absolute -bottom-[1px] -left-[1px] w-40 h-40 duration-300 ease-in-out transition-transform origin-bottom-left" class:scale-50={mainNavOpen}>
+  <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" class="absolute -bottom-[1px] -left-[1px] w-40 h-40 duration-300 ease-in-out transition-transform origin-bottom-left scale-50" class:scale-[15%]={!mainNavOpen}>
     <path d="M60 0v60H0c33.115 0 60-26.885 60-60z" transform="rotate(90)" transform-origin="center center" />
   </svg>
   <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" class="absolute -bottom-[1px] -right-[1px] w-40 h-40 duration-300 ease-in-out transition-transform origin-bottom-right scale-50" class:scale-[15%]={!mainNavOpen}>
@@ -111,11 +111,13 @@
   <!-- <CornerLinkBtn fixed={true} href="https://github.com/kw-m" icon_src={ghIcon} corner="tr"></CornerLinkBtn> -->
   <!-- <CornerBtn corner="tr" icon_src={!$PREFERS_REDUCED_MOTION ? cloudOnIcon : cloudOffIcon} onClick={() => PREFERS_REDUCED_MOTION.set(!PREFERS_REDUCED_MOTION.get())} /> -->
   <!-- <CornerLinkBtn fixed={true} href="/about" icon_src={meIcon} corner="bl"></CornerLinkBtn> -->
-  <h3 class="text-center tracking-tight font-bold absolute leading-none select-none text-gray-900 pointer-events-none bottom-0 p-3 w-full" class:opacity-0={!pageNavOpen}><IconArrowDown class="inline mx-2"></IconArrowDown> Pick a Category</h3>
+  <h3 class="text-center tracking-tight font-bold absolute leading-none select-none text-gray-900 pointer-events-none top-0 p-3 w-full" class:opacity-0={!pageNavOpen}><IconArrowUp class="inline mx-2"></IconArrowUp> Pick a Category</h3>
 </nav>
 <TagNav open={mainNavOpen} />
 <!-- <CornerBtn corner="bl" icon_src={homeIcon} onClick={() => navOpen.set(!navOpen.get())} classNames={" z-50 fixed " + (mainNavOpen ? "rotate-270" : "rotate-90")} /> -->
-<button on:click={() => navOpen.set(!navOpen.get())} class="corner-btn-bl" class:-rotate-90={$navOpen} class:rotate-90={!$navOpen} style={`background-image:url("${homeIcon}")`} aria-label="Open Navigation Menu"></button>
+{#if $page.route.id !== "/(main)"}
+  <button on:click={() => navOpen.set(!navOpen.get())} class="corner-btn-tl w-32" class:rotate-180={!$navOpen} class:!w-20={$navOpen} class:!h-40={$navOpen} style={`background-image:url("${homeIcon}")`} aria-label="Open Navigation Menu"></button>
+{/if}
 {#key SvelteURL}
   <slot />
 {/key}
@@ -164,9 +166,9 @@
     @apply top-0 left-0 w-40 h-40;
   }
 
-  .corner-btn-bl {
+  .corner-btn-tl {
     background-size: 36px;
-    @apply bottom-0 left-0 fixed w-16 h-16 m-0 bg-transparent bg-no-repeat z-40 rounded-none pointer-events-auto;
+    @apply top-0 left-0 fixed w-16 h-16 m-0 bg-transparent bg-no-repeat z-40 pointer-events-auto;
     /* background-position: bottom 0.8rem left 0.8rem; */
     background-position: center;
   }
@@ -179,14 +181,14 @@
     border: solid black 8px;
     transition: border 250ms ease;
     top: 0;
-    width: calc(100vw - var(--scrollbar-width));
+    right: 0;
     left: 0;
-    height: calc(100vh);
+    bottom: 0;
   }
 
   .nav-open.border-nav {
-    border-top: solid black 30px;
-    border-bottom: solid black 80px;
+    border-top: solid black 80px;
+    border-bottom: solid black 30px;
     border-left: solid black 30px;
     border-right: solid black 30px;
   }

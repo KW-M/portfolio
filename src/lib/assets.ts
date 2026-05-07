@@ -10,7 +10,7 @@ export { default as IconArrowUp } from '~icons/ph/arrow-up-bold';
 export { default as IconExpandOut } from '~icons/ph/arrows-out-simple-bold';
 export { default as IconExpandIn } from '~icons/ph/arrows-in-simple-bold';
 export { default as IconLinkOut } from '~icons/ph/arrow-square-out-bold';
-
+export { default as IconArrowBendRightUp } from '~icons/ph/arrow-bend-right-up-bold';
 
 
 import favorites from "../images/icons/categoryIcons/favorite_24dp_000000.svg?url";
