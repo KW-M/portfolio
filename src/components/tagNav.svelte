@@ -13,7 +13,7 @@
   const categories = Object.keys(categoryIconMap).map((name, i) => ({ name, icon: categoryIconMap[name] || "", color: categoryColorMap[name] || bgColors[i % bgColors.length] }));
 </script>
 
-<div class="top-0 left-0 right-0 pr-20 pl-32 z-40 h-20 fixed text-black flex-row flex items-center justify-center overflow-x-auto overflow-y-hidden transition-all duration-300" class:-translate-y-full={!open} class:opacity-0={!open} class:pointer-events-none={!open} on:mouseenter={() => disableBrowserBackSwipe.set(true)} on:mouseleave={() => disableBrowserBackSwipe.set(false)} role="navigation" aria-label="Category navigation">
+<div class="top-0 left-0 right-0 pr-12 pl-20 z-40 h-20 fixed text-black flex-row flex items-center overflow-x-auto overflow-y-hidden transition-all duration-300" class:-translate-y-full={!open} class:opacity-0={!open} class:pointer-events-none={!open} on:mouseenter={() => disableBrowserBackSwipe.set(true)} on:mouseleave={() => disableBrowserBackSwipe.set(false)} role="navigation" aria-label="Category navigation">
   {#each categories as category}
     {@const color = category.color + " dark:" + category.color.replace(/-[0-9]+/, "-500")}
     <a href={`${base}/cat/${category.name}`} class={"btn btn-md mx-3 hover:opacity-100 focus:opacity-100 hover:shadow-xl active:shadow-md " + color}>
