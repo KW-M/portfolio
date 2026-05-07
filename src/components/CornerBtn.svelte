@@ -4,9 +4,10 @@
   export let onClick = () => {};
   export let icon_src = "";
   export let corner = "tl";
+  export let classNames = "";
 </script>
 
-<button on:click={onClick} class="fixed w-16 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto" class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`} aria-label="go to full article"></button>
+<button on:click={onClick} class={"fixed w-12 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto" + classNames} class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`} aria-label="go to full article"></button>
 
 <style>
   .corner-btn {
@@ -35,7 +36,7 @@
   }
 
   .corner-btn-bl {
-    @apply rounded-tr-2xl bottom-0 left-0;
+    @apply bottom-0 left-0;
     background-position: bottom 0.8rem left 0.8rem;
   }
 </style>

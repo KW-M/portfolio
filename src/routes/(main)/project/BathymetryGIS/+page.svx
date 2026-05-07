@@ -13,4 +13,4 @@ Developed QGIS and Python pipelines to automate the creation of baseline marine 
 
 #### My Role
 
-QGIS pipeline development, Near-shore data collection
+QGIS pipeline development, Field data collection
