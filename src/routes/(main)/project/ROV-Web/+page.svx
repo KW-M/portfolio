@@ -1,5 +1,5 @@
 ---
-title: "Web Sea Drone Project"
+title: "Web Ocean Drone Project"
 date: "2025-01-05"
 updated: "2025-02-05"
 categories: ["System Integration", "Highlights"]
@@ -15,7 +15,7 @@ tags:
   - "CAD"
 ---
 
-Built an underwater drone and software architecture to allow students in landlocked parts of the country to explore the ocean remotely. The system leverages P2P WebRTC with a realtime server fallback for maximum quality and responsiveness while being easy to operate. The end user needs only a web browser with a touchscreen or game controller to operate it. The drone is capable of being deployed anywhere 4G coverage exists using only a smartphone or 4G antenna. Testing our 3rd design iteration based around the BlueROV 2 underwater drone from Blue Robotics has been put on hold due to fedral funding shortages, but we hope to continue improving soon.
+Built an underwater drone and software architecture to allow students in landlocked parts of the US to explore and investigate the ocean remotely. The system leverages P2P WebRTC protocols to maxize quality while keeping latency tight along with a realtime relay server fallback to work in a wide range of network environments. A core goal of the project was making the technology accessable. The end user needs only a web browser with a keyboard, touchscreen, or game controller to operate the drone from anywhere in the world. The drone can be deployed wherever 4G LTE coverage exists using only a smartphone relay or 4G antenna. Testing our 3rd design iteration based around the BlueROV 2 underwater drone from Blue Robotics has been put on hold due to fedral funding shortages, but we hope to continue improving soon.
 
 #### My Role
  Technical Lead, Programmer, Systems Architecture, CAD Design, Frontend.
