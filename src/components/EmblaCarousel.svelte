@@ -98,10 +98,10 @@
       {/if}
     {/each}
   </ol>
-  <button class={"btn-icon btn-icon-lg shadow-lg embla__btn left-4 " + color} on:click={prev} aria-label="previous photo">
+  <button class={"btn-icon text-black btn-icon-lg shadow-lg embla__btn left-4 " + color} on:click={prev} aria-label="previous photo">
     <IconCaretBack class="size-6 pointer-events-none"></IconCaretBack>
   </button>
-  <button class={"btn-icon btn-icon-lg shadow-lg embla__btn right-4 " + color} on:click={next} aria-label="next photo">
+  <button class={"btn-icon text-black btn-icon-lg shadow-lg embla__btn right-4 " + color} on:click={next} aria-label="next photo">
     <IconCaretForward class="size-6 pointer-events-none"></IconCaretForward>
   </button>
 </section>
