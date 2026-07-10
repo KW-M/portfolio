@@ -3,9 +3,8 @@ title: "EcoHus Sustainable Home"
 date: "2023-10-05"
 updated: "2023-10-05"
 links:
-  On Instagram: "https://www.instagram.com/ucsc_ocsd/"
+  Instagram: "https://www.instagram.com/ucsc_ocsd/"
   In the News: "https://news.ucsc.edu/2023/11/sustainability-decathlon.html"
-  Website: "http://ecohushomes.com/"
 categories: ["Eco", "Highlights"]
 tags:
   - "Data Science"
