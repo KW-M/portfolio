@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Article, { ArticleType } from "../../../components/Article.svelte";
-  import BottomBackButton from "../../../components/BottomBackButton.svelte";
-  import MainContainer from "../../../components/MainContainer.svelte";
+  import Article, { ArticleType } from "$components/Article.svelte";
+  import BottomBackButton from "$components/BottomBackButton.svelte";
+  import MainContainer from "$components/MainContainer.svelte";
   export let data;
 
   const mediaSlides = data.mediaSlides;
@@ -9,7 +9,6 @@
   const tags = data.meta && data.meta.tags ? (data.meta.tags as string[]) : [];
   const links = data.meta && data.meta.links ? (data.meta.links as { [key: string]: string }) : {};
   const title = data.meta && data.meta.title ? (data.meta.title as string) : "";
-  // console.log(data);
 </script>
 
 <MainContainer>

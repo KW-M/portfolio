@@ -8,6 +8,19 @@ export function pickPsudoRandom<T>(array: T[], PRNG: () => number): T {
     return array[Math.floor(PRNG() * array.length)];
 }
 
+export function urlPathify(path: string) {
+    return path.toLowerCase().replace(" ", "-");
+}
+
+
+export function urlUnpathify(urlpath: string) {
+    return urlpath.toLowerCase().replace("-", " ");
+}
+
+export function projectFromPath(urlPath: string) {
+    const routeParts = urlPath.split("/").filter((r) => r.length != 0);
+    return routeParts[routeParts.length - 1];
+}
 /** splitmix32 is a psudoRandom number generator
  * source: https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
  * @param a seed

@@ -72,9 +72,9 @@
       dragging: "embla__dragging",
       active: true,
     }),
-    WheelGesturesPlugin({
-      forceWheelAxis: "x",
-    }),
+    // WheelGesturesPlugin({
+    //   forceWheelAxis: "x",
+    // }),
   ];
 
   onDestroy(() => {

@@ -2,13 +2,13 @@
 title: "Pantry Chef"
 date: "2023-2-05"
 updated: "2023-2-05"
-categories: ["Experiments"]
+categories: ["Experiments", "Data Science"]
 tags:
   - "ML"
   - "Python"
   - "API"
   - "Web"
-  - "Data Science"
+
 links:
   Pantry Chef: https://kw-m.github.io/pantry-chef/
 ---

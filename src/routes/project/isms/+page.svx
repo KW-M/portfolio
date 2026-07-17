@@ -1,0 +1,14 @@
+---
+title: "In-Situ Mass Spectrometer"
+date: "2026-01-06"
+updated: "2026-07-10"
+links:
+  More: https://www.girguislab.org/technology
+  Open-Source: https://github.com/Girguis-Lab/In-Situ-Mass-Spec
+categories: ["System Integration", "Highlights"]
+tags:
+  - "CAD"
+  - "Realtime"
+  - "C++"
+---
+As a lab technician at the Girguis Lab at Harvard University, I was in charge of building and validating the third iteration the In-Situ Mass Spectrometer. Pioneered by the Girguis Lab, The ISMS is a deep sea biogeochemisty instrument which enables quantifying dissolved gases in seawater up to 3000m deep in real-time. Building and refining three ISMSs was a wonderful oportunity to improve my skills and understanding of high pressure and high vacuum systems. As with any redesign, iterative improvement was part of the process. To get the design into an even smaller footprint, I redid the fluid path, pumping system, and wiring layout. As always, I strove to write thorough documentation, firmware, and user interfaces using common software to streamline the operation of the instrument.

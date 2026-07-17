@@ -1,4 +1,5 @@
 import { categoryIconMap } from '$lib/globals';
+import { projectFromPath, urlPathify } from '$lib/util';
 import type { Component } from 'svelte';
 import { render } from 'svelte/server';
 
@@ -6,39 +7,48 @@ type svelteRenderedComponent = Component
 
 interface projectMetadata {
     title: string;
-    highlight?: boolean,
+    highlight?: boolean;
     categories?: string[];
     tags?: string[]
     links?: { [key: string]: string };
     date?: string;
     dateUpdated?: string;
+    coverImage?: string;
+}
+
+export interface project {
+    meta: projectMetadata;
+    content: string;
+    head: string;
+    path: string;
+    filePath: string;
+    carousel?: any[];
 }
 
 export const fetchPageExports = async (route: string) => {
-    const routeParts = route.split("/").filter((r) => r.length != 0)
-    const projectName = routeParts[routeParts.length - 1]
-    return await import(`../../routes/(main)/project/${projectName}/+page.server.ts`);
+    const projectName = projectFromPath(route)
+    return await import(`$routes/project/${projectName}/+page.server.ts`);
 };
 
 export const fetchMarkdownMetadata = async (path: string) => {
-    console.log("fetching markdown for", path.toLowerCase());
     const allPostFiles = await fetchProjects();
 
-    console.log(allPostFiles.map((k) => k.path.toLowerCase()));
-    const post = allPostFiles.find((post) => post.path.toLowerCase() === path.toLowerCase());
+    // console.log(allPostFiles.map((k) => k.path.toLowerCase()));
+    const post = allPostFiles.find((post) => projectFromPath(post.path) === projectFromPath(path));
     return {
         meta: post ? post.meta : null,
     };
 };
 
 export const fetchProjects = async () => {
-    const allPostFiles = import.meta.glob('/src/routes/\\(main\\)/project/*/*.svx');
+    const allPostFiles = import.meta.glob('/src/routes/project/*/*.svx');
     const iterablePostFiles = Object.entries(allPostFiles);
     const allProjects = await Promise.all(
         iterablePostFiles.map(async ([path, loadContents]) => {
             const content = await loadContents() as { metadata: projectMetadata, default: svelteRenderedComponent };
-            const postPath = path.slice(18, -10);
 
+            const pPath = path.matchAll(/\/project\/(.+?)[\/]/g).next().value;
+            const postPath = urlPathify(pPath ? "/project/" + pPath[1] : "");
             const rendered = render(content.default)
             return {
                 meta: content.metadata,
@@ -46,7 +56,7 @@ export const fetchProjects = async () => {
                 head: rendered.head,
                 path: postPath,
                 filePath: path
-            };
+            } as project;
         })
     );
 

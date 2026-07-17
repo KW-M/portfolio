@@ -1,30 +1,30 @@
 <script lang="ts">
-  import "../../app.css";
-  import CornerLinkBtn from "../../components/CornerLinkBtn.svelte";
+  import "../app.css";
+  import CornerLinkBtn from "$components/CornerLinkBtn.svelte";
 
-  import cornerRoundSvg from "../../images/ui/CornerBtnBr.svg?url";
+  import cornerRoundSvg from "$images/ui/CornerBtnBr.svg?url";
 
   import { IconArrowDown, IconArrowUp, IconCaretBack, IconExpandIn, navIcons } from "$lib/assets";
-  // import experimentsIcon from "../../images/icons/categoryIcons/experiments_24dp_000000.svg?url";
-  import ghIcon from "../../images/icons/github_circle_white.svg?url";
-  import meIcon from "../../images/profile-photo2.png?url";
-  import cloudOffIcon from "../../images/icons/cloud_off_24dp.svg?url";
-  import cloudOnIcon from "../../images/icons/wind_cloud_24dp.svg?url";
-  import homeIcon from "../../images/icons/navIcons/arrow_tl_24dp.svg?url";
-  import CanvasRenderer from "../../components/CanvasRenderer.svelte";
+  // import experimentsIcon from "$images/icons/categoryIcons/experiments_24dp_000000.svg?url";
+  import ghIcon from "$images/icons/github_circle_white.svg?url";
+  import meIcon from "$images/profile-photo2.png?url";
+  import cloudOffIcon from "$images/icons/cloud_off_24dp.svg?url";
+  import cloudOnIcon from "$images/icons/wind_cloud_24dp.svg?url";
+  import homeIcon from "$images/icons/navIcons/arrow_tl_24dp.svg?url";
+  import CanvasRenderer from "$components/CanvasRenderer.svelte";
 
   import { page } from "$app/stores";
   import { afterNavigate } from "$app/navigation";
-  import { backHomeBtn } from "../../actions/backButton";
+  import { backHomeBtn } from "../actions/backButton";
   import { SvelteURL } from "svelte/reactivity";
   import { PREFERS_REDUCED_MOTION } from "$lib/canvasScale";
-  import CornerBtn from "../../components/CornerBtn.svelte";
-  import Backgrounds from "../../components/Backgrounds.svelte";
-  import { previewZoomOpen, TRANSITION_DURRATION } from "../../actions/ImageZoom.action";
+  import CornerBtn from "$components/CornerBtn.svelte";
+  import Backgrounds from "$components/Backgrounds.svelte";
+  import { previewZoomOpen, TRANSITION_DURRATION } from "../actions/ImageZoom.action";
   import { disableBrowserBackSwipe, historyStack, navOpen } from "$lib/globals";
   import { fade } from "svelte/transition";
   import { browser } from "$app/environment";
-  import TagNav from "../../components/tagNav.svelte";
+  import TagNav from "$components/tagNav.svelte";
   import { onMount } from "svelte";
 
   $: if ($disableBrowserBackSwipe) {
@@ -87,7 +87,7 @@
   <title>{$page.data.title || "Kyle W-M"}</title>
 </svelte:head>
 
-<a class="skip-link z-50" href="#main">Skip to content</a>
+<a class="skip-link z-50" href={"#main"}>Skip to content</a>
 <Backgrounds />
 <CanvasRenderer />
 

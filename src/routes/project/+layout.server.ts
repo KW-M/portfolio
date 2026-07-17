@@ -1,9 +1,9 @@
 import { fetchMarkdownMetadata, fetchPageExports } from '$lib/server/index.js';
+import { projectFromPath } from '$lib/util.js';
 
 /** @type {import('./$types').LayoutServerLoad} */
 export const load = async ({ route }) => {
-    const urlPath = route.id.substring(7);
-    const project = await fetchMarkdownMetadata(urlPath);
+    const project = await fetchMarkdownMetadata(route.id);
     const pageExports = await fetchPageExports(route.id);
     return { meta: project.meta, mediaSlides: pageExports._mediaSlides || [] };
 };

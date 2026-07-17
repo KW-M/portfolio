@@ -66,7 +66,7 @@
         {#each tags as tag (tag)}
           {@const tagColor = "bg-secondary-500"}
           <!-- <a href={"/tag/" + tag} type="button" class={"chip text-sm preset-filled-primary-500 my-1 mx-1 no-underline " + tagColor}>{tag}</a> -->
-          <span type="button" class={"badge text-sm preset-filled-secondary-500 my-1 mx-1 no-underline " + tagColor}>{tag}</span>
+          <span class={"badge text-sm preset-filled-secondary-500 my-1 mx-1 no-underline " + tagColor}>{tag}</span>
         {/each}
       </div>
       <slot></slot>

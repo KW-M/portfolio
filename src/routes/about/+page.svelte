@@ -1,7 +1,7 @@
 <script>
-  import Article, { ArticleType } from "../../../components/Article.svelte";
-  import MainContainer from "../../../components/MainContainer.svelte";
-  import profilePic from "../../../images/profile-photo2.png";
+  import Article, { ArticleType } from "$components/Article.svelte";
+  import MainContainer from "$components/MainContainer.svelte";
+  import profilePic from "$images/profile-photo2.png";
 </script>
 
 <svelte:head>

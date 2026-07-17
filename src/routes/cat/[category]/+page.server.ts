@@ -1,36 +1,39 @@
-
 import { fetchProjects as fetchProjects, fetchPageExports, fetchProjectCategories } from '$lib/server/index.js';
-function getPreviewContent(post) {
-    const splitpont = post.content.indexOf('<hr>');
-    if (splitpont == -1) return { ...post, hasMore: false };
-    else return { ...post, content: post.content.substring(0, splitpont), hasMore: true };
+import { urlPathify, urlUnpathify } from '$lib/util.js';
+import type { project } from "$lib/server/index.ts"
+
+function getPreviewContent(post: project) {
+    const splitpoint = post.content.indexOf('<hr>');
+    if (splitpoint == -1) return { ...post, hasMore: false };
+    else return { ...post, content: post.content.substring(0, splitpoint), hasMore: true };
 }
 
 export const load = async ({ params, parent }) => {
-    const { category } = params;
+    let { category } = params;
+    let urlCategory = urlUnpathify(category)
     const { categories } = await parent();
     const allProjects = await fetchProjects();
-    const filteredPosts = category.toLowerCase() === "all" ? allProjects : allProjects.filter((post) => (post.meta.categories || []).includes(category)).sort((a, b) => {
+    const filteredPosts = urlCategory === "all" ? allProjects : allProjects.filter((post) => (post.meta.categories || []).map((a) => (a.toLowerCase())).includes(urlCategory)).sort((a, b) => {
         const dateA = a.meta.dateUpdated || a.meta.date || "1970-01-01";
         const dateB = b.meta.dateUpdated || b.meta.date || "1970-01-01";
         return new Date(dateB).getTime() - new Date(dateA).getTime();
     });
     const posts = await Promise.all(filteredPosts.map(getPreviewContent).map(async (post) => {
-        const pageExports = await fetchPageExports(post.path)
+        const pageExports = await fetchPageExports(post.path);
         post.carousel = pageExports._mediaSlides || [];
         return post;
     }));
-    const categoryIndex = Math.max(categories.indexOf(category), 0);
+    const categoryIndex = Math.max(categories.map((a) => (a.toLowerCase())).indexOf(urlCategory), 0);
     return {
         categoryIndex,
-        category,
+        category: categories[categoryIndex],
         posts
     };
 };
 
 export const entries = async () => {
     const categories = (await fetchProjectCategories()) as string[];
-    return categories.map((category) => ({ category }));
+    return categories.map((category) => ({ category: urlPathify(category) }));
 }
 
 
