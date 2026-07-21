@@ -9,7 +9,7 @@ export function pickPsudoRandom<T>(array: T[], PRNG: () => number): T {
 }
 
 export function urlPathify(path: string) {
-    return path.toLowerCase().replace(" ", "-");
+    return path.toLowerCase().replace("%20", " ").replace(" ", "-");
 }
 
 

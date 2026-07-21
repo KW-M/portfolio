@@ -62,7 +62,6 @@
       {/if}
       <!-- card border-surface-200-800 rounded-lg p-2 border-2 -->
       <div class="category-chip-list flex items-center justify-center flex-wrap text">
-        <b class="mx-3">Tags:</b>
         {#each tags as tag (tag)}
           {@const tagColor = "bg-secondary-500"}
           <!-- <a href={"/tag/" + tag} type="button" class={"chip text-sm preset-filled-primary-500 my-1 mx-1 no-underline " + tagColor}>{tag}</a> -->
