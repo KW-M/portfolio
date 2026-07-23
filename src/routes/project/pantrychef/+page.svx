@@ -2,7 +2,7 @@
 title: "Pantry Chef"
 date: "2023-2-05"
 updated: "2023-2-05"
-categories: ["Experiments", "Data Science"]
+categories: [ "Data Science"]
 tags:
   - "ML"
   - "Python"

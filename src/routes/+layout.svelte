@@ -90,7 +90,7 @@
 <a class="skip-link z-50" href={"#main"}>Skip to content</a>
 <Backgrounds />
 <CanvasRenderer />
-<a href="/" class="chip z-10 bg-black text-2xl m-2 text-white absolute top-0 left-0 py-3 px-6 rounded-tl-none" in:fade={{ duration: 500 }} out:fade={{ duration: 500 }}>Kyle Worcester-Moore</a>
+<a href="/" class="chip rounded-3xl z-10 bg-black text-2xl m-2 text-white absolute top-0 left-0 py-3 px-6 rounded-tl-none" in:fade={{ duration: 500 }} out:fade={{ duration: 500 }}>Kyle Worcester-Moore</a>
 
 <nav class="fixed border-nav pointer-events-none z-30 duration-300 ease-in-out" class:nav-open={mainNavOpen}>
   <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" class="absolute -bottom-[1px] left-0 w-40 h-40 duration-300 ease-in-out transition-transform origin-bottom-left">
@@ -105,7 +105,7 @@
   <!-- <CornerLinkBtn fixed={true} href="/about" icon_src={meIcon} corner="bl"></CornerLinkBtn> -->
   <h3 class="text-center tracking-tight font-bold absolute leading-none select-none text-gray-900 pointer-events-none bottom-0 p-3 w-full" class:opacity-0={!pageNavOpen}><IconArrowDown class="inline mx-2"></IconArrowDown> Pick a Category</h3>
   {#if $page.route.id !== "/"}
-    <button on:click={() => navOpen.set(!navOpen.get())} class="absolute bottom-0 left-0 w-32 h-32 z-20 pointer-events-auto" aria-label="Open Navigation Menu"> <IconCaretForward class={`w-10 h-10 absolute bottom-2 left-2 text-white z-10 ${pageNavOpen ? "rotate-90" : "-rotate-90"}`}></IconCaretForward> </button>
+    <button on:click={() => navOpen.set(!navOpen.get())} class="no-tap-highlight absolute bottom-0 left-0 w-20 h-20 z-20 pointer-events-auto" aria-label="Open Navigation Menu"> <IconCaretForward class={`w-10 h-10 absolute bottom-2 left-2 text-white z-10 ${pageNavOpen ? "rotate-90" : "-rotate-90"}`}></IconCaretForward> </button>
   {/if}
 </nav>
 <TagNav open={mainNavOpen} />
@@ -221,5 +221,9 @@
     max-height: 100%;
     max-width: 100%;
     height: 100%;
+  }
+
+  :global(.no-tap-highlight) {
+    -webkit-tap-highlight-color: transparent;
   }
 </style>

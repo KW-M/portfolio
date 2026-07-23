@@ -5,7 +5,7 @@
   export let subText = "Choose a category to see <br/> what I've been up to.";
 </script>
 
-<div class="page-spacer relative">
+<div class="page-spacer relative overflow-x-clip overfloy-y-auto">
   <div class="absolute size-80 bg-white/40 -mt-4 rounded-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-150 blur-3xl" in:fade|global={{ duration: PAGE_FADE_DURATION, delay: PAGE_FADE_DELAY }} out:fade|global={{ duration: PAGE_FADE_DURATION }}></div>
   <section class="z-10 absolute py-8 px-4 w-64 text-center lg:w-80 lg:py-16 lg:px-12 left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 select-none pointer-events-none" in:fade|global={{ duration: PAGE_FADE_DURATION, delay: PAGE_FADE_DELAY }} out:fade|global={{ duration: PAGE_FADE_DURATION }}>
     <h1 class="text-center mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-5xl">{headerText}</h1>
@@ -18,7 +18,6 @@
 
 <style>
   .page-spacer {
-    width: 100%;
     height: 66vh;
   }
 </style>

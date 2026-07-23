@@ -19,7 +19,7 @@ export default {
     // forms,
     typography,
     skeleton({
-      themes: [BlueBird, themes.rose]
+      themes: [BlueBird, themes.vintage]
     })
   ],
 } satisfies Config;
