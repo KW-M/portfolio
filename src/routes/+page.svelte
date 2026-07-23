@@ -3,7 +3,7 @@
   import FloatingCategoryButtons from "$components/FloatingCategoryButtons.svelte";
   import HomeHeroText from "$components/HomeHeroText.svelte";
   import { EMOJI_MAP } from "$lib/consts";
-  import { IconArrowBendRightUp } from "$lib/assets";
+  import { IconArrowDown } from "$lib/assets";
   import { onMount } from "svelte";
 
   const getEmojis = () =>
@@ -23,10 +23,9 @@
 
 <main id="main" in:scale={{ duration: 1000 }} out:scale={{ duration: 2000 }} class="absolute inset-0 z-10">
   <HomeHeroText subText={""}>
-    <div class="flex flex-row items-center justify-center">
-      <IconArrowBendRightUp class="mx-auto size-7 text-black opacity-0" />
-      <h3 class="text-center tracking-tight leading-none text-gray-900">Choose a category to see<br /> what I've been up to</h3>
-      <IconArrowBendRightUp class="mx-auto size-7 text-black opacity-60" />
+    <div class="flex flex-col gap-4 items-center justify-center">
+      <h3 class="text-center tracking-tight leading-none text-gray-900">Choose a project category to <br /> see what I've been up to</h3>
+      <IconArrowDown class="mx-auto size-7 text-black opacity-60" />
     </div>
   </HomeHeroText>
 </main>
