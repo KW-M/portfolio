@@ -3,17 +3,25 @@
   import FloatingCategoryButtons from "$components/FloatingCategoryButtons.svelte";
   import HomeHeroText from "$components/HomeHeroText.svelte";
   import { EMOJI_MAP } from "$lib/consts";
-  import { IconArrowDown } from "$lib/assets";
+  import { IconArrowBendRightUp } from "$lib/assets";
   import { onMount } from "svelte";
+  import NavLayout from "$components/NavLayout.svelte";
+  import { browser } from "$app/env";
+
+  let { data } = $props();
 
   const getEmojis = () =>
     new Array(3)
       .fill("")
       .map(() => EMOJI_MAP[Math.floor(Math.random() * EMOJI_MAP.length)])
       .join("");
-  let emojis = getEmojis();
+  let emojis = $state(getEmojis());
+  let showEmojis = $state(false);
 
   onMount(() => {
+    if (browser) {
+      window.scrollTo({ top: 0, behavior: "smooth", left: 0 });
+    }
     const interval = setInterval(() => {
       emojis = getEmojis();
     }, 4000);
@@ -21,14 +29,20 @@
   });
 </script>
 
-<main id="main" in:scale={{ duration: 1000 }} out:scale={{ duration: 2000 }} class="absolute inset-0 z-10">
+<!-- <main id="main" in:scale={{ duration: 1000 }} out:scale={{ duration: 2000 }} class="absolute inset-0 z-10">
   <HomeHeroText subText={""}>
-    <div class="flex flex-col gap-4 items-center justify-center">
-      <h3 class="text-center tracking-tight leading-none text-gray-900">Choose a project category to <br /> see what I've been up to</h3>
-      <IconArrowDown class="mx-auto size-7 text-black opacity-60" />
+    <div class="flex flex-row items-center justify-center">
+      <IconArrowBendRightUp class="mx-auto size-7 text-black opacity-0" />
+      <h3 class="text-center tracking-tight leading-none text-gray-900">Choose a category to see<br /> what I've been up to</h3>
+      <IconArrowBendRightUp class="mx-auto size-7 text-black opacity-60" />
     </div>
   </HomeHeroText>
-</main>
-{#key emojis}
-  <h1 class="absolute top-[2000vh] w-full overflow-visible text-center h1 text-9xl !py-80 cursor-pointer select-none" onpointerdown={() => (emojis = getEmojis())} in:fade={{ duration: 1000 }} out:fade={{ duration: 1000 }}>{emojis}</h1>
-{/key}
+</main> -->
+
+<NavLayout categories={data.categories} showEmojis={() => (showEmojis = true)}></NavLayout>
+
+{#if showEmojis}
+  {#key emojis}
+    <h1 class="absolute top-[2000vh] w-full overflow-visible text-center h1 text-9xl !py-80 cursor-pointer select-none" onpointerdown={() => (emojis = getEmojis())} in:fade={{ duration: 1000 }} out:fade={{ duration: 1000 }}>{emojis}</h1>
+  {/key}
+{/if}

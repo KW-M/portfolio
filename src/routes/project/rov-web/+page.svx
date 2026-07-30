@@ -1,5 +1,6 @@
 ---
 title: "Web Ocean Drone Project"
+summary: "Underwater drone made to bring the magic of ocean exploration to students in land-locked parts of the US. Uses a custom software architecture to enable low-latency remote control and HD video streaming via WebRTC. It is made to be easy to deploy and use needing only a phone and web browser to function."
 date: "2025-01-05"
 updated: "2025-02-05"
 categories: ["System Integration", "Highlights"]

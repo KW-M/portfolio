@@ -7,6 +7,7 @@ type svelteRenderedComponent = Component
 
 interface projectMetadata {
     title: string;
+    summary?: string;
     highlight?: boolean;
     categories?: string[];
     tags?: string[]
@@ -75,4 +76,5 @@ export const fetchProjectCategories = async () => {
         .map((c) => c[0])
         .sort((a, b) => (categoryIconMap[a] ? -1 : 1) - (categoryIconMap[b] ? -1 : 1)); // sort so categories with icons go first
     return categories
+
 }

@@ -1,4 +1,3 @@
-// @ts-nocheck
 //Based on source: https://github.com/jbreckmckye/trkl
 
 type updateFnT<T> = (value: T) => void
@@ -78,7 +77,7 @@ function nStore<T>(value: T): nStoreT<T> {
 }
 
 function computed<T>(fn: () => T) {
-  let self = nStore(null);
+  let self: nStoreT<T> = nStore<T>(null as unknown as T);
   let computationToken: (() => void)[] = [runComputed]
 
   runComputed();

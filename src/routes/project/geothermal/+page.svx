@@ -2,6 +2,7 @@
 title: "Geothermal Futures Infographic"
 date: "2023-01-05"
 updated: "2025-07-17"
+summary: "An award-winning online interactive infographic designed to raise awareness of the huge potential of geothermal technologes from cooling your house to powering the entire United States multiple times over."
 links:
   Live Infographic: https://geothermal-future.web.app
 categories: ["Eco", "Highlights"]

@@ -1,5 +1,6 @@
 ---
 title: "WikiTrust 2.0"
+summary: "Research project turning a theoretical method for computing consensus for every page on wikipedia into a cross-platform browser exension and python server implementation on Google cloud."
 date: "2023-01-05"
 updated: "2023-01-05"
 links:
@@ -15,9 +16,9 @@ tags:
 ---
 
 
-Turned the original WikiTrust algorithms into a functional MVP cross-browser extension in typescript and processing server backend in python. Our system can calculate a metric of accuracy or "consensus" for every word on Wikipedia using only the article's revision history and author cross contributions. We hope WikiTrust will give readers & editors of Wikipedia better insight into the accuracy of statements and protect against content vandalism.
+Worked with a small research group at UCSC to turn the original WikiTrust algorithms into a functional MVP cross-browser extension in typescript and processing server backend in python. Our system can calculate a metric of accuracy or "consensus" for every word on Wikipedia using only the article's revision history and author cross contributions. We hope future work on WikiTrust will give readers & editors of Wikipedia better insight into the accuracy of statements and protect against content vandalism sitewide.
 
 
 
 #### My Role
- Frontend extension and page algorithms, backend API and cloud database abstraction layer.
+ Frontend extension, UI, and page parsing algorithms. Backend API, cloud infrastructure, and database abstraction layer.

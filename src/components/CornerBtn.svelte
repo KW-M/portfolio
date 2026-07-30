@@ -1,13 +1,17 @@
 <script lang="ts">
   import type { Action } from "svelte/action";
 
-  export let onClick = () => {};
-  export let icon_src = "";
-  export let corner = "tl";
-  export let classNames = "";
+  interface Props {
+    onClick?: any;
+    icon_src?: string;
+    corner?: string;
+    classNames?: string;
+  }
+
+  let { onClick = () => {}, icon_src = "", corner = "tl", classNames = "" }: Props = $props();
 </script>
 
-<button on:click={onClick} class={"fixed w-12 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto" + classNames} class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`} aria-label="go to full article"></button>
+<button onclick={onClick} class={"fixed w-12 h-16 m-0 bg-transparent bg-no-repeat rounded-none corner-btn pointer-events-auto" + classNames} class:corner-btn-tl={corner == "tl"} class:corner-btn-br={corner == "br"} class:corner-btn-tr={corner == "tr"} class:corner-btn-bl={corner == "bl"} style={`background-image:url("${icon_src}")`} aria-label="go to full article"></button>
 
 <style>
   .corner-btn {
@@ -21,22 +25,22 @@
   }
 
   .corner-btn-tl {
-    @apply rounded-br-2xl top-0 left-0;
+    /* @apply rounded-br-xl top-0 left-0; */
     background-position: top 0.8rem left 0.8rem;
   }
 
   .corner-btn-br {
-    @apply rounded-tl-2xl bottom-0 right-0;
+    /* @apply rounded-tl-xl bottom-0 right-0; */
     background-position: bottom 0.8rem right 0.8rem;
   }
 
   .corner-btn-tr {
-    @apply rounded-bl-2xl top-0 right-0;
+    /* @apply rounded-bl-xl top-0 right-0; */
     background-position: top 0.8rem right 0.8rem;
   }
 
   .corner-btn-bl {
-    @apply bottom-0 left-0;
+    /* @apply bottom-0 left-0; */
     background-position: bottom 0.8rem left 0.8rem;
   }
 </style>

@@ -2,9 +2,10 @@
 title: "In-Situ Mass Spectrometer"
 date: "2026-01-06"
 updated: "2026-07-10"
+summary: "The 3rd generation of a biogeochemistry instrument developed at the Girguis Lab at Harvard University for detecting disolved gasses and volatile compounds disolved in sea water in real time at depths up to 3000m"
 links:
-  More: https://www.girguislab.org/technology
-  Open-Source: https://github.com/Girguis-Lab/In-Situ-Mass-Spec
+  More Info: https://www.girguislab.org/technology
+  Open Source: https://github.com/Girguis-Lab/In-Situ-Mass-Spec
 categories: ["System Integration", "Highlights"]
 tags:
   - "CAD"

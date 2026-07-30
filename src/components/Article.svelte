@@ -1,44 +1,35 @@
-<script lang="ts" context="module">
-  export enum ArticleType {
-    plain = 0,
-    solo = 1,
-    summary = 3,
-  }
-</script>
-
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { goBack } from "../actions/backButton";
 
   import { IconArrowRight, IconLinkOut } from "$lib/assets";
-  import { backBtn } from "../actions/backButton";
-
-  import CornerBtn from "./CornerBtn.svelte";
-  import CornerCutoutBtn from "./CornerCutoutBtn.svelte";
-  import CornerLinkBtn from "./CornerLinkBtn.svelte";
   import EmblaCarousel from "./EmblaCarousel.svelte";
   import LqipPicture from "./LqipPicture.svelte";
   import LqipVideo from "./LqipVideo.svelte";
-  import { categoryColorMap } from "$lib/globals";
+  import { ArticleType, categoryColorMap } from "$lib/globals";
+  import { urlPathify } from "$lib/util";
 
-  export let title = "";
-  export let currentCategory: string = "";
-  export let categories: string[] = [];
-  export let tags: string[] = [];
-  export let links: { [key: string]: string } = {};
-  export let moreUrl = "";
-  export let mediaSlides: carouselMediaInfo[] = [];
-  export let articleType: ArticleType = ArticleType.plain;
-  const id = title.replaceAll(" ", "-");
-  $$props.class = "";
+  interface Props {
+    children?: import("svelte").Snippet;
+    title: string;
+    currentCategory?: string;
+    categories?: string[];
+    tags?: string[];
+    links?: { [key: string]: string };
+    articlePath?: string;
+    mediaSlides?: carouselMediaInfo[];
+    coverImage?: string;
+    color?: string;
+    class?: string;
+  }
+
+  let { title = "", currentCategory = "", categories = [], tags = [], links = {}, articlePath = "", coverImage = "", mediaSlides = [], color = "bg-secondary-200", class: className = "", children }: Props = $props();
+  const id = () => urlPathify(title);
   let mediaSlideIndex = 0;
-  export let color = "bg-secondary-200";
-  const hasBottomButton = (articleType === ArticleType.summary && moreUrl != "") || articleType === ArticleType.solo;
 </script>
 
-<div {id} class={"relative card border-0 mb-16 overflow-hidden shadow-2xl border-surface-800-200 divide-surface-200-800 block divide-y article-card prose prose-slate prose-blockquote:border-slate-300 prose-purple lg:prose-xl dark:prose-invert" + $$props.class} class:solo-article-card={articleType === ArticleType.solo}>
+<div id={id()} class={"relative mt-25 card border-0 mb-16 overflow-hidden shadow-2xl border-surface-800-200 divide-surface-200-800 block divide-y article-card prose prose-slate prose-blockquote:border-slate-300 prose-purple lg:prose-xl dark:prose-invert " + className}>
   {#if mediaSlides.length > 0}
-    <header class="bg-surface-800 not-prose bg-opacity-80">
+    <header class="bg-surface-800 not-prose bg-opacity/80">
       {#if mediaSlides.length == 1}
         {@const coverMedia = mediaSlides[0]}
         {#if coverMedia.type === "img"}
@@ -52,42 +43,30 @@
     </header>
   {/if}
 
-  <!-- `space-y-4 ` -->
-  <div class="relative !border-secondary-950-50">
-    <article class="pt-8 pb-4 md:pt-10 md:pb-5 bg-surface-50-950 bg-opacity-90 relative" class:pb-10={hasBottomButton}>
-      {#if moreUrl != ""}
-        <a href={moreUrl} class="h2 !mb-4 text-center !mt-0 no-underline not-prose">{title}</a>
-      {:else}
-        <a href={"#" + id} class="h2 !mb-4 text-center !mt-0 no-underline not-prose">{title}</a>
-      {/if}
-      <!-- card border-surface-200-800 rounded-lg p-2 border-2 -->
-      <div class="category-chip-list flex items-center justify-center flex-wrap text">
-        {#each tags as tag (tag)}
-          {@const tagColor = "bg-secondary-500"}
-          <!-- <a href={"/tag/" + tag} type="button" class={"chip text-sm preset-filled-primary-500 my-1 mx-1 no-underline " + tagColor}>{tag}</a> -->
-          <span class={"badge text-sm preset-filled-secondary-500 my-1 mx-1 no-underline " + tagColor}>{tag}</span>
-        {/each}
-      </div>
-      <slot></slot>
-      <div class="flex pb-4 pr-5 justify-start align-middle">
-        {#each Object.entries(links) as [title, link]}
-          <a href={link} class="btn mr-2 gap-3 preset-outlined-tertiary-500 flex overflow-visible justify-start">
-            <span class="flex-1 flex-shrink overflow-hidden">{title}</span>
-            <!-- <span class="flex-0">&rarr;</span> -->
-            <svelte:component this={IconLinkOut} class="flex-0"></svelte:component>
-          </a>
-        {/each}
-      </div>
-      {#if hasBottomButton}
-        {#if articleType !== ArticleType.solo}
-          <CornerCutoutBtn onclick={() => goto(moreUrl)} icon={IconArrowRight}></CornerCutoutBtn>
-        {/if}
-      {/if}
-    </article>
-  </div>
+  <article class="pt-8 md:pt-10 md:pb-5 relative pb-10 px-6 md:px-10 bg-surface-50-950 bg-opacity/90">
+    <h2 class="h2 !mb-4 !mt-0 no-underline not-prose">{title}</h2>
+    <div class="flex items-center justify-left flex-wrap text mt-4 gap-3">
+      {#each tags as tag (tag)}
+        {@const tagColor = "bg-secondary-400-600"}
+        <!-- <a href={"/tag/" + tag} type="button" class={"chip text-sm preset-filled-primary-500 my-1 mx-1 no-underline " + tagColor}>{tag}</a> -->
+        <span class={"badge text-sm preset-filled-secondary-400-600 no-underline " + tagColor}>#{tag}</span>
+      {/each}
+    </div>
+    {@render children?.()}
+    <div class="flex pb-4 pr-5 justify-start align-middle">
+      {#each Object.entries(links) as [title, link]}
+        <a href={link} class="chip text-xl mr-2 gap-4 preset-tonal-secondary">
+          <span class="flex-1 shrink overflow-hidden">{title}</span>
+          <IconLinkOut class="size-elem-xl"></IconLinkOut>
+        </a>
+      {/each}
+    </div>
+  </article>
 </div>
 
-<style>
+<style lang="postcss">
+  @reference "tailwindcss";
+
   .bottom-curve {
     border-bottom-width: 180px !important;
     border-right-width: 180px;
@@ -98,18 +77,15 @@
     position: relative;
   }
 
-  .solo-article-card {
-    margin-top: 30vh;
-  }
   .category-chip-list {
     font-weight: bold;
     line-height: 1em;
   }
 
-  :global(article > *:not(picture)) {
+  /* :global(article > *:not(picture)) {
     @apply mx-6 md:mx-10;
   }
   :global(article > picture) {
     @apply w-full;
-  }
+  } */
 </style>

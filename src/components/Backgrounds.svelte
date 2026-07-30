@@ -3,7 +3,7 @@
   import { backgrounds } from "$lib/assets";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
-  let backgroundList: string[] = [];
+  let backgroundList: string[] = $state([]);
 
   const fadeDurration = 20000;
   const step = 1; //Math.floor(Math.random() * 3) + 1;

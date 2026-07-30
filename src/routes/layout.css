@@ -1,10 +1,17 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
+@import '@skeletonlabs/skeleton';
+@import '@skeletonlabs/skeleton-svelte';
+@import '@skeletonlabs/skeleton/themes/pine';
+@import '@skeletonlabs/skeleton/themes/vintage';
+
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+/* Ensures the dark: prefix triggers when `.dark` is on any parent element */
+/* @custom-variant dark (&:is(.dark, .dark *)); */
 
 html {
     scroll-behavior: smooth;
-    background-color: black;
     scrollbar-gutter: stable;
     scrollbar-color: rgb(200, 200, 200) black;
 }
@@ -13,7 +20,6 @@ body {
     overflow-x: hidden;
     overflow-x: clip;
     overflow-y: auto;
-    background-color: black;
 }
 
 ::-webkit-scrollbar {

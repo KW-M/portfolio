@@ -8,7 +8,7 @@
   import { navOpen } from "$lib/globals";
 
   let app: Application = new Application();
-  let canvas: HTMLCanvasElement;
+  let canvas: HTMLCanvasElement | undefined = $state();
 
   if (browser) {
     let square = new Sprite(Texture.WHITE);

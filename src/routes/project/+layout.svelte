@@ -1,8 +1,9 @@
 <script lang="ts">
-  import Article, { ArticleType } from "$components/Article.svelte";
+  import Article from "$components/Article.svelte";
   import BottomBackButton from "$components/BottomBackButton.svelte";
   import MainContainer from "$components/MainContainer.svelte";
-  export let data;
+  import { ArticleType } from "$lib/globals.js";
+  const { data, children } = $props();
 
   const mediaSlides = data.mediaSlides;
   const categories = data.meta && data.meta.categories ? (data.meta.categories as string[]) : [];
@@ -12,8 +13,8 @@
 </script>
 
 <MainContainer>
-  <Article {title} {tags} {categories} {mediaSlides} {links} articleType={ArticleType.solo}>
-    <slot></slot>
+  <Article {title} {tags} {categories} {mediaSlides} {links}>
+    {@render children?.()}
   </Article>
   <BottomBackButton />
 </MainContainer>

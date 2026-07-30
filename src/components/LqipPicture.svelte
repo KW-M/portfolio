@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   import nStore from "$lib/libraries/nStore";
   import { onMount } from "svelte";
   export let staticIndex = nStore(0);
@@ -8,53 +8,70 @@
   import { attachZoom, previewZoomOpen } from "../actions/ImageZoom.action";
   import { crossfade } from "svelte/transition";
   import { IconExpandOut } from "$lib/assets";
-  import { ProgressRing } from "@skeletonlabs/skeleton-svelte";
-  export let picture: { alt?: string; src: string; width: number; height: number; lqip: string };
-  export let loadHiRez: boolean = false;
-  export let onClick = () => true;
-  let zoomed = false;
-  let loaded: boolean = false;
-  let mounted: boolean = false;
-  let rounded: boolean = true;
+  import { Progress } from "@skeletonlabs/skeleton-svelte";
+  interface Props {
+    picture: { alt?: string; src: string; width: number; height: number; lqip: string };
+    loadHiRez?: boolean;
+    onClick?: any;
+    class?: string;
+    rounded?: boolean;
+    showZoom?: boolean;
+  }
+
+  let { picture, loadHiRez = false, onClick = () => true, class: className = "", rounded = true, showZoom = false }: Props = $props();
+  let zoomed = $state(false);
+  let loaded: boolean = $state(false);
+  let mounted: boolean = $state(false);
+
   crossfade;
   staticIndex.update((n) => n + 1);
   const instanceNum = staticIndex.get();
-  onMount(() => (mounted = true));
-  $: if (!$previewZoomOpen) zoomed = false;
+  onMount(() => {
+    mounted = true;
+    let unsub = previewZoomOpen.subscribe((val) => {
+      if (!val) zoomed = false;
+    });
+    return unsub;
+  });
 </script>
 
 <div class="h-full relative bg-transparent cursor-zoom-in overflow-clip" class:rounded-xl={rounded} style={`aspect-ratio: ${picture.width}/${picture.height}`}>
   <figure use:attachZoom={{ zoomed, width: picture.width, height: picture.height }} style={`aspect-ratio: ${picture.width}/${picture.height};`} class=" overflow-hidden block h-full max-w-full relative" class:rounded-xl={rounded}>
     <button
       style={`background-image: url(${picture.lqip});animation-delay: ${-instanceNum * 500}ms;`}
-      class="max-w-full w-full h-full blurable bg-cover"
+      class="max-w-full w-full h-full blurable bg-cover cursor-pointer"
       class:blur={!loaded}
       class:animate-pulse={!loaded}
       aria-label={"zoom image " + (picture.alt || "")}
-      on:click={() => {
-        if (onClick()) zoomed = !zoomed;
+      onclick={() => {
+        if (onClick() && showZoom) zoomed = !zoomed;
       }}
     >
       {#if mounted && (loadHiRez || loaded)}
-        <img class={$$props.class} class:pic={true} class:loaded on:load={() => (loaded = true)} src={picture.src} alt={picture.alt} width={picture.width} height={picture.height} />
+        <img class={`pic ${className} ${loaded ? "loaded" : ""}`} onload={() => (loaded = true)} src={picture.src} alt={picture.alt} width={picture.width} height={picture.height} />
       {/if}
     </button>
     {#if picture.alt}
       <figcaption class="backdrop-blur-md transition-transform translate-y-full bg-surface-50/60 text-surface-contrast-50 dark:bg-surface-950/60 dark:text-surface-contrast-950 py-2 px-3 absolute bottom-0 w-full max-w-full">{@html picture.alt}</figcaption>
     {/if}
-    {#if loaded && !zoomed}
+    {#if loaded && showZoom && !zoomed}
       <button
-        on:click={() => {
+        onclick={() => {
           onClick();
           zoomed = !zoomed;
         }}
         tabindex="-1"
         aria-hidden="true"
-        class="zoom-icon-btn absolute top-4 right-4 btn opacity-0 btn-icon-lg bg-surface-50/60 backdrop-blur-md text-surface-contrast-50 dark:bg-surface-950/60 dark:text-surface-contrast-950 z-10"><IconExpandOut class="size-7 mx-auto" /></button
+        class="btn btn-icon-lg cursor-pointer zoom-icon-btn preset-filled-surface-100-900 hover:shadow-xl bg-surface-100-900/80 absolute top-4 right-4 opacity-0 backdrop-blur-md z-10"><IconExpandOut class="size-7 mx-auto" /></button
       >
     {/if}
     {#if !loaded}
-      <ProgressRing value={null} size="size-14" meterStroke="stroke-tertiary-600-400" trackStroke="stroke-tertiary-50-950" classes="!absolute left-1/2 top-1/2  -translate-x-1/2 -translate-y-1/2 opacity-30 pointer-events-none" />
+      <Progress class="absolute! left-1/2 top-1/2  -translate-x-1/2 -translate-y-1/2 opacity-30 pointer-events-none items-center w-fit" value={null}>
+        <Progress.Circle class="[--size:--spacing(14)]">
+          <Progress.CircleTrack />
+          <Progress.CircleRange />
+        </Progress.Circle>
+      </Progress>
     {/if}
   </figure>
 </div>

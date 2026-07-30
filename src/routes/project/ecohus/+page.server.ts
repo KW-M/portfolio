@@ -78,7 +78,7 @@ export const _mediaSlides = [
     },
     {
         type: "img",
-        alt: "Early EcoHus CAD design concept",
+        alt: "Early EcoHus design concept",
         ...Img13
     },
     {

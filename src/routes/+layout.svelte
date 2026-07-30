@@ -1,70 +1,29 @@
 <script lang="ts">
-  import "../app.css";
-  import CornerLinkBtn from "$components/CornerLinkBtn.svelte";
-
-  import cornerRoundSvg from "$images/ui/CornerBtnBr.svg?url";
-
-  import { IconArrowDown, IconArrowUp, IconCaretBack, IconCaretForward, IconExpandIn, navIcons } from "$lib/assets";
-  // import experimentsIcon from "$images/icons/categoryIcons/experiments_24dp_000000.svg?url";
-  import ghIcon from "$images/icons/github_circle_white.svg?url";
-  import meIcon from "$images/profile-photo2.png?url";
-  import cloudOffIcon from "$images/icons/cloud_off_24dp.svg?url";
-  import cloudOnIcon from "$images/icons/wind_cloud_24dp.svg?url";
-  import homeIcon from "$images/icons/navIcons/arrow_tl_24dp.svg?url";
-  import CanvasRenderer from "$components/CanvasRenderer.svelte";
-
-  import { page } from "$app/stores";
-  import { afterNavigate } from "$app/navigation";
-  import { backHomeBtn } from "../actions/backButton";
-  import { SvelteURL } from "svelte/reactivity";
-  import { PREFERS_REDUCED_MOTION } from "$lib/canvasScale";
-  import CornerBtn from "$components/CornerBtn.svelte";
+  import "./layout.css";
+  import { disableBrowserBackSwipe, historyStack } from "$lib/globals";
+  import { IconExpandIn, IconMenu } from "$lib/assets";
   import Backgrounds from "$components/Backgrounds.svelte";
+  import CanvasRenderer from "$components/CanvasRenderer.svelte";
+  import { browser } from "$app/env";
+  import { SvelteURL } from "svelte/reactivity";
   import { previewZoomOpen, TRANSITION_DURRATION } from "../actions/ImageZoom.action";
-  import { disableBrowserBackSwipe, historyStack, navOpen } from "$lib/globals";
+  import { page } from "$app/state";
   import { fade } from "svelte/transition";
-  import { browser } from "$app/environment";
-  import TagNav from "$components/tagNav.svelte";
-  import { onMount } from "svelte";
+  import { afterNavigate } from "$app/navigation";
+  import faviconLink from "$lib/assets/Favicons/favicon.ico";
+  const faviconsFolder = faviconLink.replace("favicon.ico", "");
 
-  $: if ($disableBrowserBackSwipe) {
-    if (browser) document.body.classList.add("overscroll-none");
-    if (browser) document.documentElement.classList.add("overscroll-none");
-  } else {
-    if (browser) document.body.classList.remove("overscroll-none");
-    if (browser) document.documentElement.classList.remove("overscroll-none");
-  }
+  let { children } = $props();
 
-  $: mainNavOpen = $navOpen || $page.route.id === "/";
-  $: pageNavOpen = $navOpen && $page.route.id != "/";
-
-  const closeNav = () => {
-    navOpen.set(false);
-    document.removeEventListener("click", closeNav);
-  };
-  const onScroll = () => {
-    const currentScrollY = document?.scrollingElement?.scrollTop || 0;
-    if (Math.abs(currentScrollY - startScrollY) > 1000) closeNav();
-  };
-  let startScrollY = browser ? document?.scrollingElement?.scrollTop || 0 : 0;
-  navOpen.subscribe((value) => {
-    if (!browser) return;
-    startScrollY = document?.scrollingElement?.scrollTop || 0;
-    if (value) document.addEventListener("scroll", onScroll);
-    else document.removeEventListener("scroll", onScroll);
-    setTimeout(() => {
-      if (navOpen.get()) document.addEventListener("click", closeNav);
-      else document.removeEventListener("click", closeNav);
-    });
+  disableBrowserBackSwipe.subscribe((value) => {
+    if (browser) document.body.classList.toggle("overscroll-none", value);
+    if (browser) document.documentElement.classList.toggle("overscroll-none", value);
   });
 
   afterNavigate(async ({ to, from, delta }) => {
     if (delta && delta < 0) {
       historyStack.update((stack) => {
         stack = stack.slice(0, delta);
-        // if (to && stack[stack.length - 1] !== to.url.pathname) {
-        //   stack.push(to.url.pathname);
-        // }
         if (to && stack.length === 0) stack.push(to.url.pathname);
         return stack;
       });
@@ -80,150 +39,60 @@
     }
   });
 
-  onMount(() => {});
+  let getHomeLink = () => {
+    if (page.route.id === "/") {
+      const history = historyStack.get();
+      return history.length != 0 ? history[history.length - 1] : "/";
+    } else return "/";
+  };
 </script>
 
 <svelte:head>
-  <title>{$page.data.title || "Kyle W-M"}</title>
+  <title>{page.data.title || "Kyle W-M"}</title>
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="icon" type="image/x-icon" href={faviconLink} />
+  <link rel="apple-touch-icon" sizes="180x180" href={faviconsFolder + "apple-touch-icon.png"} />
+  <link rel="icon" type="image/png" sizes="32x32" href={faviconsFolder + "favicon-32x32.png"} />
+  <link rel="icon" type="image/png" sizes="16x16" href={faviconsFolder + "favicon-16x16.png"} />
+
+  <link rel="mask-icon" href={faviconsFolder + "safari-pinned-tab.svg"} color="#5bbad5" />
+  <meta name="msapplication-TileColor" content="#2b5797" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Greetings Fellow Netizen! I'm Kyle. Come see what I've been up to on my web portfolio!" />
+  <meta name="author" content="Kyle Worcester-Moore" />
+
+  <meta property="og:url" content="https://kw-m.cc" />
+  <meta property="og:title" content="Kyle Worcester-Moore | Portfolio" />
+  <meta property="og:description" content="Come see what I've been up to on my portfolio!" />
+  <meta property="og:site_name" content="KW-M.cc" />
+  <meta property="og:image" content="https://kw-m.cc/og-image.jpg" />
+  <meta property="og:image:width" content="1000" />
+  <meta property="og:image:height" content="524" />
+  <meta property="og:type" content="website" />
+  <meta property="og:logo" content={"https://kw-m.cc/" + faviconsFolder + "safari-pinned-tab.svg"} />
+  <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
 <a class="skip-link z-50" href={"#main"}>Skip to content</a>
 <Backgrounds />
 <CanvasRenderer />
-<a href="/" class="chip rounded-3xl z-10 bg-black text-2xl m-2 text-white absolute top-0 left-0 py-3 px-6 rounded-tl-none" in:fade={{ duration: 500 }} out:fade={{ duration: 500 }}>Kyle Worcester-Moore</a>
-
-<nav class="fixed border-nav pointer-events-none z-30 duration-300 ease-in-out" class:nav-open={mainNavOpen}>
-  <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" class="absolute -bottom-[1px] left-0 w-40 h-40 duration-300 ease-in-out transition-transform origin-bottom-left">
-    <path d="M60 0v60H0c33.115 0 60-26.885 60-60z" transform="rotate(90)" transform-origin="center center" />
-  </svg>
-
-  <!-- <div style="background-image: url('{cornerRoundSvg}');" class="corner-bg-tl"></div> -->
-  <!-- <CornerLinkBtn fixed={true} href="/" useAction={backHomeBtn} icon={IconCaretBack} corner="tl"></CornerLinkBtn> -->
-
-  <!-- <CornerLinkBtn fixed={true} href="https://github.com/kw-m" icon_src={ghIcon} corner="tr"></CornerLinkBtn> -->
-  <!-- <CornerBtn corner="tr" icon_src={!$PREFERS_REDUCED_MOTION ? cloudOnIcon : cloudOffIcon} onClick={() => PREFERS_REDUCED_MOTION.set(!PREFERS_REDUCED_MOTION.get())} /> -->
-  <!-- <CornerLinkBtn fixed={true} href="/about" icon_src={meIcon} corner="bl"></CornerLinkBtn> -->
-  <h3 class="text-center tracking-tight font-bold absolute leading-none select-none text-gray-900 pointer-events-none bottom-0 p-3 w-full" class:opacity-0={!pageNavOpen}><IconArrowDown class="inline mx-2"></IconArrowDown> Pick a Category</h3>
-  {#if $page.route.id !== "/"}
-    <button on:click={() => navOpen.set(!navOpen.get())} class="no-tap-highlight absolute bottom-0 left-0 w-20 h-20 z-20 pointer-events-auto" aria-label="Open Navigation Menu"> <IconCaretForward class={`w-10 h-10 absolute bottom-2 left-2 text-white z-10 ${pageNavOpen ? "rotate-90" : "-rotate-90"}`}></IconCaretForward> </button>
-  {/if}
-</nav>
-<TagNav open={mainNavOpen} />
-<!-- <CornerBtn corner="bl" icon_src={homeIcon} onClick={() => navOpen.set(!navOpen.get())} classNames={" z-50 fixed " + (mainNavOpen ? "rotate-270" : "rotate-90")} /> -->
+<!-- TODO Figure out width thing -->
+<a href={getHomeLink()} class="group sm:hover:bg-surface-50-950/70 fixed top-3 left-3 overflow-clip max-sm:rounded-r-none max-sm:right-0 rounded-tl-none px-5 py-3 flex flex-nowrap flex-row gap-3 items-center cursor-pointer justify-start z-30 rounded-4xl bg-white/70 backdrop-blur-md shadow-xl" aria-label="Open Navigation Menu">
+  <!-- <IconMenuFill class={`w-6 h-6 shrink-0  scale-120  block group-hover:hidden group-focus:hidden`} /> -->
+  <IconMenu class={`w-6 h-6 shrink-0  scale-120   opacity-80  group-hover:text-secondary-900-100 group-focus:block group-focus:opacity-100`} />
+  <span class="vr border-surface-600-400 scale-120"></span>
+  <span class="text-2xl text-right whitespace-nowrap">Kyle Worcester-Moore</span>
+</a>
 
 {#key SvelteURL}
-  <slot />
+  {@render children()}
 {/key}
 
 {#if $previewZoomOpen}
-  <div on:click={() => previewZoomOpen.set(false)} aria-hidden="true" id="img_zoom_backdrop" class="z-40" transition:fade={{ duration: TRANSITION_DURRATION }}></div>
+  <div onclick={() => previewZoomOpen.set(false)} aria-hidden="true" id="img_zoom_backdrop" class="z-40 bg-black absolute inset-0 opacity-70" transition:fade={{ duration: TRANSITION_DURRATION }}></div>
   <div class=" fixed inset-0 w-full h-full z-50 pointer-events-none" transition:fade={{ duration: TRANSITION_DURRATION }}>
-    <button on:click={() => previewZoomOpen.set(false)} class="btn-icon btn-icon-lg cursor-zoom-out pointer-events-auto preset-filled-surface-950-50 absolute top-4 right-4 bg-size-32" aria-label="close image zoom">
+    <button onclick={() => previewZoomOpen.set(false)} class="btn-icon btn-icon-lg cursor-zoom-out pointer-events-auto preset-filled-surface-950-50 absolute top-4 right-4 bg-size-32" aria-label="close image zoom">
       <IconExpandIn class="size-7 pointer-events-none" />
     </button>
   </div>
 {/if}
-
-<!-- History Stack Debug -->
-<!-- <p class="fixed h5 z-50 left-0 right-0 top-28 m-auto p-5 bg-white">{$historyStack.join(" | ")} | {$historyStack.length}<a href={$historyStack[$historyStack.length - 2]} data-sveltekit-replacestate>Curr</a></p> -->
-
-<style>
-  :global(main) {
-    padding: 0 10px;
-  }
-  :global(:root) {
-    --scrollbar-width: 0px;
-  }
-
-  .skip-link {
-    /* visibility: hidden; */
-    top: 0;
-    position: absolute;
-    background: #000000;
-    color: white; /* change the color */
-    left: 50%;
-    padding: 8px 16px;
-    position: absolute;
-    transform: translateX(-50%) translateY(-100%);
-    transition: transform 0.3s;
-  }
-
-  .skip-link:focus {
-    visibility: visible;
-    transform: translateX(-50%) translateY(0%);
-  }
-
-  .corner-bg-tl {
-    transform-origin: top-left;
-    transform: rotate(180deg) scale(50%);
-    @apply top-0 left-0 w-40 h-40;
-  }
-
-  .corner-btn-tl {
-    background-size: 36px;
-    @apply top-0 left-0 fixed w-16 h-16 m-0 bg-transparent bg-no-repeat z-40 pointer-events-auto;
-    /* background-position: bottom 0.8rem left 0.8rem; */
-    background-position: center;
-  }
-
-  .nav-open .corner-bg-tl {
-    transform: scale(50%) rotate(180deg);
-  }
-
-  .border-nav {
-    border-bottom: solid black 8px;
-    transition: border 250ms ease;
-    right: 0;
-    left: 0;
-    bottom: 0;
-  }
-
-  .nav-open.border-nav {
-    border-bottom: solid black 80px;
-  }
-
-  /*
-
-  .border-nav:before {
-    content: " ";
-    position: fixed;
-    border: solid black 140px;
-    border-radius: 160px;
-    border-bottom-right-radius: 240px;
-    bottom: -120px;
-    right: calc(-120px - var(--scrollbar-width));
-    left: -120px;
-    height: 100vh;
-    border-top-color: transparent;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  } */
-
-  #img_zoom_backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 1);
-    pointer-events: all;
-    cursor: zoom-out;
-    @apply bg-black;
-  }
-
-  .bg-size-32 {
-    background-size: 32px;
-  }
-
-  :global(#img_zoom_backdrop *) {
-    position: absolute;
-    max-height: 100%;
-    max-width: 100%;
-    height: 100%;
-  }
-
-  :global(.no-tap-highlight) {
-    -webkit-tap-highlight-color: transparent;
-  }
-</style>

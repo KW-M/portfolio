@@ -18,16 +18,20 @@
   //   Eco: categoryIcons.environment,
   // };
 
-  let ready = false;
+  let ready = $state(false);
 
-  export let categoryNames: string[] = [];
+  interface Props {
+    categoryNames?: string[];
+  }
+
+  let { categoryNames = [] }: Props = $props();
   const categories = categoryNames.map((name, i) => ({ name, icon: categoryIconMap[name] || "", color: categoryColorMap[name] || bgColors[i % bgColors.length] }));
   const categoryCount = categories.length;
 
   let screenWidth = browser ? innerWidth : 768;
   let screenHeight = browser ? innerHeight : 1024;
 
-  let spiralPoints: { x: number; y: number }[] = [];
+  let spiralPoints: { x: number; y: number }[] = $state([]);
   const onResize = () => {
     screenWidth = browser ? innerWidth : 768;
     screenHeight = browser ? innerHeight : 1024;
@@ -62,7 +66,7 @@
           <a href={`${base}/cat/${categories[i].name}`} class={"min-w-20 -translate-x-1/2 translate-y-1/2 btn btn-md absolute bg-tap-target-xl flex-shrink shadow-xl active:shadow-md w-min " + color}>
             <!-- <div tabindex="-1" class={"w-full aspect-square rounded-t-full bg-center bg-size-32 bg-no-repeat absolute left-1/2 -translate-y-1/2 -translate-x-1/2 -z-10  " + color} style={`background-image: url("${category.icon}")`}></div> -->
             <!-- <div class="aspect-square rounded-t-full w-full absolute left-1/2 -translate-y-1/2 -translate-x-1/2 -z-10"><svelte:component this={category.icon} class="w-32 h-32"></svelte:component></div> -->
-            <svelte:component this={category.icon} class={"absolute drop-shadow-lg left-1/2 -translate-y-full  -translate-x-1/2 w-16 h-16 bg-transparent " + color.replaceAll("bg", "text")}></svelte:component>
+            <category.icon class={"absolute drop-shadow-lg left-1/2 -translate-y-full  -translate-x-1/2 w-16 h-16 bg-transparent " + color.replaceAll("bg", "text")}></category.icon>
             <span>{category.name}</span>
           </a>
         {:else}

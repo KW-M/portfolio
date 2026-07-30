@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   import nStore from "$lib/libraries/nStore";
   import { onMount } from "svelte";
 
@@ -14,7 +14,7 @@
     height: number;
   };
 
-  let zoomedElemContainer: HTMLDivElement | null;
+  let zoomedElemContainer: HTMLDivElement | undefined = undefined;
   const zoomsInLimbo = nStore<zoomElemData[]>([]);
   export const zoomAction = (node: HTMLElement, options: zoomOptions) => {
     return {
@@ -56,13 +56,13 @@
 </script>
 
 <script lang="ts">
-  let zoomContainer: HTMLDivElement;
+  let zoomContainer: HTMLDivElement | undefined = $state();
   onMount(() => {
     zoomedElemContainer = zoomContainer;
   });
 </script>
 
-<div id="img_zoom_backdrop" class="z-40" bind:this={zoomContainer}>
+<div id="img_zoom_backdrop" class="z-40 bg-black cursor-zoom-out" bind:this={zoomContainer}>
   <!-- Zoomed Images go here -->
 </div>
 
@@ -82,7 +82,6 @@
     height: 100%;
     overflow: hidden;
     pointer-events: all;
-    @apply bg-black cursor-zoom-out;
   }
 
   :global(#img_zoom_backdrop *) {

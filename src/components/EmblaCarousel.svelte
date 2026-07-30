@@ -9,18 +9,18 @@
   import { IconCaretBack, IconCaretForward } from "$lib/assets";
   import { disableBrowserBackSwipe } from "$lib/globals";
 
-  $$props.class = "";
   const yPadding = 18;
-  export let color = "bg-slate-900";
-  export let slides: carouselMediaInfo[] = [];
-  //   export let index = 0;
-  //   export let enabled = false;
-  //   export let loadHiRez = false;
-  //   export let mounted = false;
-  $: length = slides.length;
+  interface Props {
+    color?: string;
+    slides?: carouselMediaInfo[];
+    class: string;
+  }
+
+  let { color = "bg-slate-900", slides = [], class: className = "" }: Props = $props();
+  let length = $derived(slides.length);
   let zoomedSlide = -1;
-  let centerSlide = -1;
-  let mounted = false;
+  let centerSlide = $state(-1);
+  let mounted = $state(false);
 
   const i18nDefaults = { carousel: "carousel", counter: "%s of %s", first: "Go to the first slide", last: "Go to the last slide", next: "Go to the next slide", play: "Start autoplay", prev: "Return back to previous slide", slide: "slide", slideN: "Go to the slide %s", stop: "Stop autoplay" };
   const format = (str: string, ...r: any) => {
@@ -30,7 +30,6 @@
   const i18n = i18nDefaults;
 
   let emblaApi: EmblaCarouselType;
-  let limboContainer: HTMLElement;
 
   function next() {
     emblaApi.scrollNext();
@@ -65,6 +64,11 @@
     align: "center",
     watchSlides: false,
     containScroll: "keepSnaps",
+    breakpoints: {
+      "(min-width:  48rem)": { loop: true },
+      "(min-width:  64rem)": { loop: true },
+      "(prefers-reduced-motion: reduce)": { duration: 0 },
+    },
   };
   let plugins = [
     EmblaClassNames({
@@ -82,31 +86,27 @@
   });
 </script>
 
-<!-- <Limbo bind:component={limboContainer}> -->
-<!-- class:invisible={!mounted} -->
-<section class="embla" class:embla__fullscreen={false} use:emblaCarouselSvelte={{ options, plugins }} on:emblaInit={emblaInit}>
-  <ol class="embla__container" aria-live="polite" role="listbox" tabindex="0" on:mouseenter={() => disableBrowserBackSwipe.set(true)} on:mouseleave={() => disableBrowserBackSwipe.set(true)}>
+<section class="embla" class:embla__fullscreen={false} use:emblaCarouselSvelte={{ options, plugins }} onemblaInit={emblaInit}>
+  <ol class="embla__container" aria-live="polite" role="listbox" tabindex="0" onmouseenter={() => disableBrowserBackSwipe.set(true)} onmouseleave={() => disableBrowserBackSwipe.set(true)}>
     {#each slides as item, i}
       {#if item != null}
         <li class="embla__slide embla__class-names" data-index={i} aria-label={format(i18n.counter, i, length)} aria-roledescription={i18n.slide} role="group">
           {#if item.type === "img"}
-            <LqipPicture picture={item} class={"w-auto h-full embla__slide__img"} loadHiRez={mounted} onClick={() => onSlideClick(i)} />
+            <LqipPicture picture={item} class={"w-auto h-full embla__slide__img"} loadHiRez={mounted} onClick={() => onSlideClick(i)} showZoom={true} />
           {:else if item.type === "video"}
-            <LqipVideo video={item} class={"w-auto h-full embla__slide__img"} loadHiRez={mounted} isCentered={centerSlide === i} onClick={() => onSlideClick(i)} />
+            <LqipVideo video={item} class={"w-auto h-full embla__slide__img"} loadHiRez={mounted} isCentered={centerSlide === i} onClick={() => onSlideClick(i)} showZoom={true} />
           {/if}
         </li>
       {/if}
     {/each}
   </ol>
-  <button class={"btn-icon text-black btn-icon-lg shadow-lg embla__btn left-4 " + color} on:click={prev} aria-label="previous photo">
-    <IconCaretBack class="size-6 pointer-events-none"></IconCaretBack>
+  <button class={"btn btn-icon cursor-pointer preset-filled-primary-400-600 text-contrast-primary-400-600  shadow-xl embla__btn left-4 btn-icon-xl md:btn-icon-2xl"} onclick={prev} aria-label="previous photo">
+    <IconCaretBack class="pointer-events-none"></IconCaretBack>
   </button>
-  <button class={"btn-icon text-black btn-icon-lg shadow-lg embla__btn right-4 " + color} on:click={next} aria-label="next photo">
-    <IconCaretForward class="size-6 pointer-events-none"></IconCaretForward>
+  <button class={"btn btn-icon cursor-pointer preset-filled-primary-400-600 text-contrast-primary-400-600 shadow-xl embla__btn right-4  btn-icon-xl md:btn-icon-2xl"} onclick={next} aria-label="next photo">
+    <IconCaretForward class="pointer-events-none"></IconCaretForward>
   </button>
 </section>
-
-<!-- </Limbo> -->
 
 <style>
   .embla {
@@ -119,7 +119,20 @@
     box-sizing: content-box;
     border-bottom: 18px solid transparent;
     border-top: 18px solid transparent;
-    @apply h-44 md:h-80 lg:h-96;
+
+    height: calc(var(--spacing) * 44) /* 11rem = 176px */;
+  }
+
+  @media (width >= 48rem /* 768px */) {
+    .embla {
+      height: calc(var(--spacing) * 80) /* 20rem = 320px */;
+    }
+  }
+
+  @media (width >= 64rem /* 1024px */) {
+    .embla {
+      height: calc(var(--spacing) * 96) /* 24rem = 384px */;
+    }
   }
   .embla__container {
     display: flex;
@@ -127,14 +140,14 @@
     /* margin-left: calc(var(--slide-spacing) * -1); */
     overscroll-behavior: contain;
     user-select: none;
-    @apply h-full;
+    height: 100%;
   }
   .embla__slide {
     transform: translate3d(0, 0, 0);
     flex: 1 0 auto;
     margin-left: var(--slide-spacing);
     /* margin-right: var(--slide-spacing); */
-    @apply h-full;
+    height: 100%;
   }
   .embla__slide {
     transition: opacity 0.2s ease-in-out;
@@ -159,19 +172,22 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
-    background-size: 32px;
-    @apply bg-no-repeat bg-center;
   }
 
   .embla.embla__fullscreen {
-    @apply fixed inset-0 h-full w-full z-50 border-0;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    border: 0;
   }
 
   .embla.embla__fullscreen .embla__slide {
-    @apply h-full;
+    height: 100%;
   }
 
   :global(.embla.embla__fullscreen .embla__slide > div) {
-    @apply scale-95;
+    scale: 95%;
   }
 </style>

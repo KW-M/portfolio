@@ -1,8 +1,9 @@
 ---
 title: "Pantry Chef"
+summary: "AI experiment using fine-tuning on large language models availble before chatGPT to generate recipes from ingredients - often with hilarious results."
 date: "2023-2-05"
 updated: "2023-2-05"
-categories: [ "Data Science"]
+categories: ["Data Science"]
 tags:
   - "ML"
   - "Python"

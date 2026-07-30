@@ -2,9 +2,7 @@ import { join } from 'path'
 import type { Config } from 'tailwindcss'
 // import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
-import { skeleton } from '@skeletonlabs/skeleton/plugin';
-import BlueBird from './themeBlueBird';
-import * as themes from '@skeletonlabs/skeleton/themes';
+// import BlueBird from './themeBlueBird';
 
 /** @type {import('tailwindcss').Config} \*/
 export default {
@@ -19,7 +17,7 @@ export default {
     // forms,
     typography,
     skeleton({
-      themes: [BlueBird, themes.vintage]
+      themes: [BlueBird, themes.rose]
     })
   ],
 } satisfies Config;

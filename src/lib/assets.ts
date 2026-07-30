@@ -11,16 +11,24 @@ export { default as IconExpandOut } from '~icons/ph/arrows-out-simple-bold';
 export { default as IconExpandIn } from '~icons/ph/arrows-in-simple-bold';
 export { default as IconLinkOut } from '~icons/ph/arrow-square-out-bold';
 export { default as IconArrowBendRightUp } from '~icons/ph/arrow-bend-right-up-bold';
+export { default as IconMenu } from '~icons/ph/dots-nine-bold';
+export { default as IconMenuFill } from '~icons/ph/dots-nine-fill';
+export { default as IconMystery } from '~icons/ph/acorn-duotone';
+
+export { default as IconEmail } from '~icons/ph/envelope-duotone';
+export { default as IconGithub } from '~icons/ph/github-logo-duotone';
+export { default as IconLinkedin } from '~icons/ph/linkedin-logo-duotone';
 
 
-import favorites from "../images/icons/categoryIcons/favorite_24dp_000000.svg?url";
-import SystemIntegration from "../images/icons/categoryIcons/precision_manufacturing_24dp_000000.svg?url";
-import webDev from "../images/icons/categoryIcons/devices_24dp_000000.svg?url";
-import electronics from "../images/icons/categoryIcons/offline_bolt_24dp_000000.svg?url";
-import graphics from "../images/icons/categoryIcons/view_in_ar_24dp_000000.svg?url";
-import experiments from "../images/icons/categoryIcons/experiments_24dp_000000.svg?url";
-import science from "../images/icons/categoryIcons/biotech_24dp_000000.svg?url";
-import environment from "../images/icons/categoryIcons/energy_savings_leaf_24dp_000000.svg?url";
+// import favorites from "./assets/images/icons/categoryIcons/favorite_24dp_000000.svg?url";
+import favorites from "~icons/ph/sparkle-duotone"
+import SystemIntegration from "./assets/images/icons/categoryIcons/precision_manufacturing_24dp_000000.svg?url";
+import webDev from "./assets/images/icons/categoryIcons/devices_24dp_000000.svg?url";
+import electronics from "./assets/images/icons/categoryIcons/offline_bolt_24dp_000000.svg?url";
+import graphics from "./assets/images/icons/categoryIcons/view_in_ar_24dp_000000.svg?url";
+import experiments from "./assets/images/icons/categoryIcons/experiments_24dp_000000.svg?url";
+import science from "./assets/images/icons/categoryIcons/biotech_24dp_000000.svg?url";
+import environment from "./assets/images/icons/categoryIcons/energy_savings_leaf_24dp_000000.svg?url";
 export const categoryIcons = { favorites, SystemIntegration, electronics, graphics, webDev, experiments, science, environment };
 
 export { default as IconHighlights } from '~icons/ph/sparkle-duotone';
@@ -34,59 +42,58 @@ export { default as IconEnvironment } from '~icons/ph/leaf-duotone';
 
 
 
-import home from "../images/icons/navIcons/arrow_tl_24dp.svg?url";
-import back from "../images/icons/navIcons/navigate_before_24dp.svg?url";
-import forward from "../images/icons/navIcons/navigate_next_24dp.svg?url";
-import expand from "../images/icons/navIcons/expand_more_24dp.svg?url";
-import fold from "../images/icons/navIcons/unfold_less_24dp.svg?url";
-import unfold from "../images/icons/navIcons/unfold_more_24dp.svg?url";
-import fullscreen from "../images/icons/navIcons/open_in_full_24dp.svg?url";
-import arrowDown from "../images/icons/navIcons/arrow_downward_24dp.svg?url";
-import close from "../images/icons/navIcons/close_24dp.svg?url";
+import home from "./assets/images/icons/navIcons/arrow_tl_24dp.svg?url";
+import back from "./assets/images/icons/navIcons/navigate_before_24dp.svg?url";
+import forward from "./assets/images/icons/navIcons/navigate_next_24dp.svg?url";
+import expand from "./assets/images/icons/navIcons/expand_more_24dp.svg?url";
+import fold from "./assets/images/icons/navIcons/unfold_less_24dp.svg?url";
+import unfold from "./assets/images/icons/navIcons/unfold_more_24dp.svg?url";
+import fullscreen from "./assets/images/icons/navIcons/open_in_full_24dp.svg?url";
+import arrowDown from "./assets/images/icons/navIcons/arrow_downward_24dp.svg?url";
+import close from "./assets/images/icons/navIcons/close_24dp.svg?url";
 export const navIcons = { home, back, forward, expand, fold, unfold, arrowDown, fullscreen, close };
 
 
-import homeDark from "../images/icons/navIcons/black/arrow_tl_24dp_000000.svg?url";
-import backDark from "../images/icons/navIcons/black/navigate_before_24dp_000000.svg?url";
-import forwardDark from "../images/icons/navIcons/black/navigate_next_24dp_000000.svg?url";
-import expandDark from "../images/icons/navIcons/black/expand_more_24dp_000000.svg?url";
-import foldDark from "../images/icons/navIcons/black/unfold_less_24dp_00000.svg?url";
-import unfoldDark from "../images/icons/navIcons/black/unfold_more_24dp_000000.svg?url";
-import fullscreenDark from "../images/icons/navIcons/black/open_in_full_24dp_00000.svg?url";
-import arrowDownDark from "../images/icons/navIcons/black/arrow_downward_24dp_000000.svg?url";
-import closeDark from "../images/icons/navIcons/black/close_24dp_000000.svg?url";
+import homeDark from "./assets/images/icons/navIcons/black/arrow_tl_24dp_000000.svg?url";
+import backDark from "./assets/images/icons/navIcons/black/navigate_before_24dp_000000.svg?url";
+import forwardDark from "./assets/images/icons/navIcons/black/navigate_next_24dp_000000.svg?url";
+import expandDark from "./assets/images/icons/navIcons/black/expand_more_24dp_000000.svg?url";
+import foldDark from "./assets/images/icons/navIcons/black/unfold_less_24dp_00000.svg?url";
+import unfoldDark from "./assets/images/icons/navIcons/black/unfold_more_24dp_000000.svg?url";
+import fullscreenDark from "./assets/images/icons/navIcons/black/open_in_full_24dp_00000.svg?url";
+import arrowDownDark from "./assets/images/icons/navIcons/black/arrow_downward_24dp_000000.svg?url";
+import closeDark from "./assets/images/icons/navIcons/black/close_24dp_000000.svg?url";
 export const navIconsDark = { homeDark, backDark, forwardDark, expandDark, foldDark, unfoldDark, arrowDownDark, fullscreenDark, closeDark };
 
-import tileCloud from "../images/cloudAssets/Raw Clouds/Artboard2.png?lqip";
+import tileCloud from "./assets/images/cloudAssets/Raw Clouds/Artboard2.png?lqip";
 export const tileXCloud = tileCloud;
 
-import cloud1p from "../images/cloudAssets/Raw Clouds/Cloud1.png?lqip";
-import cloud2p from "../images/cloudAssets/Raw Clouds/Cloud2.png?lqip";
-import cloud3p from "../images/cloudAssets/Raw Clouds/Cloud3.png?lqip";
-import cloud4p from "../images/cloudAssets/Raw Clouds/Cloud4.png?lqip";
-import cloud5p from "../images/cloudAssets/Raw Clouds/cloud5.png?lqip";
-import cloud6p from "../images/cloudAssets/Raw Clouds/cloud6.png?lqip";
-import cloud7p from "../images/cloudAssets/Raw Clouds/Cloud7.png?lqip";
+import cloud1p from "./assets/images/cloudAssets/Raw Clouds/Cloud1.png?lqip";
+import cloud2p from "./assets/images/cloudAssets/Raw Clouds/Cloud2.png?lqip";
+import cloud3p from "./assets/images/cloudAssets/Raw Clouds/Cloud3.png?lqip";
+import cloud4p from "./assets/images/cloudAssets/Raw Clouds/Cloud4.png?lqip";
+import cloud5p from "./assets/images/cloudAssets/Raw Clouds/cloud5.png?lqip";
+import cloud6p from "./assets/images/cloudAssets/Raw Clouds/cloud6.png?lqip";
+import cloud7p from "./assets/images/cloudAssets/Raw Clouds/Cloud7.png?lqip";
 export const baseClouds = [cloud1p, cloud2p, cloud3p, cloud4p, cloud5p, cloud6p, cloud7p];
 export const bigClouds = [cloud1p, cloud2p, cloud3p, cloud4p];
 
-import background1 from "../images/backgrounds/oceanWaves.jpg?lqip";
-import background2 from "../images/backgrounds/glacialLake.jpg?lqip";
-import background3 from "../images/backgrounds/desertDino.jpg?lqip";
-import background4 from "../images/backgrounds/forestCruz.jpg?lqip";
-import background5 from "../images/backgrounds/Reflections.jpg?lqip";
-import background6 from "../images/backgrounds/granite.jpg?lqip";
-import background7 from "../images/backgrounds/lake2.jpg?lqip";
-import background8 from "../images/backgrounds/llamaPichu.jpg?lqip";
-import background9 from "../images/backgrounds/mistyTrees.jpg?lqip";
-import background10 from "../images/backgrounds/cradleMtn.jpg?lqip";
-import background11 from "../images/backgrounds/oregon-blur.jpg?lqip";
-import background12 from "../images/backgrounds/pisac.jpg?lqip";
-import background13 from "../images/backgrounds/seaClifs.jpg?lqip";
-import background14 from "../images/backgrounds/sky.jpg?lqip";
-import background15 from "../images/backgrounds/shelter.jpg?lqip";
-import background16 from "../images/backgrounds/seaClifs2.jpg?lqip";
-export const backgrounds = [background1, background2, background3, background4, background5, background6, background7, background8, background9, background10, background11, background12, background13, background14, background15, background16];
+import background1 from "./assets/images/backgrounds/oceanWaves.jpg?lqip";
+import background2 from "./assets/images/backgrounds/glacialLake.jpg?lqip";
+import background4 from "./assets/images/backgrounds/forestCruz.jpg?lqip";
+import background5 from "./assets/images/backgrounds/Reflections.jpg?lqip";
+import background6 from "./assets/images/backgrounds/granite.jpg?lqip";
+import background7 from "./assets/images/backgrounds/lake2.jpg?lqip";
+import background8 from "./assets/images/backgrounds/llamaPichu.jpg?lqip";
+import background9 from "./assets/images/backgrounds/mistyTrees.jpg?lqip";
+import background10 from "./assets/images/backgrounds/cradleMtn.jpg?lqip";
+import background11 from "./assets/images/backgrounds/oregon-blur.jpg?lqip";
+import background12 from "./assets/images/backgrounds/pisac.jpg?lqip";
+import background13 from "./assets/images/backgrounds/seaClifs.jpg?lqip";
+import background14 from "./assets/images/backgrounds/sky.jpg?lqip";
+import background15 from "./assets/images/backgrounds/shelter.jpg?lqip";
+import background16 from "./assets/images/backgrounds/seaClifs2.jpg?lqip";
+export const backgrounds = [background1, background2, background4, background5, background6, background7, background8, background9, background10, background11, background12, background13, background14, background15, background16];
 
 if (browser) {
     Assets.backgroundLoad(tileXCloud.src);

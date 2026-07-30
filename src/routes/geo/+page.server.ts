@@ -1,5 +1,5 @@
 import { fetchProjects as fetchProjects, fetchPageExports, fetchProjectCategories } from '$lib/server/index.js';
-import type { project } from "$lib/server/index.ts"
+import type { project } from "$lib/server/index"
 import { projectFromPath, urlPathify } from '$lib/util';
 
 function getPreviewContent(post: project) {

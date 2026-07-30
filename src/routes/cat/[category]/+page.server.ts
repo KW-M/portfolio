@@ -1,6 +1,6 @@
 import { fetchProjects as fetchProjects, fetchPageExports, fetchProjectCategories } from '$lib/server/index.js';
 import { urlPathify, urlUnpathify } from '$lib/util.js';
-import type { project } from "$lib/server/index.ts"
+import type { project } from "$lib/server/index"
 
 function getPreviewContent(post: project) {
     const splitpoint = post.content.indexOf('<hr>');

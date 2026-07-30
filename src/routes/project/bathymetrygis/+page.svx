@@ -1,5 +1,6 @@
 ---
-title: "Automating Low-cost Water Body Mapping with QGIS"
+title: "Automating Water Body Mapping with QGIS"
+summary: "QGIS and Python pipelines for automatically creating baseline marine & freshwater bathymetric maps from low-cost fishfinder data."
 categories: ["Data Science"]
 tags:
   - "GIS"
@@ -13,4 +14,4 @@ Developed QGIS and Python pipelines to automate the creation of baseline marine 
 
 #### My Role
 
-QGIS pipeline development, Field data collection
+QGIS/Python pipeline development, Field data collection
