@@ -10,8 +10,6 @@
   import { page } from "$app/state";
   import { fade } from "svelte/transition";
   import { afterNavigate } from "$app/navigation";
-  import faviconLink from "$lib/assets/Favicons/favicon.ico";
-  const faviconsFolder = faviconLink.replace("favicon.ico", "");
 
   let { children } = $props();
 
@@ -50,12 +48,13 @@
 <svelte:head>
   <title>{page.data.title || "Kyle W-M"}</title>
   <link rel="manifest" href="/site.webmanifest" />
-  <link rel="icon" type="image/x-icon" href={faviconLink} />
-  <link rel="apple-touch-icon" sizes="180x180" href={faviconsFolder + "apple-touch-icon.png"} />
-  <link rel="icon" type="image/png" sizes="32x32" href={faviconsFolder + "favicon-32x32.png"} />
-  <link rel="icon" type="image/png" sizes="16x16" href={faviconsFolder + "favicon-16x16.png"} />
+  <link rel="icon" type="image/x-icon" href="/Favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/Favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/Favicons/favicon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/Favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/Favicons/favicon-16x16.png" />
 
-  <link rel="mask-icon" href={faviconsFolder + "safari-pinned-tab.svg"} color="#5bbad5" />
+  <link rel="mask-icon" href="/Favicons/safari-pinned-tab.svg" color="#5bbad5" />
   <meta name="msapplication-TileColor" content="#2b5797" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Greetings Fellow Netizen! I'm Kyle. Come see what I've been up to on my web portfolio!" />
@@ -63,13 +62,13 @@
 
   <meta property="og:url" content="https://kw-m.cc" />
   <meta property="og:title" content="Kyle Worcester-Moore | Portfolio" />
-  <meta property="og:description" content="Come see what I've been up to on my portfolio!" />
+  <meta property="og:description" content="Greetings Fellow Netizen! Come see what I've been up to on my portfolio!" />
   <meta property="og:site_name" content="KW-M.cc" />
   <meta property="og:image" content="https://kw-m.cc/og-image.jpg" />
   <meta property="og:image:width" content="1000" />
   <meta property="og:image:height" content="524" />
   <meta property="og:type" content="website" />
-  <meta property="og:logo" content={"https://kw-m.cc/" + faviconsFolder + "safari-pinned-tab.svg"} />
+  <meta property="og:logo" content={"https://kw-m.cc/Favicons/favicon-96x96.png"} />
   <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
