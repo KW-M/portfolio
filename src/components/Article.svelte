@@ -43,7 +43,7 @@
     </header>
   {/if}
 
-  <article class="pt-8 md:pt-10 md:pb-5 relative pb-10 px-6 md:px-10 bg-surface-50-950 bg-opacity/90">
+  <article class="pt-8 md:pt-10 md:pb-5 relative pb-3 px-6 md:px-10 bg-surface-50-950 bg-opacity/90">
     <h2 class="h2 !mb-4 !mt-0 no-underline not-prose">{title}</h2>
     <div class="flex items-center justify-left flex-wrap text mt-4 gap-3">
       {#each tags as tag (tag)}

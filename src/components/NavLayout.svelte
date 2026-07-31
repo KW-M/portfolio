@@ -68,7 +68,7 @@
     <div class="flex flex-col items-stretch justify-center gap-6">{@render aboutCard()}{@render mysteryCard()}</div>
   </div>
 
-  <div class="top grid sm:hidden p-8 grid-cols-1 gap-6 max-w-full w-180">
+  <div class="top grid sm:hidden grid-cols-1 gap-6 max-w-full w-180">
     {@render aboutCard()}
     {@render projectCategoriesCard()}
     {@render contactCard()}

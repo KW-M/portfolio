@@ -3,7 +3,7 @@ title: "Web Graphics Experiments"
 date: "2023-01-05"
 updated: "2023-01-05"
 summary: "An experimental web project exploring ray marching as an alternative graphics rendering technique paired with trackpad-gesture-based input methods for creating abstract 3D environments."
-categories: ["Game Dev"]
+categories: ["Web"]
 tags:
   - "Web"
   - "GLSL"

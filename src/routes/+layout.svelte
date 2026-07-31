@@ -76,7 +76,7 @@
 <Backgrounds />
 <CanvasRenderer />
 <!-- TODO Figure out width thing -->
-<a href={getHomeLink()} class="group sm:hover:bg-surface-50-950/70 fixed top-3 left-3 overflow-clip max-sm:rounded-r-none max-sm:right-0 rounded-tl-none px-5 py-3 flex flex-nowrap flex-row gap-3 items-center cursor-pointer justify-start z-30 rounded-4xl bg-white/70 backdrop-blur-md shadow-xl" aria-label="Open Navigation Menu">
+<a href={getHomeLink()} class="group sm:hover:bg-surface-50-950/70 fixed top-3 left-3 overflow-clip max-sm:rounded-r-none max-sm:right-0 rounded-tl-none px-5 py-3 flex flex-nowrap flex-row gap-3 items-center cursor-pointer justify-start z-30 rounded-4xl bg-white/70 dark:bg-black/70 backdrop-blur-md shadow-xl" aria-label="Open Navigation Menu">
   <!-- <IconMenuFill class={`w-6 h-6 shrink-0  scale-120  block group-hover:hidden group-focus:hidden`} /> -->
   <IconMenu class={`w-6 h-6 shrink-0  scale-120   opacity-80  group-hover:text-secondary-900-100 group-focus:block group-focus:opacity-100`} />
   <span class="vr border-surface-600-400 scale-120"></span>

@@ -4,7 +4,7 @@ summary: "Short-form experimental video game set in a non-euclidian city that pu
 date: "2023-4-05"
 updated: "2023-4-05"
 links:
-   Code: https://github.com/ColinSORourke/LiminalWage
+   Source Code: https://github.com/ColinSORourke/LiminalWage
 categories: ["Game Dev"]
 tags:
   - "Unity"

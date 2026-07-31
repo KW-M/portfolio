@@ -42,11 +42,11 @@
     {/if}
   </a>
 
-  <article class="pt-8 md:pt-10 md:pb-5 relative pb-10 px-6 md:px-10">
+  <article class="pt-8 md:pt-10 md:pb-5 relative pb-10 px-6 md:px-10 flex flex-col justify-stretch gap-1">
     {#if articlePath != ""}
-      <a href={articlePath} class="h2 !mb-4 text-center !mt-0 no-underline not-prose">{title}</a>
+      <a href={articlePath} class="h2 m-0 no-underline not-prose w-full">{title}</a>
     {:else}
-      <a href={"#" + id} class="h2 !mb-4 text-center !mt-0 no-underline not-prose">{title}</a>
+      <a href={"#" + id} class="h2 m-0 no-underline not-prose w-full">{title}</a>
     {/if}
     <div class="flex items-center justify-left flex-wrap text mt-4 gap-3">
       {#each tags as tag (tag)}

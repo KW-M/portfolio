@@ -16,10 +16,10 @@
 </script>
 
 <MainContainer>
-  <div class="card shadow-2xl relative z-10 dark:bg-black mx-auto w-max px-12 py-3 rounded-3xl prose bg-surface-50-950 my-24 text-center">
-    <h5 class="h2 mt-6 mb-0 text-black">Hi, I'm Kyle.</h5>
+  <div class="card shadow-2xl relative z-10 preset-filled-surface-50-950 mx-auto w-max px-12 py-3 rounded-3xl prose my-24 text-center">
+    <h5 class="h2 mt-6 mb-0">Hi. I'm Kyle.</h5>
     <!-- <h1 class="h2 text-black font-bold text-left my-4 mx-7">Kyle Worcester-Moore</h1> -->
-    <h5 class="h5 mb-6 mt-0">Welcome to my portfolio!<br /></h5>
+    <h5 class="h5 mb-6 mt-2">Welcome to my portfolio!<br /></h5>
   </div>
 
   {#each posts as post (post.path)}
